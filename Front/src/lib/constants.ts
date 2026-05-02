@@ -2,7 +2,6 @@
 // Developed at UFUQ TECH
 // Proprietary software. See LICENSE file in the project root for full license information.
 
-const DEFAULT_LOCAL_API = "http://127.0.0.1:8000/api";
 const VERCEL_API = "https://api.homeverse.ufuq-tech.com";
 
 export const NEXT_PUBLIC_API_URL = (() => {

@@ -4,6 +4,7 @@
 
 import { BaseApiClient } from "../shared/base-client";
 import type { ApiResponse } from "../../types/shared.types";
+import type { LocalizedValue } from "../../types/shared.types";
 import type {
   BlogPost,
   BlogFilters,
@@ -12,6 +13,48 @@ import type {
 } from "./index";
 
 import { blogPosts } from "../../mock/blog.mock";
+
+function hasMeaningfulValue(value: unknown): boolean {
+  return !(
+    value === undefined ||
+    value === null ||
+    (typeof value === "string" && value.trim().length === 0)
+  );
+}
+
+function mergeLocalized<T>(
+  value: LocalizedValue<T> | undefined,
+  fallback: LocalizedValue<T>,
+): LocalizedValue<T> {
+  if (!value) return fallback;
+  return hasMeaningfulValue(value.en) || hasMeaningfulValue(value.ar)
+    ? value
+    : fallback;
+}
+
+function mergeValue<T>(value: T | undefined, fallback: T): T {
+  return hasMeaningfulValue(value) ? (value as T) : fallback;
+}
+
+function mergePost(post: Partial<BlogPost>): BlogPost {
+  const fallback = blogPosts.find((item) => item.id === post.id);
+  if (!fallback) return post as BlogPost;
+
+  return {
+    ...fallback,
+    ...post,
+    title: mergeLocalized(post.title, fallback.title),
+    excerpt: mergeLocalized(post.excerpt, fallback.excerpt),
+    content: mergeLocalized(post.content, fallback.content),
+    category: mergeLocalized(post.category, fallback.category),
+    author: mergeLocalized(post.author, fallback.author),
+    authorAvatar: mergeValue(post.authorAvatar, fallback.authorAvatar),
+    date: mergeValue(post.date, fallback.date),
+    readTime: mergeValue(post.readTime, fallback.readTime),
+    image: mergeValue(post.image, fallback.image),
+    tags: mergeValue(post.tags, fallback.tags),
+  };
+}
 
 function appendJsonField(formData: FormData, key: string, value: unknown) {
   formData.append(key, JSON.stringify(value));
@@ -53,21 +96,6 @@ export class BlogApiClient extends BaseApiClient {
     super();
   }
 
-  private withFallback<T>(
-    apiCall: Promise<ApiResponse<T>>,
-    fallbackData: T,
-  ): Promise<ApiResponse<T>> {
-    return apiCall.catch((error) => {
-      console.warn("API call failed, falling back to mock data:", error);
-      return {
-        success: true,
-        isSuccess: true,
-        message: "Loaded from mock data",
-        data: fallbackData,
-      };
-    });
-  }
-
   /** List published blog posts */
   async listPosts(filters?: BlogFilters): Promise<ApiResponse<BlogPost[]>> {
     const params = new URLSearchParams();
@@ -79,18 +107,22 @@ export class BlogApiClient extends BaseApiClient {
       });
     }
     const qs = params.toString();
-    return this.withFallback(
-      this.get<BlogPost[]>(`/blog-posts${qs ? `?${qs}` : ""}`),
-      blogPosts as unknown as BlogPost[],
+    const response = await this.get<BlogPost[]>(
+      `/blog-posts${qs ? `?${qs}` : ""}`,
     );
+    return {
+      ...response,
+      data: (response.data || []).map((item) => mergePost(item)),
+    };
   }
 
   /** Get a single blog post by ID */
   async getPost(id: number): Promise<ApiResponse<BlogPost>> {
-    return this.withFallback(
-      this.get<BlogPost>(`/blog-posts/${id}`),
-      blogPosts.find((p) => p.id === id) as unknown as BlogPost,
-    );
+    const response = await this.get<BlogPost>(`/blog-posts/${id}`);
+    return {
+      ...response,
+      data: mergePost(response.data),
+    };
   }
 
   /** Get a single blog post by slug */

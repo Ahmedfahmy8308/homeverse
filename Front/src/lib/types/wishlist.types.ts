@@ -2,15 +2,17 @@
 // Developed at UFUQ TECH
 // Proprietary software. See LICENSE file in the project root for full license information.
 
+import type { LocalizedValue } from "./shared.types";
+
 /* ─── Wishlist API Types ─── */
 
 export interface WishlistProperty {
   id: number;
-  title: string;
-  description: string;
-  city: string;
-  address: string;
-  location_label: string;
+  title: LocalizedValue<string>;
+  description: LocalizedValue<string>;
+  city: LocalizedValue<string>;
+  address: LocalizedValue<string>;
+  location_label: LocalizedValue<string>;
   price: number;
   currency: string;
   price_period: string;

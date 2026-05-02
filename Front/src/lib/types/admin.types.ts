@@ -17,6 +17,11 @@ export interface AdminDashboardStats {
   unread_messages: number;
   reviews: number;
   subscribers: number;
+  totalUsers?: number;
+  totalProperties?: number;
+  totalAgents?: number;
+  totalPosts?: number;
+  totalFeatured?: number;
   pageViews?: number;
   monthlyRevenue?: number;
   newRegistrations?: number;

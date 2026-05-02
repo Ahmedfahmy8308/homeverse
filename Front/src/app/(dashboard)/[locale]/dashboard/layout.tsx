@@ -45,22 +45,22 @@ export default function DashboardLayout({
 
   const userLinks: DashboardLink[] = [
     {
-      href: `/${locale}/dashboard`,
+      href: `/${locale}/dashboard/user`,
       label: t("dashboard_overview"),
       icon: HiOutlineChartBar,
     },
     {
-      href: `/${locale}/dashboard/profile`,
+      href: `/${locale}/dashboard/user/profile`,
       label: t("dashboard_profile"),
       icon: HiOutlineUser,
     },
     {
-      href: `/${locale}/dashboard/favorites`,
+      href: `/${locale}/dashboard/user/favorites`,
       label: t("dashboard_favorites"),
       icon: HiOutlineHeart,
     },
     {
-      href: `/${locale}/dashboard/my-properties`,
+      href: `/${locale}/dashboard/user/my-properties`,
       label: t("dashboard_my_properties"),
       icon: HiOutlineBuildingOffice,
     },
@@ -170,26 +170,13 @@ export default function DashboardLayout({
           {/* Nav Links */}
           <nav className="flex-1 overflow-y-auto px-3 py-4">
             <p className="text-[10px] font-semibold text-white/25 uppercase tracking-widest px-3 mb-2">
-              Main
+              {isAdmin ? "Administration" : "Main"}
             </p>
             <div className="space-y-0.5">
-              {userLinks.map((link) => (
+              {(isAdmin ? adminLinks : userLinks).map((link) => (
                 <NavLink key={link.href} {...link} />
               ))}
             </div>
-
-            {isAdmin && (
-              <div className="mt-6">
-                <p className="text-[10px] font-semibold text-white/25 uppercase tracking-widest px-3 mb-2">
-                  Administration
-                </p>
-                <div className="space-y-0.5">
-                  {adminLinks.map((link) => (
-                    <NavLink key={link.href} {...link} />
-                  ))}
-                </div>
-              </div>
-            )}
           </nav>
 
           {/* Logout */}
@@ -218,7 +205,7 @@ export default function DashboardLayout({
               {t("dashboard_title")}
             </h1>
             <Link
-              href="/en"
+              href={`/${locale}`}
               className="ml-auto text-sm text-white/40 hover:text-white transition-colors flex items-center gap-1.5"
             >
               <HiOutlineHome className="w-3.5 h-3.5" />

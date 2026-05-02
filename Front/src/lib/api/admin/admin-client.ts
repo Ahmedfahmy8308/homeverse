@@ -8,33 +8,11 @@ import type {
   AdminDashboardStats,
   SiteSettings,
 } from "../../types/admin.types";
-import { dashboardStats } from "../../mock/dashboard.mock";
 
 export class AdminApiClient extends BaseApiClient {
   async getAdminDashboard(): Promise<ApiResponse<AdminDashboardStats>> {
     this.assertRole(["admin"]);
-    const mapped: AdminDashboardStats = {
-      users: dashboardStats.totalUsers,
-      properties: dashboardStats.totalProperties,
-      blog_posts: dashboardStats.totalPosts,
-      agents: 0,
-      featured_properties: dashboardStats.totalFeatured,
-      unread_messages: 0,
-      reviews: 0,
-      subscribers: 0,
-      pageViews: dashboardStats.pageViews,
-      monthlyRevenue: dashboardStats.monthlyRevenue,
-      newRegistrations: dashboardStats.newRegistrations,
-      newListings: dashboardStats.newListings,
-      revenueChart: dashboardStats.revenueChart,
-    };
-    const apiPromise = this.get<AdminDashboardStats>("/admin/dashboard");
-    return apiPromise.catch(() => ({
-      success: true,
-      isSuccess: true,
-      message: "Loaded from mock data",
-      data: mapped,
-    }));
+    return this.get<AdminDashboardStats>("/admin/dashboard");
   }
 
   async getSiteSettings(): Promise<ApiResponse<SiteSettings>> {

@@ -4,6 +4,7 @@
 
 import { BaseApiClient } from "../shared/base-client";
 import type { ApiResponse } from "../../types/shared.types";
+import type { LocalizedValue } from "../../types/shared.types";
 import type {
   Property,
   PropertyFilters,
@@ -19,24 +20,82 @@ import {
   amenitiesLibrary,
 } from "../../mock/properties.mock";
 
+function hasMeaningfulValue(value: unknown): boolean {
+  return !(
+    value === undefined ||
+    value === null ||
+    (typeof value === "string" && value.trim().length === 0)
+  );
+}
+
+function mergeLocalized<T>(
+  value: LocalizedValue<T> | undefined,
+  fallback: LocalizedValue<T>,
+): LocalizedValue<T> {
+  if (!value) return fallback;
+  return hasMeaningfulValue(value.en) || hasMeaningfulValue(value.ar)
+    ? value
+    : fallback;
+}
+
+function mergeArray<T>(value: T[] | undefined, fallback: T[]): T[] {
+  return Array.isArray(value) && value.length > 0 ? value : fallback;
+}
+
+function mergeValue<T>(value: T | undefined, fallback: T): T {
+  return hasMeaningfulValue(value) ? (value as T) : fallback;
+}
+
+function mergeProperty(property: Partial<Property>): Property {
+  const fallback = properties.find((item) => item.id === property.id);
+  if (!fallback) return property as Property;
+
+  return {
+    ...fallback,
+    ...property,
+    title: mergeLocalized(property.title, fallback.title),
+    description: mergeLocalized(property.description, fallback.description),
+    category: mergeLocalized(property.category, fallback.category),
+    location: mergeLocalized(property.location, fallback.location),
+    city: mergeLocalized(property.city, fallback.city),
+    address: mergeLocalized(property.address, fallback.address),
+    images: mergeArray(property.images, fallback.images),
+    amenities: mergeArray(property.amenities, fallback.amenities),
+    agent: property.agent
+      ? { ...fallback.agent, ...property.agent }
+      : fallback.agent,
+    currency: mergeValue(property.currency, fallback.currency),
+    period: mergeValue(property.period, fallback.period),
+    type: mergeValue(property.type, fallback.type),
+    price: mergeValue(property.price, fallback.price),
+    beds: mergeValue(property.beds, fallback.beds),
+    baths: mergeValue(property.baths, fallback.baths),
+    area: mergeValue(property.area, fallback.area),
+    floors: mergeValue(property.floors, fallback.floors),
+    yearBuilt: mergeValue(property.yearBuilt, fallback.yearBuilt),
+    garage: mergeValue(property.garage, fallback.garage),
+    featured: mergeValue(property.featured, fallback.featured),
+    rating: mergeValue(property.rating, fallback.rating),
+    reviewCount: mergeValue(property.reviewCount, fallback.reviewCount),
+    createdAt: mergeValue(property.createdAt, fallback.createdAt),
+  };
+}
+
+function mergeById<T extends { id: string | number }>(
+  items: T[],
+  fallbackItems: T[],
+): T[] {
+  return items.map((item) => {
+    const fallback = fallbackItems.find(
+      (candidate) => candidate.id === item.id,
+    );
+    return fallback ? { ...fallback, ...item } : item;
+  });
+}
+
 export class PropertiesApiClient extends BaseApiClient {
   constructor() {
     super();
-  }
-
-  private withFallback<T>(
-    apiCall: Promise<ApiResponse<T>>,
-    fallbackData: T,
-  ): Promise<ApiResponse<T>> {
-    return apiCall.catch((error) => {
-      console.warn("API call failed, falling back to mock data:", error);
-      return {
-        success: true,
-        isSuccess: true,
-        message: "Loaded from mock data",
-        data: fallbackData,
-      };
-    });
   }
 
   /** List properties with optional filters */
@@ -52,18 +111,22 @@ export class PropertiesApiClient extends BaseApiClient {
       });
     }
     const qs = params.toString();
-    return this.withFallback(
-      this.get<Property[]>(`/properties${qs ? `?${qs}` : ""}`),
-      properties as unknown as Property[],
+    const response = await this.get<Property[]>(
+      `/properties${qs ? `?${qs}` : ""}`,
     );
+    return {
+      ...response,
+      data: (response.data || []).map((item) => mergeProperty(item)),
+    };
   }
 
   /** Get a single property by ID */
   async getProperty(id: number): Promise<ApiResponse<Property>> {
-    return this.withFallback(
-      this.get<Property>(`/properties/${id}`),
-      properties.find((p) => p.id === id) as unknown as Property,
-    );
+    const response = await this.get<Property>(`/properties/${id}`);
+    return {
+      ...response,
+      data: mergeProperty(response.data),
+    };
   }
 
   /** Get reviews for a property */
@@ -92,26 +155,31 @@ export class PropertiesApiClient extends BaseApiClient {
 
   /** List all property categories */
   async listCategories(): Promise<ApiResponse<PropertyCategory[]>> {
-    return this.withFallback(
-      this.get<PropertyCategory[]>("/categories"),
-      [], // Add mock categories if available, or just empty array
-    );
+    return this.get<PropertyCategory[]>("/categories");
   }
 
   /** List all amenities */
   async listAmenities(): Promise<ApiResponse<PropertyAmenity[]>> {
-    return this.withFallback(
-      this.get<PropertyAmenity[]>("/amenities"),
-      amenitiesLibrary as unknown as PropertyAmenity[],
-    );
+    const response = await this.get<PropertyAmenity[]>("/amenities");
+    return {
+      ...response,
+      data: mergeById(
+        response.data || [],
+        amenitiesLibrary as unknown as PropertyAmenity[],
+      ),
+    };
   }
 
   /** List all agents */
   async listAgents(): Promise<ApiResponse<PropertyAgent[]>> {
-    return this.withFallback(
-      this.get<PropertyAgent[]>("/agents"),
-      agents as unknown as PropertyAgent[],
-    );
+    const response = await this.get<PropertyAgent[]>("/agents");
+    return {
+      ...response,
+      data: mergeById(
+        response.data || [],
+        agents as unknown as PropertyAgent[],
+      ),
+    };
   }
 
   /** Get a single agent by ID */
@@ -146,9 +214,10 @@ export class PropertiesApiClient extends BaseApiClient {
 
   /** List all properties (admin) */
   async listAdminProperties(): Promise<ApiResponse<Property[]>> {
-    return this.withFallback(
-      this.get<Property[]>("/admin/properties"),
-      properties as unknown as Property[],
-    );
+    const response = await this.get<Property[]>("/admin/properties");
+    return {
+      ...response,
+      data: (response.data || []).map((item) => mergeProperty(item)),
+    };
   }
 }

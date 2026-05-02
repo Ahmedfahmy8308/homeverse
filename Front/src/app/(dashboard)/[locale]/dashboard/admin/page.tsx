@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 import { RoleGuard } from "@/guards";
 import { generalApi, propertiesApi } from "@/lib/api";
 import type { AdminDashboardStats } from "@/lib/types";
@@ -28,6 +29,7 @@ import { getLocalizedValue } from "@/lib/i18n/localized";
 
 export default function AdminDashboardPage() {
   const { t } = useTranslation();
+  const { user, isLoading } = useAuth();
   const params = useParams();
   const rawLocale = Array.isArray(params?.locale)
     ? params.locale[0]
@@ -37,11 +39,33 @@ export default function AdminDashboardPage() {
   const [stats, setStats] = useState<AdminDashboardStats | null>(null);
   const [recentProperties, setRecentProperties] = useState<Property[]>([]);
 
+  const normalizedStats: AdminDashboardStats | null = stats
+    ? {
+        users: stats.users ?? stats.totalUsers ?? 0,
+        properties: stats.properties ?? stats.totalProperties ?? 0,
+        blog_posts: stats.blog_posts ?? stats.totalPosts ?? 0,
+        agents: stats.agents ?? stats.totalAgents ?? 0,
+        featured_properties: stats.featured_properties ?? stats.totalFeatured ?? 0,
+        unread_messages: stats.unread_messages ?? 0,
+        reviews: stats.reviews ?? 0,
+        subscribers: stats.subscribers ?? 0,
+        pageViews: stats.pageViews ?? 0,
+        monthlyRevenue: stats.monthlyRevenue ?? 0,
+        newRegistrations: stats.newRegistrations ?? 0,
+        newListings: stats.newListings ?? 0,
+        revenueChart: stats.revenueChart ?? [],
+      }
+    : null;
+
   const getPropertyTitle = (property: Property) =>
     getLocalizedValue(property.title, locale);
   const getPropertyLocation = (property: Property) =>
     getLocalizedValue(property.location, locale);
   useEffect(() => {
+    if (isLoading || user?.role !== "admin") {
+      return;
+    }
+
     let active = true;
     (async () => {
       try {
@@ -59,14 +83,14 @@ export default function AdminDashboardPage() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [isLoading, user?.role]);
 
-  const statTiles = stats
+  const statTiles = normalizedStats
     ? [
         {
           icon: HiOutlineUserGroup,
           label: t("admin_total_users"),
-          value: stats.users.toLocaleString(),
+          value: normalizedStats.users.toLocaleString(),
           change: "+12%",
           color: "text-blue-400",
           bg: "from-blue-500/20 to-blue-600/20",
@@ -74,7 +98,7 @@ export default function AdminDashboardPage() {
         {
           icon: HiOutlineBuildingOffice,
           label: t("admin_total_properties"),
-          value: stats.properties.toLocaleString(),
+          value: normalizedStats.properties.toLocaleString(),
           change: "+8%",
           color: "text-green-400",
           bg: "from-green-500/20 to-green-600/20",
@@ -82,7 +106,7 @@ export default function AdminDashboardPage() {
         {
           icon: HiOutlineDocumentText,
           label: t("admin_total_posts"),
-          value: stats.blog_posts.toLocaleString(),
+          value: normalizedStats.blog_posts.toLocaleString(),
           change: "+5%",
           color: "text-purple-400",
           bg: "from-purple-500/20 to-purple-600/20",
@@ -90,14 +114,14 @@ export default function AdminDashboardPage() {
         {
           icon: HiOutlineStar,
           label: t("admin_total_featured"),
-          value: stats.featured_properties.toLocaleString(),
+          value: normalizedStats.featured_properties.toLocaleString(),
           change: "+15%",
           color: "text-orange-400",
           bg: "from-orange-500/20 to-orange-600/20",
         },
       ]
     : [];
-  const revenueChart = stats?.revenueChart ?? [];
+  const revenueChart = normalizedStats?.revenueChart ?? [];
 
   return (
     <RoleGuard roles="admin">
@@ -172,28 +196,28 @@ export default function AdminDashboardPage() {
                 {
                   icon: HiOutlineEye,
                   label: "Page Views Today",
-                  value: stats?.pageViews?.toLocaleString() ?? "-",
+                  value: normalizedStats?.pageViews?.toLocaleString() ?? "-",
                   color: "text-blue-400",
                 },
                 {
                   icon: HiOutlineCurrencyDollar,
                   label: "Revenue This Month",
                   value:
-                    stats?.monthlyRevenue != null
-                      ? `EGP ${stats.monthlyRevenue.toLocaleString()}`
+                    normalizedStats?.monthlyRevenue != null
+                      ? `EGP ${normalizedStats.monthlyRevenue.toLocaleString()}`
                       : "-",
                   color: "text-green-400",
                 },
                 {
                   icon: HiOutlineUserGroup,
                   label: "New Registrations",
-                  value: stats?.newRegistrations?.toString() ?? "-",
+                  value: normalizedStats?.newRegistrations?.toString() ?? "-",
                   color: "text-purple-400",
                 },
                 {
                   icon: HiOutlineBuildingOffice,
                   label: "New Listings",
-                  value: stats?.newListings?.toString() ?? "-",
+                  value: normalizedStats?.newListings?.toString() ?? "-",
                   color: "text-orange-400",
                 },
               ].map((item, idx) => (

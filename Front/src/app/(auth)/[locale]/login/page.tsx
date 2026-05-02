@@ -35,8 +35,12 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
     try {
-      await login({ email, password });
-      router.push("/dashboard");
+      const currentUser = await login({ email, password });
+      router.push(
+        currentUser.role === "admin"
+          ? `/${locale}/dashboard/admin`
+          : `/${locale}/dashboard/user`,
+      );
     } catch (err) {
       setError(err instanceof Error ? err.message : t("login_failed"));
     } finally {

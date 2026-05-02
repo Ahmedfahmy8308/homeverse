@@ -15,6 +15,33 @@ function Write-Warn   { param($Message) Write-Host "   [WARN] $Message" -Foregro
 function Write-Fail   { param($Message) Write-Host "   [FAIL] $Message" -ForegroundColor Red }
 function Write-Info   { param($Message) Write-Host "   $Message" -ForegroundColor Gray }
 
+function Test-PortOpen {
+    param([int]$Port)
+
+    return [bool](Get-NetTCPConnection -LocalPort $Port -ErrorAction SilentlyContinue)
+}
+
+function Wait-ForPort {
+    param(
+        [int]$Port,
+        [string]$Name,
+        [int]$TimeoutSeconds = 60
+    )
+
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+    while ((Get-Date) -lt $deadline) {
+        if (Test-PortOpen -Port $Port) {
+            Write-OK "$Name is listening on port $Port"
+            return $true
+        }
+
+        Start-Sleep -Milliseconds 500
+    }
+
+    Write-Fail "$Name did not start within $TimeoutSeconds seconds on port $Port"
+    return $false
+}
+
 function Stop-ProcessOnPort {
     param([int]$Port)
 
@@ -244,18 +271,30 @@ if ($stopExisting) {
 $backUsed = Get-NetTCPConnection -LocalPort $BackendPort -ErrorAction SilentlyContinue
 if ($backUsed) { Write-Warn "Port $BackendPort is in use. Skipping backend start." }
 else {
-    # Run PHP in a NEW window so user can see logs (suppress PHP startup/display warnings)
-    Start-Process cmd.exe -ArgumentList "/k", "title Homeverse-API `& php -d display_startup_errors=0 -d display_errors=0 -S 127.0.0.1:$BackendPort -t public public/router.php" -WorkingDirectory $API_DIR
+    # Run PHP directly so PowerShell does not depend on cmd parsing.
+    Start-Process -FilePath $PHP -ArgumentList @(
+        '-d', 'display_startup_errors=0',
+        '-d', 'display_errors=0',
+        '-S', "127.0.0.1:$BackendPort",
+        '-t', 'public',
+        'public/router.php'
+    ) -WorkingDirectory $API_DIR
     Write-OK "Backend API server started in a new window"
 }
 
 $frontUsed = Get-NetTCPConnection -LocalPort $FrontendPort -ErrorAction SilentlyContinue
 if ($frontUsed) { Write-Warn "Port $FrontendPort is in use. Skipping frontend start." }
 else {
-    # Run Next.js in a NEW window so user can see logs
-    Start-Process cmd.exe -ArgumentList "/k", "title Homeverse-Frontend `& npm run dev" -WorkingDirectory $FRONT_DIR
+    # Run Next.js through cmd.exe so npm is executed as a command, not opened as a file.
+    Start-Process -FilePath "cmd.exe" -ArgumentList @(
+        '/k',
+        'npm run dev'
+    ) -WorkingDirectory $FRONT_DIR
     Write-OK "Frontend Next.js server started in a new window"
 }
+
+$backendReady = $backUsed -or (Wait-ForPort -Port $BackendPort -Name 'Backend API' -TimeoutSeconds 60)
+$frontendReady = $frontUsed -or (Wait-ForPort -Port $FrontendPort -Name 'Frontend app' -TimeoutSeconds 120)
 
 Write-Host ""
 Write-Host "============================================================" -ForegroundColor Green
@@ -266,6 +305,11 @@ Write-Host " API Docs:  http://localhost:$BackendPort/docs.html" -ForegroundColo
 Write-Host " API     :  http://localhost:$BackendPort/" -ForegroundColor White
 Write-Host "============================================================" -ForegroundColor Green
 Write-Host "============================================================" -ForegroundColor Green
+
+if (-not $backendReady -or -not $frontendReady) {
+    Write-Fail "Skipping browser launch because one or more servers did not become ready."
+    exit 1
+}
 
 if (-not $SkipBrowser) {
     Start-Process "http://localhost:$FrontendPort"

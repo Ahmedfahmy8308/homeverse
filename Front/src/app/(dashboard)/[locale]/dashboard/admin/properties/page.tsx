@@ -12,6 +12,7 @@ import Card from "@/components/Card";
 import Button from "@/components/Button";
 import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "@/context/AuthContext";
 import { RoleGuard } from "@/guards";
 import { HiOutlinePlus, HiOutlinePencil, HiOutlineTrash } from "react-icons/hi";
 import { propertiesApi } from "@/lib/api";
@@ -61,6 +62,7 @@ const createEmptyProperty = (): PropertyFormState => ({
 
 export default function AdminPropertiesPage() {
   const { t } = useTranslation();
+  const { user, isLoading } = useAuth();
   const params = useParams();
   const rawLocale = Array.isArray(params?.locale)
     ? params.locale[0]
@@ -71,8 +73,13 @@ export default function AdminPropertiesPage() {
   const [items, setItems] = useState<Property[]>([]);
   const [editing, setEditing] = useState<PropertyFormState | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
+    if (isLoading || user?.role !== "admin") {
+      return;
+    }
+
     let active = true;
     (async () => {
       try {
@@ -86,7 +93,7 @@ export default function AdminPropertiesPage() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [isLoading, user?.role]);
 
   const getTitle = (p: Property) => getLocalizedValue(p.title, locale);
 
@@ -100,25 +107,57 @@ export default function AdminPropertiesPage() {
     setModalOpen(true);
   };
 
-  const save = () => {
+  const save = async () => {
     if (!editing) return;
-    if (editing.id === undefined || editing.id === null) {
-      const nextId = Math.max(0, ...items.map((x) => x.id)) + 1;
-      const created: Property = { ...editing, id: nextId };
-      setItems([created, ...items]);
-    } else {
-      setItems(
-        items.map((it) => {
-          if (it.id !== editing.id) return it;
-          return { ...it, ...editing, id: it.id };
-        }),
-      );
+    setSaving(true);
+    try {
+      const payload = {
+        title: editing.title,
+        description: editing.description,
+        city: editing.city,
+        address: editing.address,
+        location_label: editing.location,
+        price: editing.price,
+        currency: editing.currency,
+        price_period: editing.period,
+        listing_type: editing.type,
+        bedrooms: editing.beds,
+        bathrooms: editing.baths,
+        area_sqft: editing.area,
+        floors: editing.floors,
+        garage: editing.garage,
+        year_built: editing.yearBuilt,
+        is_featured: editing.featured,
+        images: editing.images,
+      };
+
+      if (editing.id === undefined || editing.id === null) {
+        const res = await propertiesApi.createProperty(payload);
+        const created = res.data as Property;
+        setItems([created, ...items]);
+      } else {
+        const res = await propertiesApi.updateProperty(editing.id, payload);
+        const updated = res.data as Property;
+        setItems(items.map((it) => (it.id === updated.id ? updated : it)));
+      }
+
+      setModalOpen(false);
+      setEditing(null);
+    } catch (error) {
+      console.warn("Failed to save property", error);
+    } finally {
+      setSaving(false);
     }
-    setModalOpen(false);
-    setEditing(null);
   };
 
-  const remove = (id: number) => setItems(items.filter((i) => i.id !== id));
+  const remove = async (id: number) => {
+    try {
+      await propertiesApi.deleteProperty(id);
+      setItems(items.filter((i) => i.id !== id));
+    } catch (error) {
+      console.warn("Failed to delete property", error);
+    }
+  };
 
   return (
     <RoleGuard roles="admin">
@@ -337,7 +376,9 @@ export default function AdminPropertiesPage() {
                 >
                   {t("admin_reset")}
                 </Button>
-                <Button onClick={save}>{t("admin_save_property")}</Button>
+                <Button onClick={save} disabled={saving}>
+                  {saving ? t("loading") : t("admin_save_property")}
+                </Button>
               </div>
             </div>
           )}

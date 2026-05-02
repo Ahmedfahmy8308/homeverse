@@ -4,10 +4,11 @@
 
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useLayoutEffect } from "react";
 import { I18nextProvider } from "react-i18next";
 import { AuthProvider } from "@/context/AuthContext";
 import i18n from "@/lib/i18n";
+import { isValidLocale, LOCALE_CONFIG } from "@/lib/i18n/locale-config";
 
 export function AppProviders({
   children,
@@ -16,15 +17,23 @@ export function AppProviders({
   children: ReactNode;
   locale: string;
 }) {
-  useEffect(() => {
-    // Sync language if it differs from current
-    if (locale && i18n.language !== locale) {
-      i18n.changeLanguage(locale).catch(console.error);
+  useLayoutEffect(() => {
+    if (!isValidLocale(locale)) {
+      return;
+    }
+
+    if (i18n.language !== locale) {
+      void i18n.changeLanguage(locale);
+    }
+
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = locale;
+      document.documentElement.dir = LOCALE_CONFIG[locale].direction;
     }
   }, [locale]);
 
   return (
-    <I18nextProvider i18n={i18n}>
+    <I18nextProvider i18n={i18n} key={locale}>
       <AuthProvider>{children}</AuthProvider>
     </I18nextProvider>
   );

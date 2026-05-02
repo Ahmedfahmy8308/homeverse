@@ -5,6 +5,8 @@
   "property_location": "الموقع",
   "property_contact_agent": "تواصل مع الوكيل",
   "property_similar": "عقارات مشابهة",
+  "property_add_to_favorites": "إضافة إلى المفضلة",
+  "property_remove_from_favorites": "إزالة من المفضلة",
   "property_filter_all": "الكل",
   "property_filter_rent": "للإيجار",
   "property_filter_sale": "للبيع",

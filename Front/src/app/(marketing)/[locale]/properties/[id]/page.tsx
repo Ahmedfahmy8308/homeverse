@@ -5,7 +5,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Card from "@/components/Card";
@@ -13,8 +13,9 @@ import Button from "@/components/Button";
 import { useTranslation } from "react-i18next";
 import i18n from "@/lib/i18n";
 import { getLocalizedValue } from "@/lib/i18n/localized";
-import { propertiesApi } from "@/lib/api";
-import type { Property, PropertyAgent } from "@/lib/types";
+import { generalApi, propertiesApi } from "@/lib/api";
+import { useAuth } from "@/context/AuthContext";
+import type { Property, PropertyAgent, WishlistProperty } from "@/lib/types";
 import { isValidLocale, type Locale } from "@/lib/i18n/locale-config";
 import {
   HiOutlineLocationMarker,
@@ -32,6 +33,8 @@ import {
   FaLaptopHouse,
   FaChild,
   FaBed,
+  FaHeart,
+  FaRegHeart,
 } from "react-icons/fa";
 
 const amenityIconMap: Record<
@@ -57,9 +60,13 @@ export default function PropertyDetailPage() {
   const locale: Locale =
     rawLocale && isValidLocale(rawLocale) ? (rawLocale as Locale) : "en";
   const id = Number(params?.id);
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
   const [mounted, setMounted] = useState(false);
   const [property, setProperty] = useState<Property | null>(null);
   const [allProperties, setAllProperties] = useState<Property[]>([]);
+  const [wishlisted, setWishlisted] = useState(false);
+  const [wishlistBusy, setWishlistBusy] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -101,6 +108,44 @@ export default function PropertyDetailPage() {
       active = false;
     };
   }, [id]);
+
+  useEffect(() => {
+    if (!isAuthenticated || !property) return;
+
+    let active = true;
+    (async () => {
+      try {
+        const res = await generalApi.getWishlist();
+        if (!active) return;
+        const favorites = (res.data as WishlistProperty[]) || [];
+        setWishlisted(favorites.some((item) => item.id === property.id));
+      } catch (error) {
+        console.warn("Failed to load wishlist state", error);
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [isAuthenticated, property]);
+
+  const toggleFavorite = async () => {
+    if (!property) return;
+    if (!isAuthenticated) {
+      router.push(`/${locale}/login`);
+      return;
+    }
+
+    setWishlistBusy(true);
+    try {
+      const res = await generalApi.toggleWishlist(property.id);
+      setWishlisted(Boolean(res.data?.wishlisted));
+    } catch (error) {
+      console.warn("Failed to toggle wishlist", error);
+    } finally {
+      setWishlistBusy(false);
+    }
+  };
 
   if (!mounted) return null;
 
@@ -159,7 +204,7 @@ export default function PropertyDetailPage() {
 
           {/* Image Gallery */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-14 lg:mb-16 rounded-2xl overflow-hidden">
-            <div className="lg:col-span-2 h-[400px] lg:h-[450px] rounded-xl overflow-hidden relative">
+            <div className="lg:col-span-2 h-100 lg:h-112.5 rounded-xl overflow-hidden relative">
               <Image
                 src={property.images[0]}
                 alt={getTitle(property)}
@@ -174,7 +219,7 @@ export default function PropertyDetailPage() {
               {property.images.slice(1, 3).map((img, i) => (
                 <div
                   key={i}
-                  className="h-[195px] lg:h-[220px] rounded-xl overflow-hidden relative"
+                  className="h-48.75 lg:h-55 rounded-xl overflow-hidden relative"
                 >
                   <Image
                     src={img}
@@ -215,7 +260,7 @@ export default function PropertyDetailPage() {
                   {getTitle(property)}
                 </h1>
                 <p className="flex items-center gap-3 text-white/60 mb-6 text-base">
-                  <HiOutlineLocationMarker className="w-5 h-5 flex-shrink-0" />{" "}
+                  <HiOutlineLocationMarker className="w-5 h-5 shrink-0" />{" "}
                   {getAddress(property)}, {getLocation(property)}
                 </p>
                 <div className="text-4xl lg:text-5xl font-bold gradient-text">
@@ -257,7 +302,7 @@ export default function PropertyDetailPage() {
                   ].map((item, idx) => (
                     <div
                       key={idx}
-                      className="p-5 rounded-lg bg-white/[0.03] border border-white/5 hover:border-white/10 transition-colors"
+                      className="p-5 rounded-lg bg-white/3 border border-white/5 hover:border-white/10 transition-colors"
                     >
                       <p className="text-xs text-white/40 uppercase tracking-wider mb-2 font-semibold">
                         {t(item.labelKey)}
@@ -299,9 +344,9 @@ export default function PropertyDetailPage() {
                     return (
                       <div
                         key={amenity.id}
-                        className="flex gap-5 p-5 rounded-lg bg-white/[0.03] border border-white/5 hover:border-white/10 transition-all hover:bg-white/[0.05]"
+                        className="flex gap-5 p-5 rounded-lg bg-white/3 border border-white/5 hover:border-white/10 transition-all hover:bg-white/5"
                       >
-                        <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 relative">
+                        <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0 relative">
                           <Image
                             src={amenity.image}
                             alt={amenityTitle}
@@ -312,7 +357,7 @@ export default function PropertyDetailPage() {
                         </div>
                         <div className="min-w-0 flex-1 flex flex-col justify-center">
                           <div className="flex items-center gap-2 mb-2">
-                            <Icon className="w-4 h-4 text-orange-400 flex-shrink-0" />
+                            <Icon className="w-4 h-4 text-orange-400 shrink-0" />
                             <h4 className="text-base font-semibold text-white">
                               {amenityTitle}
                             </h4>
@@ -335,7 +380,7 @@ export default function PropertyDetailPage() {
                   {t("property_contact_agent")}
                 </h3>
                 <div className="flex items-center gap-4 mb-7 pb-7 border-b border-white/10">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0">
                     <Image
                       src={property.agent.avatar}
                       alt={getAgentName(property.agent)}
@@ -365,20 +410,40 @@ export default function PropertyDetailPage() {
                     href={`tel:${property.agent.phone}`}
                     className="flex items-center gap-4 text-base text-white/60 hover:text-orange-400 transition-colors group"
                   >
-                    <HiOutlinePhone className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />{" "}
+                    <HiOutlinePhone className="w-5 h-5 shrink-0 group-hover:scale-110 transition-transform" />{" "}
                     {property.agent.phone}
                   </a>
                   <a
                     href={`mailto:${property.agent.email}`}
                     className="flex items-center gap-4 text-base text-white/60 hover:text-orange-400 transition-colors group"
                   >
-                    <HiOutlineMail className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />{" "}
+                    <HiOutlineMail className="w-5 h-5 shrink-0 group-hover:scale-110 transition-transform" />{" "}
                     {property.agent.email}
                   </a>
                 </div>
                 <Button className="w-full justify-center py-3 text-base font-semibold">
                   {t("agent_send_inquiry")}
                 </Button>
+                <button
+                  onClick={toggleFavorite}
+                  disabled={wishlistBusy}
+                  className={`mt-4 flex w-full items-center justify-center gap-2 rounded-lg border px-4 py-3 text-sm font-medium transition-colors disabled:opacity-60 ${
+                    wishlisted
+                      ? "border-red-500/20 bg-red-500/10 text-red-300 hover:bg-red-500/15"
+                      : "border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
+                  }`}
+                >
+                  {wishlisted ? (
+                    <FaHeart className="w-4 h-4 text-red-300" />
+                  ) : (
+                    <FaRegHeart className="w-4 h-4" />
+                  )}
+                  {wishlistBusy
+                    ? t("loading")
+                    : wishlisted
+                      ? t("property_remove_from_favorites")
+                      : t("property_add_to_favorites")}
+                </button>
               </Card>
             </div>
           </div>

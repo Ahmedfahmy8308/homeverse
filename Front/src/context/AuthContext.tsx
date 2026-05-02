@@ -4,8 +4,15 @@
 
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 import { LoginDto, RegisterDto } from "@/lib/types/auth.types";
+import { authApi } from "@/lib/api";
 import type { User } from "@/lib/types/users.types";
 
 interface AuthContextType {
@@ -13,8 +20,8 @@ interface AuthContextType {
   loading: boolean;
   isLoading: boolean;
   isAuthenticated: boolean;
-  login: (credentials: LoginDto) => Promise<void>;
-  register: (data: RegisterDto) => Promise<void>;
+  login: (credentials: LoginDto) => Promise<User>;
+  register: (data: RegisterDto) => Promise<User>;
   logout: () => Promise<void>;
 }
 
@@ -22,15 +29,54 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    queueMicrotask(() => {
+      try {
+        const stored = localStorage.getItem("userData");
+        if (stored) {
+          const parsed = JSON.parse(stored) as {
+            token?: string;
+            user?: User;
+          };
+          if (parsed.user && parsed.token) {
+            if (!cancelled) {
+              setUser(parsed.user);
+            }
+          } else {
+            localStorage.removeItem("userData");
+          }
+        }
+      } catch (error) {
+        console.warn("Failed to restore auth state", error);
+        localStorage.removeItem("userData");
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const login = async (credentials: LoginDto) => {
     setLoading(true);
     try {
-      // TODO: Implement actual login API call
-      console.log("Login attempt:", credentials);
-      // For now, just simulate success
-      setUser({ id: 1, email: credentials.email, role: "user" } as User);
+      const response = await authApi.login(credentials);
+      const payload = response.data;
+      setUser(payload.user);
+
+      if (typeof window !== "undefined") {
+        localStorage.setItem("userData", JSON.stringify(payload));
+      }
+
+      return payload.user;
     } catch (error) {
       console.error("Login failed:", error);
       throw error;
@@ -42,10 +88,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const register = async (data: RegisterDto) => {
     setLoading(true);
     try {
-      // TODO: Implement actual register API call
-      console.log("Register attempt:", data);
-      // For now, just simulate success
-      setUser({ id: 1, email: data.email, role: "user" } as User);
+      const response = await authApi.register(data);
+      const payload = response.data;
+      setUser(payload.user);
+
+      if (typeof window !== "undefined") {
+        localStorage.setItem("userData", JSON.stringify(payload));
+      }
+
+      return payload.user;
     } catch (error) {
       console.error("Register failed:", error);
       throw error;
@@ -56,7 +107,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     setUser(null);
-    // TODO: Clear localStorage, etc.
+    if (typeof window !== "undefined") {
+      try {
+        await authApi.logout();
+      } catch (error) {
+        console.warn("Logout request failed", error);
+      }
+      localStorage.removeItem("userData");
+    }
   };
 
   const value: AuthContextType = {

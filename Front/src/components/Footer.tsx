@@ -64,7 +64,7 @@ export default function Footer() {
   const serviceLinks = [
     { href: `/${locale}/services`, label: t("footer_services") },
     { href: `/${locale}/properties?type=rent`, label: t("footer_wishlist") },
-    { href: "/dashboard/profile", label: t("footer_my_account") },
+    { href: `/${locale}/dashboard`, label: t("footer_my_account") },
     { href: `/${locale}/terms`, label: t("footer_terms") },
   ];
 
@@ -82,7 +82,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="space-y-6">
             <Link href={`/${locale}`} className="flex items-center gap-3 group">
-              <div className="w-11 h-11 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/20 group-hover:rotate-6 transition-transform">
+              <div className="w-11 h-11 bg-linear-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/20 group-hover:rotate-6 transition-transform">
                 <HiOutlineHome className="w-6 h-6 text-white" />
               </div>
               <span className="text-2xl font-bold text-white tracking-tight">
@@ -178,10 +178,10 @@ export default function Footer() {
                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
                 {t("footer_customer_care")}
               </h4>
-              <p className="text-sm text-white/40 mb-3 leading-relaxed max-w-[250px] mx-auto lg:mx-0">
+              <p className="text-sm text-white/40 mb-3 leading-relaxed max-w-62.5 mx-auto lg:mx-0">
                 {t("footer_subscribe_text")}
               </p>
-              <form className="relative group max-w-[250px] mx-auto lg:mx-0">
+              <form className="relative group max-w-62.5 mx-auto lg:mx-0">
                 <input
                   type="email"
                   placeholder={t("footer_subscribe_placeholder")}
@@ -197,7 +197,7 @@ export default function Footer() {
             </div>
 
             <div className="space-y-3.5 w-full">
-              <div className="flex items-center gap-4 max-w-[250px] mx-auto lg:mx-0">
+              <div className="flex items-center gap-4 max-w-62.5 mx-auto lg:mx-0">
                 <div className="h-px flex-1 bg-white/5" />
                 <span className="text-[10px] uppercase tracking-[0.2em] text-white/20 font-bold whitespace-nowrap">
                   {t("contact_follow_us")}
