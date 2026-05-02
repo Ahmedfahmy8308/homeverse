@@ -1,0 +1,18 @@
+{
+  "contact_subtitle": "تواصل معنا",
+  "contact_title": "تواصل معنا",
+  "contact_text": "نحن هنا لمساعدتك. تواصل معنا وسنرد عليك في أقرب وقت ممكن.",
+  "contact_follow_us": "تابعنا",
+  "contact_send_message": "أرسل لنا رسالة",
+  "contact_first_name": "الاسم الأول",
+  "contact_last_name": "الاسم الأخير",
+  "contact_label_email": "البريد الإلكتروني",
+  "contact_label_subject": "الموضوع",
+  "contact_label_message": "الرسالة",
+  "contact_send_button": "إرسال الرسالة",
+  "contact_success_title": "تم الإرسال بنجاح",
+  "contact_success_text": "سنتواصل معك قريباً.",
+  "contact_label_address": "العنوان",
+  "contact_label_phone": "الهاتف",
+  "contact_label_hours": "ساعات العمل"
+}

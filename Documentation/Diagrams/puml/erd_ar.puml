@@ -1,0 +1,199 @@
+@startuml
+title مخطط قاعدة بيانات Homeverse
+
+left to right direction
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam roundcorner 10
+skinparam linetype ortho
+skinparam class {
+  BackgroundColor White
+  ArrowColor #0284C7
+  BorderColor #0284C7
+  FontColor #111827
+}
+
+!define Table(name,desc) class name as "desc" << (T,#E3F2FD) >>
+!define primary_key(x) <b><color:DarkRed>x</color></b>
+!define foreign_key(x) <i><color:DarkBlue>x</color></i>
+
+Table(Users, "users\nالمستخدمون") {
+  primary_key(id) INT
+  first_name VARCHAR
+  last_name VARCHAR
+  email VARCHAR UNIQUE
+  phone VARCHAR
+  password_hash VARCHAR
+  avatar VARCHAR
+  role ENUM('admin', 'user')
+  location VARCHAR
+  bio TEXT
+  dob DATE
+  is_active TINYINT
+  created_at DATETIME
+  updated_at DATETIME
+}
+
+Table(ApiTokens, "api_tokens\nرموز API") {
+  primary_key(id) INT
+  foreign_key(user_id) INT
+  token CHAR(64) UNIQUE
+  expires_at DATETIME
+  created_at DATETIME
+}
+
+Table(Agents, "agents\nالوسطاء") {
+  primary_key(id) INT
+  foreign_key(user_id) INT
+  name VARCHAR
+  email VARCHAR
+  phone VARCHAR
+  avatar VARCHAR
+  bio TEXT
+  speciality VARCHAR
+  properties_sold INT
+  rating DECIMAL
+  is_active TINYINT
+  created_at DATETIME
+}
+
+Table(PropertyCategories, "property_categories\nتصنيفات العقارات") {
+  primary_key(id) INT
+  name VARCHAR
+  slug VARCHAR UNIQUE
+  icon VARCHAR
+  description TEXT
+  sort_order INT
+  created_at DATETIME
+}
+
+Table(Properties, "properties\nالعقارات") {
+  primary_key(id) INT
+  foreign_key(category_id) INT
+  foreign_key(agent_id) INT
+  title VARCHAR
+  description TEXT
+  city VARCHAR
+  address VARCHAR
+  location_label VARCHAR
+  latitude DECIMAL
+  longitude DECIMAL
+  price DECIMAL
+  currency VARCHAR
+  price_period VARCHAR
+  listing_type ENUM('rent', 'sale')
+  bedrooms TINYINT
+  bathrooms TINYINT
+  area_sqft INT
+  floors TINYINT
+  garage TINYINT
+  year_built SMALLINT
+  is_featured TINYINT
+  status ENUM('active','pending','sold','rented','archived')
+  views_count INT
+  created_at DATETIME
+  updated_at DATETIME
+}
+
+Table(PropertyImages, "property_images\nصور العقارات") {
+  primary_key(id) INT
+  foreign_key(property_id) INT
+  image_url VARCHAR
+  alt_text VARCHAR
+  sort_order TINYINT
+  is_primary TINYINT
+  created_at DATETIME
+}
+
+Table(Amenities, "amenities\nالمرافق") {
+  primary_key(id) INT
+  name VARCHAR
+  slug VARCHAR UNIQUE
+  icon VARCHAR
+  description TEXT
+  image_url VARCHAR
+}
+
+Table(PropertyAmenities, "property_amenities\nربط العقار بالمرافق") {
+  foreign_key(property_id) INT
+  foreign_key(amenity_id) INT
+}
+
+Table(Reviews, "reviews\nالمراجعات") {
+  primary_key(id) INT
+  foreign_key(property_id) INT
+  foreign_key(user_id) INT
+  rating TINYINT
+  comment TEXT
+  is_approved TINYINT
+  created_at DATETIME
+}
+
+Table(Wishlists, "wishlists\nقوائم المفضلة") {
+  primary_key(id) INT
+  foreign_key(user_id) INT
+  foreign_key(property_id) INT
+  created_at DATETIME
+}
+
+Table(ContactMessages, "contact_messages\nرسائل التواصل") {
+  primary_key(id) INT
+  first_name VARCHAR
+  last_name VARCHAR
+  email VARCHAR
+  phone VARCHAR
+  subject VARCHAR
+  message TEXT
+  foreign_key(property_id) INT
+  foreign_key(agent_id) INT
+  is_read TINYINT
+  created_at DATETIME
+}
+
+Table(BlogPosts, "blog_posts\nالمقالات") {
+  primary_key(id) INT
+  title VARCHAR
+  slug VARCHAR UNIQUE
+  excerpt TEXT
+  content MEDIUMTEXT
+  category VARCHAR
+  tags VARCHAR
+  image_url VARCHAR
+  foreign_key(author_id) INT
+  author_name VARCHAR
+  author_avatar VARCHAR
+  read_time VARCHAR
+  is_published TINYINT
+  published_at DATE
+  views_count INT
+  created_at DATETIME
+}
+
+Table(NewsletterSubscribers, "newsletter_subscribers\nالمشتركون في النشرة") {
+  primary_key(id) INT
+  email VARCHAR UNIQUE
+  is_active TINYINT
+}
+
+Table(SiteSettings, "site_settings\nإعدادات الموقع") {
+  primary_key(id) INT
+  setting_key VARCHAR UNIQUE
+  setting_value TEXT
+  updated_at DATETIME
+}
+
+Users "1" -- "0..*" ApiTokens : "owns"
+Users "1" -- "0..1" Agents : "becomes"
+Agents "1" -- "0..*" Properties : "manages"
+PropertyCategories "1" -- "0..*" Properties : "categorizes"
+Properties "1" -- "0..*" PropertyImages : "has"
+Properties "0..*" -- "0..*" Amenities : "features (via property_amenities)"
+Properties "1" -- "0..*" Reviews : "receives"
+Users "1" -- "0..*" Reviews : "writes"
+Users "1" -- "0..*" Wishlists : "saves"
+Properties "1" -- "0..*" Wishlists : "favorited"
+Properties "0..*" -- "1" ContactMessages : "regarding"
+Agents "0..*" -- "1" ContactMessages : "directed to"
+Users "1" -- "0..*" BlogPosts : "authors"
+
+@enduml

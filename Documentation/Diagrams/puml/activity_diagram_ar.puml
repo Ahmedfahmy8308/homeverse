@@ -1,0 +1,46 @@
+@startuml
+title مسار إنشاء عقار في Homeverse
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam roundcorner 16
+skinparam activity {
+  BackgroundColor #F8FAFC
+  BorderColor #0F172A
+  ArrowColor #0F172A
+  FontColor #0F172A
+  DiamondBackgroundColor #E2E8F0
+  DiamondBorderColor #0F172A
+}
+
+start
+:المشرف يفتح "إضافة عقار";
+:الواجهة تعرض نموذجًا احترافيًا لإدخال البيانات;
+repeat
+    :إدخال العنوان والسعر والمدينة والنوع والعنوان التفصيلي;
+    :اختيار التصنيف والوكيل وحالة الإعلان;
+    :تحديد المرافق ورفع الصور;
+    :الواجهة تتحقق من الحقول المطلوبة وأنواع TypeScript;
+repeat while (النموذج صالح؟) is (لا)
+-> نعم;
+:إرسال POST /api/properties
+مع Bearer Token;
+:طبقة API تتحقق من التوكن والدور;
+if (المستخدم مشرف مصادق عليه؟) then (نعم)
+    :تنظيف وتوحيد البيانات;
+    :إنشاء سجل العقار;
+    :حفظ صور العقار;
+    :ربط المرافق عبر جدول الربط;
+    if (نجاح قاعدة البيانات؟) then (نعم)
+        :إرجاع 201 Created بصيغة JSON;
+        :عرض رسالة نجاح وتحديث القائمة;
+    else (لا)
+        :إرجاع 500 مع رسالة خطأ;
+        :عرض رسالة خطأ;
+    endif
+else (لا)
+    :إرجاع 401 Unauthorized;
+    :التحويل إلى شاشة تسجيل الدخول;
+endif
+stop
+@enduml

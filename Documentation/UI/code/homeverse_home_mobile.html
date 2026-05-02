@@ -1,0 +1,329 @@
+<!--
+  Copyright (c) 2025 Ahmed Fahmy
+  Developed at UFUQ TECH
+  Proprietary software. See LICENSE file in the project root for full license information.
+-->
+
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;300;400;500;600;700;800;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-effect {
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#f6ded4",
+            "on-tertiary": "#003354",
+            "tertiary-fixed-dim": "#99cbff",
+            "on-tertiary-fixed": "#001d33",
+            "on-tertiary-container": "#002c4a",
+            "primary-fixed-dim": "#ffb695",
+            "error": "#ffb4ab",
+            "surface-variant": "#40322b",
+            "tertiary": "#99cbff",
+            "secondary-fixed-dim": "#ffb781",
+            "bg-navy-card": "#1a1f2e",
+            "warning": "#f59e0b",
+            "primary": "#ffb695",
+            "on-surface": "#f6ded4",
+            "inverse-on-surface": "#3c2d27",
+            "text-dim": "rgba(255, 255, 255, 0.4)",
+            "on-error": "#690005",
+            "error-container": "#93000a",
+            "surface-tint": "#ffb695",
+            "surface-container-highest": "#40322b",
+            "surface": "#1c110b",
+            "primary-fixed": "#ffdbcc",
+            "tertiary-container": "#1197eb",
+            "secondary-container": "#b05c01",
+            "on-secondary-fixed": "#2f1400",
+            "on-primary-container": "#4c1a00",
+            "on-background": "#f6ded4",
+            "on-primary-fixed-variant": "#7b2f00",
+            "danger": "#ef4444",
+            "on-secondary-container": "#fff7f3",
+            "bg-navy-darker": "#111827",
+            "on-surface-variant": "#e0c0b2",
+            "on-secondary": "#4e2500",
+            "text-muted": "#94a3b8",
+            "surface-container-low": "#251913",
+            "inverse-primary": "#a23f00",
+            "secondary-fixed": "#ffdcc4",
+            "secondary": "#ffb781",
+            "primary-container": "#ed691e",
+            "on-secondary-fixed-variant": "#703800",
+            "on-primary-fixed": "#351000",
+            "success": "#22c55e",
+            "on-primary": "#571f00",
+            "text-light": "#e2e8f0",
+            "background": "#1c110b",
+            "surface-dim": "#1c110b",
+            "outline": "#a78b7f",
+            "on-tertiary-fixed-variant": "#004a78",
+            "surface-bright": "#453630",
+            "bg-navy-deep": "#0b0f1a",
+            "surface-container-lowest": "#160c07",
+            "surface-container": "#291d17",
+            "on-error-container": "#ffdad6",
+            "surface-container-high": "#352721",
+            "tertiary-fixed": "#cfe5ff",
+            "outline-variant": "#584238",
+            "info": "#3b82f6",
+            "primary-dark": "#c4510e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "lg": "24px",
+            "xs": "4px",
+            "sm": "8px",
+            "xl": "48px",
+            "section": "80px",
+            "md": "16px",
+            "container-max": "1280px"
+          },
+          "fontFamily": {
+            "be-vietnam-pro": ["Be Vietnam Pro"],
+            "manrope": ["Manrope"],
+            "button": ["Be Vietnam Pro"],
+            "body-lg": ["Manrope"],
+            "h2": ["Be Vietnam Pro"],
+            "body-md": ["Manrope"],
+            "label-caps": ["Be Vietnam Pro"],
+            "h3": ["Be Vietnam Pro"],
+            "h1": ["Be Vietnam Pro"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-manrope selection:bg-primary/30">
+<!-- Shared Component: TopNavBar (Mobile Execution) -->
+<header class="bg-slate-950/80 backdrop-blur-lg docked full-width top-0 sticky z-50 border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] w-full">
+<div class="flex justify-between items-center px-6 h-20 w-full">
+<div class="text-2xl font-black tracking-tighter text-[#e8651a] font-be-vietnam-pro">Homeverse</div>
+<div class="flex items-center gap-4">
+<button class="text-white hover:bg-white/5 rounded-lg p-2 transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="text-white hover:bg-white/5 rounded-lg p-2 transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pb-24">
+<!-- Hero Section -->
+<section class="relative min-h-[460px] flex flex-col justify-end px-6 pb-12 overflow-hidden">
+<!-- Background Image with Gradient Overlay -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="Luxurious modern villa exterior with glowing warm lights and infinity pool at twilight evening setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKHaboWlXj1OEGw2g5NSqPoO6F8mkIg1XdsCVRT1mgxZFTcEJuY0cz6QBtRXaaZBxsj5FF1hBseZCP-_i1TUjWRffdRNKhSW59zFfp8Fe-XXvvcIvFhtlRywlKbDhmok_uaGTzhFEqHPL7ck0CPdI6drZP4gx8_DP6NRsvx6iHjMSCVOCpa_NB8vwhhsudxMSKHq5X0fjoRFFo07HS5gDPDoV4VLXWTvKK3OlnqDYdqItWOj17loy4CvLCYflCGgUofxgtKlv-I80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 space-y-6">
+<div class="space-y-2">
+<h1 class="font-h1 text-h1 text-white leading-tight">Find Your <span class="text-primary-container">Future</span> Home</h1>
+<p class="font-body-md text-body-md text-white/70 max-w-[280px]">Experience luxury real estate curated for the modern lifestyle.</p>
+</div>
+<!-- Hero Search -->
+<div class="glass-effect bg-white/10 border border-white/20 p-2 rounded-[20px] flex items-center shadow-xl">
+<div class="flex-1 px-4 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="location_on">location_on</span>
+<input class="bg-transparent border-none focus:ring-0 text-white font-manrope text-sm w-full placeholder:text-white/40" placeholder="Search city or area..." type="text"/>
+</div>
+<button class="bg-gradient-to-r from-primary-container to-primary-dark text-white h-12 w-12 rounded-[14px] flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Quick Filters -->
+<section class="px-6 py-6 overflow-x-auto">
+<div class="flex gap-3 whitespace-nowrap">
+<button class="px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container font-button text-button shadow-md">All Properties</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface font-button text-button border border-white/5">Villas</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface font-button text-button border border-white/5">Condos</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface font-button text-button border border-white/5">Modern Homes</button>
+</div>
+</section>
+<!-- Featured Properties List (Horizontal Scroll) -->
+<section class="space-y-6">
+<div class="flex items-center justify-between px-6">
+<h2 class="font-h2 text-h2 text-white">Featured</h2>
+<a class="text-primary-container font-button text-button" href="#">View All</a>
+</div>
+<div class="flex gap-5 px-6 overflow-x-auto pb-4">
+<!-- Property Card 1 -->
+<div class="min-w-[280px] bg-bg-navy-card rounded-[20px] border border-white/5 overflow-hidden shadow-2xl">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="Modern geometric mansion with glass walls and professional landscaping under a bright blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4bMPrH-ohMzLJDu6KdT1mmX2mXTOAiJtIvfQFiyfpJYlR4uNBPTAqgWxFd2kJDtDKBEROu49jYJUh_ngkIDETG4kB51VNaMjapCLSXyGecVWDWnt95Paggdm3nEUdUa5xYJBY3XCXrtkQijDoRQdIqbs35SRbqDi9AuntMkCEW6ftaWaCYeoPvEXJlo7du8I9Cmq3YMNokGyJplVE9UxmIW5lFKqmDPleUOi4CiVYHp98qB_omvYGePm03GT94SJL0Vtj1KDxdBQ"/>
+<div class="absolute top-4 right-4 bg-slate-950/60 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider">For Sale</div>
+</div>
+<div class="p-5 space-y-3">
+<div class="space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-h3 text-h3 text-white">Azure Horizon</h3>
+<span class="text-primary-container font-bold">$2.4M</span>
+</div>
+<p class="text-text-muted text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+                Malibu, California
+              </p>
+</div>
+<div class="flex justify-between border-t border-white/5 pt-3">
+<div class="flex items-center gap-1.5 text-white/60">
+<span class="material-symbols-outlined text-sm" data-icon="bed">bed</span>
+<span class="text-[12px]">4 Beds</span>
+</div>
+<div class="flex items-center gap-1.5 text-white/60">
+<span class="material-symbols-outlined text-sm" data-icon="bathtub">bathtub</span>
+<span class="text-[12px]">3 Baths</span>
+</div>
+<div class="flex items-center gap-1.5 text-white/60">
+<span class="material-symbols-outlined text-sm" data-icon="straighten">straighten</span>
+<span class="text-[12px]">3.2k sqft</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Property Card 2 -->
+<div class="min-w-[280px] bg-bg-navy-card rounded-[20px] border border-white/5 overflow-hidden shadow-2xl">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="Contemporary white minimalist residence with large windows and lush tropical garden surrounding it" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0JRKuxWxprQ8lR137smDpIVasNUUn5PB2G5kIHScvJuXAtYEb5erHIHyqDYzlyHCOfSEg6XxMbulBFS9Ig3E8fGAzwxe4B-nsY64yKUEOQ2LvzXrySk8YvkLDiKG6DNirP8lGe_wqyznm4sDTxaFBigt7tIcoNXkjj-kQj9DFOuRI9YU10K5eq8ykgP1KxWHnhmLoKwkvuWhnM2SUxRduWxAHk3eCEu-9ZBu1Cfjn8NPkAwfVyE18GSE-dnr6pP_zTJoyFRAHF4Q"/>
+<div class="absolute top-4 right-4 bg-slate-950/60 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider">Hot Deal</div>
+</div>
+<div class="p-5 space-y-3">
+<div class="space-y-1">
+<div class="flex justify-between items-start">
+<h3 class="font-h3 text-h3 text-white">The Onyx Villa</h3>
+<span class="text-primary-container font-bold">$3.1M</span>
+</div>
+<p class="text-text-muted text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+                Beverly Hills, CA
+              </p>
+</div>
+<div class="flex justify-between border-t border-white/5 pt-3">
+<div class="flex items-center gap-1.5 text-white/60">
+<span class="material-symbols-outlined text-sm" data-icon="bed">bed</span>
+<span class="text-[12px]">5 Beds</span>
+</div>
+<div class="flex items-center gap-1.5 text-white/60">
+<span class="material-symbols-outlined text-sm" data-icon="bathtub">bathtub</span>
+<span class="text-[12px]">4 Baths</span>
+</div>
+<div class="flex items-center gap-1.5 text-white/60">
+<span class="material-symbols-outlined text-sm" data-icon="straighten">straighten</span>
+<span class="text-[12px]">4.5k sqft</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Banner (Asymmetric Bento style) -->
+<section class="px-6 py-8">
+<div class="grid grid-cols-2 gap-4">
+<div class="col-span-2 bg-gradient-to-br from-primary-container to-primary-dark p-6 rounded-[24px] relative overflow-hidden h-40 flex flex-col justify-between">
+<span class="material-symbols-outlined text-white/20 text-7xl absolute -right-4 -bottom-4 rotate-12" data-icon="auto_awesome">auto_awesome</span>
+<h3 class="text-white font-bold text-xl leading-tight">AI-Powered<br/>Valuation</h3>
+<button class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-button text-xs py-2 px-4 rounded-full w-max transition-colors">Try Now</button>
+</div>
+<div class="bg-surface-container p-5 rounded-[24px] border border-white/5 space-y-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="verified_user">verified_user</span>
+<h4 class="text-white font-bold text-sm">Insured<br/>Listings</h4>
+</div>
+<div class="bg-surface-container p-5 rounded-[24px] border border-white/5 space-y-2">
+<span class="material-symbols-outlined text-primary-container" data-icon="video_call">video_call</span>
+<h4 class="text-white font-bold text-sm">Virtual<br/>Tours</h4>
+</div>
+</div>
+</section>
+<!-- Popular Areas -->
+<section class="space-y-6 px-6">
+<h2 class="font-h2 text-h2 text-white">Popular Areas</h2>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative h-32 rounded-[20px] overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="Distant skyline view of Los Angeles during sunset with soft orange and purple sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZONxXfzUAVYyEfRuJMZArXs3Nnp3gT2PQ5mUHJAnyiQoNF6cK5drA0dAwwzG9Tip8IhUOHtvbytsT2KQ2T67oBOpq3rft7Fh5AszeYGVzD3yl4MaiyD-uAVim4m59i12oPfA23qmkssgbeoxf1zaYumEfnz4tkZnbGoL2OnUIHQVtMHzVJ6yecJ6Kk2aRZInV7aAI4wyK-7QjGbL1sYaSOHA_j8RokTKVeqwyM531bh-1LSUUoFt015lMoLl5x32sUABn4pWIA9k"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="text-white font-bold">Los Angeles</span>
+</div>
+</div>
+<div class="relative h-32 rounded-[20px] overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="San Francisco city streets with historic architecture and coastal bay view in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbhkb7fEFLZmwhOteYb1X0Vx0L1jNNQPU2h0HV2cjpbtQwFANJSiM58LY1NXkjIBfZ4H6GpbPgGWi1QXwm1-bXlkkirAx9a3_GxZUjzt0cItv4W7Cp2NzDhaEJIXrsQlYyEch0nxqFuVk2H3JRxCCqN_pcSCFvd7xvmrI4cmmHRhhH-SKI5amcitzJ6FtgC9MwjUIrD7WAzbVYVcKbxyD-P6WjoIgSC9h-8Y9Z6gzx8yrbN1C2j1eKNA6ma8Lkj8gfYuf-hLzFAFI"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="text-white font-bold">San Francisco</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Shared Component: BottomNavBar (Active Rule applied) -->
+<nav class="fixed bottom-0 left-0 right-0 h-20 bg-slate-950/90 backdrop-blur-2xl border-t border-white/5 z-50 md:hidden flex justify-around items-center px-4">
+<a class="flex flex-col items-center gap-1 text-[#e8651a]" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="home" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-medium font-be-vietnam-pro">Marketplace</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="business_center">business_center</span>
+<span class="text-[10px] font-medium font-be-vietnam-pro">Services</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="article">article</span>
+<span class="text-[10px] font-medium font-be-vietnam-pro">Blog</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="info">info</span>
+<span class="text-[10px] font-medium font-be-vietnam-pro">About</span>
+</a>
+</nav>
+<!-- Floating Action Button (FAB) - Suppression Rule: Only on Dashboard/Home -->
+<button class="fixed bottom-24 right-6 bg-primary-container text-on-primary-container w-14 h-14 rounded-full shadow-2xl flex items-center justify-center z-40 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<!-- Shared Component: Footer (Mobile Simplified) -->
+<footer class="bg-slate-950 w-full py-12 px-6 border-t border-white/5 flex flex-col items-center gap-6">
+<div class="text-lg font-bold text-white font-be-vietnam-pro">Homeverse</div>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="text-slate-500 hover:text-white font-be-vietnam-pro text-xs transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-white font-be-vietnam-pro text-xs transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-white font-be-vietnam-pro text-xs transition-colors" href="#">FAQ</a>
+<a class="text-slate-500 hover:text-white font-be-vietnam-pro text-xs transition-colors" href="#">Contact Support</a>
+</div>
+<p class="font-be-vietnam-pro text-xs text-slate-500 text-center">© 2024 Homeverse Marketplace. All rights reserved.</p>
+</footer>
+</body></html>

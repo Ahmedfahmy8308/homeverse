@@ -1,0 +1,65 @@
+/* 
+  Copyright (c) 2025 Ahmed Fahmy
+  Developed at UFUQ TECH
+  Proprietary software. See LICENSE file in the project root for full license information.
+*/
+
+/* ==========================================================================
+   DESIGN TOKENS — Homeverse
+   Brand palette, spacing, shadows, typography.
+   ========================================================================== */
+
+:root {
+  /* ── Primary (Orange) ── */
+  --color-primary: #e8651a;
+  --color-primary-light: #f5923e;
+  --color-primary-dark: #c4510e;
+  --color-accent: #f9a825;
+
+  /* ── Background ── */
+  --color-bg: #0b0f1a;
+  --color-bg-secondary: #111827;
+  --color-bg-card: #1a1f2e;
+  --color-bg-card-hover: #222838;
+
+  /* ── Text ── */
+  --color-text: #e2e8f0;
+  --color-text-muted: #94a3b8;
+  --color-text-dim: rgba(255, 255, 255, 0.4);
+
+  /* ── Borders ── */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(232, 101, 26, 0.3);
+
+  /* ── Status ── */
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+
+  /* ── Typography ── */
+  --font-primary: "Poppins", sans-serif;
+  --font-secondary: "Nunito Sans", sans-serif;
+
+  /* ── Border Radius ── */
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-glow: 0 0 40px rgba(232, 101, 26, 0.15);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --shadow-btn: 0 4px 15px rgba(232, 101, 26, 0.3);
+  --shadow-btn-hover: 0 8px 25px rgba(232, 101, 26, 0.4);
+
+  /* ── Spacing ── */
+  --section-padding: 96px;
+
+  /* ── Transitions ── */
+  --transition: 0.3s ease;
+  --transition-fast: 0.15s ease;
+  --transition-slow: 0.5s ease;
+}

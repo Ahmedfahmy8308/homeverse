@@ -1,0 +1,280 @@
+<!--
+  Copyright (c) 2025 Ahmed Fahmy
+  Developed at UFUQ TECH
+  Proprietary software. See LICENSE file in the project root for full license information.
+-->
+
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#f6ded4",
+                        "on-tertiary": "#003354",
+                        "tertiary-fixed-dim": "#99cbff",
+                        "on-tertiary-fixed": "#001d33",
+                        "on-tertiary-container": "#002c4a",
+                        "primary-fixed-dim": "#ffb695",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#40322b",
+                        "tertiary": "#99cbff",
+                        "secondary-fixed-dim": "#ffb781",
+                        "bg-navy-card": "#1a1f2e",
+                        "warning": "#f59e0b",
+                        "primary": "#ffb695",
+                        "on-surface": "#f6ded4",
+                        "inverse-on-surface": "#3c2d27",
+                        "text-dim": "rgba(255, 255, 255, 0.4)",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "surface-tint": "#ffb695",
+                        "surface-container-highest": "#40322b",
+                        "surface": "#1c110b",
+                        "primary-fixed": "#ffdbcc",
+                        "tertiary-container": "#1197eb",
+                        "secondary-container": "#b05c01",
+                        "on-secondary-fixed": "#2f1400",
+                        "on-primary-container": "#4c1a00",
+                        "on-background": "#f6ded4",
+                        "on-primary-fixed-variant": "#7b2f00",
+                        "danger": "#ef4444",
+                        "on-secondary-container": "#fff7f3",
+                        "bg-navy-darker": "#111827",
+                        "on-surface-variant": "#e0c0b2",
+                        "on-secondary": "#4e2500",
+                        "text-muted": "#94a3b8",
+                        "surface-container-low": "#251913",
+                        "inverse-primary": "#a23f00",
+                        "secondary-fixed": "#ffdcc4",
+                        "secondary": "#ffb781",
+                        "primary-container": "#ed691e",
+                        "on-secondary-fixed-variant": "#703800",
+                        "on-primary-fixed": "#351000",
+                        "success": "#22c55e",
+                        "on-primary": "#571f00",
+                        "text-light": "#e2e8f0",
+                        "background": "#1c110b",
+                        "surface-dim": "#1c110b",
+                        "outline": "#a78b7f",
+                        "on-tertiary-fixed-variant": "#004a78",
+                        "surface-bright": "#453630",
+                        "bg-navy-deep": "#0b0f1a",
+                        "surface-container-lowest": "#160c07",
+                        "surface-container": "#291d17",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-high": "#352721",
+                        "tertiary-fixed": "#cfe5ff",
+                        "outline-variant": "#584238",
+                        "info": "#3b82f6",
+                        "primary-dark": "#c4510e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "xl": "48px",
+                        "section": "80px",
+                        "md": "16px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "button": ["Be Vietnam Pro"],
+                        "body-lg": ["Manrope"],
+                        "h2": ["Be Vietnam Pro"],
+                        "body-md": ["Manrope"],
+                        "label-caps": ["Be Vietnam Pro"],
+                        "h3": ["Be Vietnam Pro"],
+                        "h1": ["Be Vietnam Pro"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(26, 31, 46, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar Shell -->
+<header class="bg-slate-950/80 backdrop-blur-lg border-b border-white/10 docked full-width top-0 sticky z-50 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
+<nav class="flex justify-between items-center max-w-[1280px] mx-auto px-6 h-20 w-full">
+<div class="text-2xl font-black tracking-tighter text-[#e8651a]">Homeverse</div>
+<div class="hidden md:flex items-center gap-8 font-be-vietnam-pro text-sm font-medium tracking-tight">
+<a class="text-slate-400 hover:text-white transition-colors hover:bg-white/5 rounded-lg px-3 py-2 transition-all duration-300 active:scale-95 transition-transform" href="#">Marketplace</a>
+<a class="text-slate-400 hover:text-white transition-colors hover:bg-white/5 rounded-lg px-3 py-2 transition-all duration-300 active:scale-95 transition-transform" href="#">Services</a>
+<a class="text-[#e8651a] border-b-2 border-[#e8651a] pb-1 hover:bg-white/5 rounded-lg px-3 py-2 transition-all duration-300 active:scale-95 transition-transform" href="#">Blog</a>
+<a class="text-slate-400 hover:text-white transition-colors hover:bg-white/5 rounded-lg px-3 py-2 transition-all duration-300 active:scale-95 transition-transform" href="#">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden lg:block text-slate-400 hover:text-white text-sm font-button font-medium">Sign In</button>
+<button class="bg-primary-container text-on-primary-fixed font-button px-6 py-2.5 rounded-full hover:bg-primary-dark active:scale-95 transition-all">List Property</button>
+</div>
+</nav>
+</header>
+<main class="relative">
+<!-- Background Atmospheric Element -->
+<div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#e8651a]/10 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[10%] right-[-10%] w-[40%] h-[40%] bg-tertiary-container/5 blur-[120px] rounded-full"></div>
+</div>
+<article class="max-w-[1280px] mx-auto px-6 pt-12 pb-section">
+<!-- Article Header -->
+<div class="flex flex-col gap-6 mb-12">
+<div class="flex items-center gap-3">
+<span class="bg-primary-container/20 text-[#e8651a] font-label-caps text-label-caps px-3 py-1 rounded-full">MARKET TRENDS</span>
+<span class="text-text-muted text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                        October 24, 2024
+                    </span>
+<span class="text-text-muted text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                        8 min read
+                    </span>
+</div>
+<h1 class="font-h1 text-h1 text-on-background max-w-4xl leading-tight">The Future of Urban Living: Smart Cities and AI-Driven Real Estate</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">Exploring how integrated technology ecosystems are redefining property values and resident experiences in metropolitan hubs across the globe.</p>
+</div>
+<!-- Featured Image -->
+<div class="relative w-full aspect-[21/9] rounded-[20px] overflow-hidden mb-16 border border-white/10 shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="futuristic architectural skyscraper at twilight with glowing blue and orange lighting against a deep navy evening sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCOlNb-zckNbw-kLMTjJpsi_pofYFvCwItXMh5iq8NRRreXPDSW8-K0_jcjW5-xm-2arbPZOKvug3ssWCkF4iPoei4hPWvW5UkilBzXK7g_Cf-jAN6N_fBGsy_o7QCfl9sH0ePEnwgV_kBBI-fCJfcjm441uEdmxTa4D5TrwmC1_-S6lariupNvCjbSXOPU1uQPbYTySZSKAFoVXP4hoQD9JidodUJsa2zr0hVfSdI7iIB_U-g1iB2d4nqtJFt8L5CeE2YkqM3ECg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent"></div>
+</div>
+<!-- Content Layout: Asymmetric 2-Column -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Main Body -->
+<div class="lg:col-span-8">
+<div class="flex flex-col gap-8 text-on-surface-variant font-body-md leading-relaxed">
+<p class="first-letter:text-5xl first-letter:font-bold first-letter:text-[#e8651a] first-letter:mr-3 first-letter:float-left">As we look toward 2025, the intersection of artificial intelligence and urban development is no longer a science fiction concept but a tangible market driver. From self-optimizing energy grids to automated property management platforms, the smart city infrastructure is fundamentally altering the "location, location, location" mantra of real estate investment.</p>
+<h2 class="font-h2 text-h2 text-white mt-4">The Algorithm of Location</h2>
+<p>Traditional real estate valuation relied heavily on proximity to physical amenities—schools, transport, and commercial hubs. Today, AI models are identifying 'Smart Hubs' based on fiber-optic density, 5G accessibility, and EV charging infrastructure. Investors who once prioritized scenic views are now looking for properties with the highest digital throughput and autonomous delivery accessibility.</p>
+<div class="glass-panel p-8 rounded-[20px] border-l-4 border-[#e8651a] my-4">
+<span class="material-symbols-outlined text-[#e8651a] mb-4 text-3xl">format_quote</span>
+<p class="font-h3 text-h3 text-white italic mb-4">"The smart home of the future isn't just about voice-controlled lights; it's a node in a massive, intelligent urban neural network that manages everything from waste to wellness."</p>
+<cite class="text-[#e8651a] font-label-caps not-italic">— Elena Vance, Chief Tech Officer at Homeverse</cite>
+</div>
+<p>The implications for property management are equally profound. Predictive maintenance algorithms can now forecast system failures weeks before they occur, reducing operational costs by up to 30% for high-rise residential complexes. This efficiency isn't just a win for the bottom line; it's becoming a key selling point for a tech-savvy generation of buyers who demand seamless, interrupted living experiences.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+<div class="rounded-[20px] overflow-hidden border border-white/10 aspect-square">
+<img class="w-full h-full object-cover" data-alt="modern luxury penthouse interior with floor to ceiling windows overlooking a neon city skyline at night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEUNWMBulaaYrRKCLi8RBU1M9JBC2QnJ1Pq3DMBem1EZtpA077ecAqhNXC72Y0QLoj04znxeWR7Ex5isicnYpvS2_z58YNfE3xi3bY4dyh3dx_KNV0t1ySMTrqFXxERMbWVYoiNsfxlTTI1HdItDuMTkh4eFEZ_-g4V1XGDWr-r6AwieOmk90OYdKLJtQ85ARopiQCJ2MVA8Eg4WFjRGfhrOooHaG309FyOZth8iG1bvLGjFLcaBmId1FvpKbhpKa5bezafkGmMjE"/>
+</div>
+<div class="rounded-[20px] overflow-hidden border border-white/10 aspect-square">
+<img class="w-full h-full object-cover" data-alt="minimalist high-tech office lobby with sleek white lines and soft blue atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIFqytYeFFv44f5jUhTBht60SKptP4jcoCUxfeb0RLpKHd-zT-kVDAYqHC36FRWBUYxURNbLXKPAdWPsJQhVUf5Ck4ZwWnFDNgt4JLfORbpXYFSIj_7poT0TG7o6FXOT9wRdlnOoiLwuZPqGy7w9u6UYi6wx-WklLTMdJ6quwJ-6_KOM3ihs9bTLigp6k16Sbd6rXwPqIJaL-Bo9LTTPCUOlrQZSfb5ssJ_iSuMwl84kq0aixkkEYhm6xmU3pMO0LTxZleyYJrh8w"/>
+</div>
+</div>
+<h3 class="font-h3 text-h3 text-white">Sustainability Through Intelligence</h3>
+<p>Green tech is no longer optional. Smart cities utilize AI to balance thermal loads across neighborhoods, sharing excess solar energy from residential roofs to commercial grids. For the modern homeowner, this translates to drastically lower utility bills and the prestige of residing in a net-zero-ready ecosystem.</p>
+<div class="flex flex-wrap gap-2 mt-8">
+<a class="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-xs hover:bg-white/10 transition-colors" href="#">#SmartCities</a>
+<a class="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-xs hover:bg-white/10 transition-colors" href="#">#RealEstateTech</a>
+<a class="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-xs hover:bg-white/10 transition-colors" href="#">#Investment2025</a>
+<a class="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-xs hover:bg-white/10 transition-colors" href="#">#UrbanPlanning</a>
+</div>
+</div>
+</div>
+<!-- Sidebar / Author Info -->
+<aside class="lg:col-span-4 flex flex-col gap-8">
+<!-- Author Card -->
+<div class="bg-navy-card p-8 rounded-[20px] border border-white/10 sticky top-28 shadow-xl">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-[#e8651a]">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a middle-aged man with short hair and glasses wearing a navy blazer in a bright studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBha780UOk6AwtIKvj-yNWeorNQtcbiTsYJfDzQU6b3zhTFKWMucCceDbTwjW95KI4mLvDAJmxmS21DW9ahuFZXxSOxOcTNp9HOMJWMVI21aZ4coQC97r2jRjArZ0WowU_m9tdCjBwytMVgXOgl_EwWkkGb9wE0CYSFvSVd6-8mhvuxY_WobYVMy1mSSWrT0YYr5G0_RX6Gy0iMYf4o_CTOVLMrofF-p-4mVM9lkB1nbJx9aIj4ABVsxPmDmLTQxhJkfodOYT3mANg"/>
+</div>
+<div>
+<h4 class="font-h3 text-[18px] text-white">Marcus Thorne</h4>
+<p class="text-text-muted text-sm">Lead Market Analyst</p>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 leading-relaxed">Marcus has over 15 years of experience in urban planning and commercial real estate, specializing in the impact of digital transformation on emerging markets.</p>
+<div class="flex gap-4 border-t border-white/10 pt-6">
+<a class="text-text-muted hover:text-[#e8651a] transition-colors" href="#">
+<span class="material-symbols-outlined">alternate_email</span>
+</a>
+<a class="text-text-muted hover:text-[#e8651a] transition-colors" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+</div>
+</div>
+<!-- Newsletter Mini-CTA -->
+<div class="bg-gradient-to-br from-primary-container to-primary-dark p-8 rounded-[20px] shadow-xl text-on-primary-fixed">
+<h4 class="font-h3 text-[20px] mb-2">Market Insights</h4>
+<p class="text-sm mb-6 opacity-90">Get the latest property trends and tech breakthroughs delivered to your inbox weekly.</p>
+<div class="flex flex-col gap-3">
+<input class="bg-white/20 border-white/30 rounded-xl px-4 py-3 placeholder:text-white/60 focus:ring-0 focus:border-white text-sm outline-none" placeholder="Email address" type="email"/>
+<button class="bg-white text-primary-dark font-button py-3 rounded-xl hover:bg-slate-100 transition-colors">Subscribe</button>
+</div>
+</div>
+<!-- Related Articles -->
+<div class="flex flex-col gap-6">
+<h5 class="font-label-caps text-label-caps text-text-muted">RELATED ARTICLES</h5>
+<div class="flex flex-col gap-6">
+<a class="group flex gap-4 items-start" href="#">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 border border-white/5">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="aerial view of modern suburban housing development with lush landscaping" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaiacEsABPIiM9mYly0nr9mNRn2XNoVsri8cdmf5YKqNAAvvEIdCPbRPsxqWIVDxNOPCkjpwuwJjrYLST6oHOng5pj-pJe_HDNXeQbom5-CjLffqQ3TRwMqCHA-XPddcIORXGp5j-f4a911Fz_o1uzuyll50FIY-Hh20AniOvvDXm-u4deqHM4-cIg8CyxRlZ5C9ucY5NpVLx_E9w0Z8g-7cCb4VLhqmaiL8ueydzEYmgES07XXnn0lqeKUD2qmfbif7eg_Zl3enM"/>
+</div>
+<div>
+<h6 class="text-white font-medium text-sm line-clamp-2 group-hover:text-[#e8651a] transition-colors">Sustainable Living: The Rise of Solar-Powered Suburban Communes</h6>
+<span class="text-xs text-text-muted mt-1 inline-block">Nov 12, 2024</span>
+</div>
+</a>
+<a class="group flex gap-4 items-start" href="#">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 border border-white/5">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="luxury hotel resort pool with glowing underwater lights at night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuxYVhvgvYerrb7ojsKPEL4yVZGhbJ2DWP1Rr3FvSd_LOcwntIGsshqFfYPQ-xs6eH3SWIBVvw1lfEXQnVO2cuCgfGfvvXzmwYKZKNv8NBr39bSOx4g_lWEhDhFPAJvkriKSEAFKZ4FeYzKzwIdyPOURivOVXtu5QU9JNbjrcAtXEYMx8jnTO4nMPOLNXe-Y-IFukZK4BMW7b3x4zMbAt-2RW0jZli_XNKtd4ruuvAAEIV7yubpy9_OFQmag8ieEInTGgAlbRFg0M"/>
+</div>
+<div>
+<h6 class="text-white font-medium text-sm line-clamp-2 group-hover:text-[#e8651a] transition-colors">The Hospitality Shift: Luxury Resorts vs. High-End Vacation Rentals</h6>
+<span class="text-xs text-text-muted mt-1 inline-block">Nov 08, 2024</span>
+</div>
+</a>
+</div>
+</div>
+</aside>
+</div>
+</article>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-slate-950 full-width bottom border-t border-white/5 no-shadow">
+<div class="w-full py-12 px-6 max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-4 items-center md:items-start">
+<div class="text-lg font-bold text-white">Homeverse</div>
+<p class="font-be-vietnam-pro text-xs text-slate-500">© 2024 Homeverse Marketplace. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-500 hover:text-white transition-colors text-xs font-be-vietnam-pro opacity-100 hover:opacity-80" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-white transition-colors text-xs font-be-vietnam-pro opacity-100 hover:opacity-80" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-white transition-colors text-xs font-be-vietnam-pro opacity-100 hover:opacity-80" href="#">FAQ</a>
+<a class="text-slate-500 hover:text-white transition-colors text-xs font-be-vietnam-pro opacity-100 hover:opacity-80" href="#">Contact Support</a>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-sm text-slate-400">public</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-sm text-slate-400">mail</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

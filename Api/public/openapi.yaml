@@ -1,0 +1,575 @@
+# Copyright (c) 2025 Ahmed Fahmy
+# Developed at UFUQ TECH
+# Proprietary software. See LICENSE file in the project root for full license information.
+
+openapi: 3.0.3
+info:
+  title: Homeverse API
+  version: 2.0.0
+  description: Complete API documentation for the Homeverse real estate platform.
+servers:
+  - url: /api
+    description: Local API Server
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+security:
+  - bearerAuth: []
+paths:
+  /health:
+    get:
+      tags: [Health]
+      summary: Health check
+      security: []
+      responses:
+        '200':
+          description: API is running
+
+  # ── AUTH ──
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Register a new user
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [first_name, email, password]
+              properties:
+                first_name: { type: string }
+                last_name: { type: string }
+                email: { type: string, format: email }
+                phone: { type: string }
+                password: { type: string, minLength: 6 }
+      responses:
+        '201':
+          description: User registered successfully
+        '422':
+          description: Validation error
+
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Login user
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string }
+      responses:
+        '200':
+          description: Login successful
+        '401':
+          description: Invalid credentials
+
+  /auth/me:
+    get:
+      tags: [Auth]
+      summary: Get current authenticated user
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+
+  /auth/profile:
+    put:
+      tags: [Auth]
+      summary: Update authenticated user profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name: { type: string }
+                last_name: { type: string }
+                phone: { type: string }
+                avatar: { type: string }
+                location: { type: string }
+                bio: { type: string }
+                dob: { type: string, format: date }
+                password: { type: string }
+      responses:
+        '200':
+          description: Profile updated
+        '401':
+          description: Unauthorized
+
+  /auth/logout:
+    post:
+      tags: [Auth]
+      summary: Logout user
+      responses:
+        '200':
+          description: Logged out successfully
+        '401':
+          description: Unauthorized
+
+  # ── PROPERTIES ──
+  /properties:
+    get:
+      tags: [Properties]
+      summary: List properties
+      security: []
+      parameters:
+        - { name: featured, in: query, schema: { type: boolean } }
+        - { name: listing_type, in: query, schema: { type: string, enum: [rent, sale] } }
+        - { name: city, in: query, schema: { type: string } }
+        - { name: category_id, in: query, schema: { type: integer } }
+        - { name: status, in: query, schema: { type: string } }
+        - { name: min_price, in: query, schema: { type: number } }
+        - { name: max_price, in: query, schema: { type: number } }
+        - { name: search, in: query, schema: { type: string } }
+        - { name: limit, in: query, schema: { type: integer, maximum: 50, default: 50 } }
+        - { name: offset, in: query, schema: { type: integer, default: 0 } }
+      responses:
+        '200':
+          description: OK
+
+  /properties/{id}:
+    get:
+      tags: [Properties]
+      summary: Get property by ID (with images, amenities, agent)
+      security: []
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Property not found
+
+  /properties/{id}/reviews:
+    get:
+      tags: [Properties]
+      summary: Get reviews for a property
+      security: []
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: OK
+    post:
+      tags: [Properties]
+      summary: Submit a review (authenticated)
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating: { type: integer, minimum: 1, maximum: 5 }
+                comment: { type: string }
+      responses:
+        '201':
+          description: Review submitted for approval
+        '401':
+          description: Unauthorized
+
+  # ── AGENTS ──
+  /agents:
+    get:
+      tags: [Agents]
+      summary: List active agents
+      security: []
+      responses:
+        '200':
+          description: OK
+
+  /agents/{id}:
+    get:
+      tags: [Agents]
+      summary: Get agent by ID
+      security: []
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Agent not found
+
+  # ── AMENITIES ──
+  /amenities:
+    get:
+      tags: [Amenities]
+      summary: List all amenities
+      security: []
+      responses:
+        '200':
+          description: OK
+
+  # ── CATEGORIES ──
+  /categories:
+    get:
+      tags: [Categories]
+      summary: List property categories
+      security: []
+      responses:
+        '200':
+          description: OK
+
+  # ── BLOG POSTS ──
+  /blog-posts:
+    get:
+      tags: [Blog]
+      summary: List published blog posts
+      security: []
+      parameters:
+        - { name: limit, in: query, schema: { type: integer, maximum: 30, default: 10 } }
+        - { name: category, in: query, schema: { type: string } }
+      responses:
+        '200':
+          description: OK
+
+  /blog-posts/{id}:
+    get:
+      tags: [Blog]
+      summary: Get blog post by ID
+      security: []
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Blog post not found
+
+  /blog-posts/slug/{slug}:
+    get:
+      tags: [Blog]
+      summary: Get blog post by slug
+      security: []
+      parameters:
+        - { name: slug, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Blog post not found
+
+  # ── WISHLIST ──
+  /wishlist:
+    get:
+      tags: [Wishlist]
+      summary: Get user wishlist
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+
+  /wishlist/{propertyId}:
+    post:
+      tags: [Wishlist]
+      summary: Toggle property in wishlist
+      parameters:
+        - { name: propertyId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+
+  # ── CONTACT ──
+  /contact:
+    post:
+      tags: [Contact]
+      summary: Submit a contact message
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [first_name, email, message]
+              properties:
+                first_name: { type: string }
+                last_name: { type: string }
+                email: { type: string, format: email }
+                phone: { type: string }
+                subject: { type: string }
+                message: { type: string }
+                property_id: { type: integer }
+                agent_id: { type: integer }
+      responses:
+        '201':
+          description: Message sent
+
+  # ── NEWSLETTER ──
+  /newsletter/subscribe:
+    post:
+      tags: [Newsletter]
+      summary: Subscribe to newsletter
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email: { type: string, format: email }
+      responses:
+        '200':
+          description: Subscribed
+
+  # ── SITE SETTINGS ──
+  /site-settings:
+    get:
+      tags: [Settings]
+      summary: Get public site settings
+      security: []
+      responses:
+        '200':
+          description: OK
+
+  # ── ADMIN ──
+  /admin/dashboard:
+    get:
+      tags: [Admin]
+      summary: Admin dashboard stats
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Admin access required
+
+  /admin/users:
+    get:
+      tags: [Admin]
+      summary: List all users
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Admin access required
+
+  /admin/users/{id}:
+    delete:
+      tags: [Admin]
+      summary: Delete a user
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: User deleted
+        '403':
+          description: Admin access required
+        '404':
+          description: User not found
+
+  /admin/properties:
+    post:
+      tags: [Admin]
+      summary: Create a property
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+        '403':
+          description: Admin access required
+
+  /admin/properties/{id}:
+    put:
+      tags: [Admin]
+      summary: Update a property
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Admin access required
+        '404':
+          description: Not found
+    delete:
+      tags: [Admin]
+      summary: Delete a property
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: Deleted
+        '403':
+          description: Admin access required
+        '404':
+          description: Not found
+
+  /admin/agents:
+    post:
+      tags: [Admin]
+      summary: Create an agent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+        '403':
+          description: Admin access required
+
+  /admin/agents/{id}:
+    put:
+      tags: [Admin]
+      summary: Update an agent
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Admin access required
+        '404':
+          description: Not found
+    delete:
+      tags: [Admin]
+      summary: Delete an agent
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: Deleted
+        '403':
+          description: Admin access required
+        '404':
+          description: Not found
+
+  /admin/blog-posts:
+    post:
+      tags: [Admin]
+      summary: Create a blog post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+        '403':
+          description: Admin access required
+
+  /admin/blog-posts/{id}:
+    put:
+      tags: [Admin]
+      summary: Update a blog post
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Admin access required
+        '404':
+          description: Not found
+    delete:
+      tags: [Admin]
+      summary: Delete a blog post
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: Deleted
+        '403':
+          description: Admin access required
+        '404':
+          description: Not found
+
+  /admin/contacts:
+    get:
+      tags: [Admin]
+      summary: List contact messages
+      parameters:
+        - { name: unread, in: query, schema: { type: boolean } }
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Admin access required
+
+  /admin/contacts/{id}/read:
+    put:
+      tags: [Admin]
+      summary: Mark contact message as read
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: Marked as read
+        '403':
+          description: Admin access required
+
+  /admin/amenities:
+    post:
+      tags: [Admin]
+      summary: Create an amenity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+        '403':
+          description: Admin access required
+
+  /admin/site-settings:
+    post:
+      tags: [Admin]
+      summary: Bulk update site settings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [settings]
+              properties:
+                settings:
+                  type: object
+                  additionalProperties:
+                    type: string
+      responses:
+        '200':
+          description: Settings updated
+        '403':
+          description: Admin access required

@@ -1,0 +1,23 @@
+@startuml
+title سياق نظام Homeverse
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(user, "المستخدم", "مشتري أو مستأجر أو وكيل أو مشرف يستخدم المنصة")
+Person(guest, "زائر", "زائر مجهول يتصفح العقارات والمحتوى")
+
+System(homeverse, "منصة Homeverse العقارية", "تطبيق ويب لإدارة العقارات والمستخدمين والمحتوى")
+
+System_Ext(email_service, "خدمة البريد", "ترسل النشرات والإشعارات ورسائل التأكيد")
+System_Ext(payment_gateway, "بوابة الدفع", "تعالج المدفوعات والحجوزات")
+System_Ext(maps_api, "واجهة الخرائط", "توفر بيانات التحديد الجغرافي والخرائط")
+System_Ext(social_media, "منصات التواصل الاجتماعي", "تشارك العقارات والتسويق")
+
+Rel(user, homeverse, "يبحث ويحفظ ويراجع ويدير المحتوى")
+Rel(guest, homeverse, "يعرض العقارات والمدونة ونماذج التواصل")
+
+Rel(homeverse, email_service, "يرسل البريد")
+Rel(homeverse, payment_gateway, "يعالج المدفوعات")
+Rel(homeverse, maps_api, "يجلب بيانات المواقع")
+Rel(homeverse, social_media, "يشارك العقارات")
+
+@enduml

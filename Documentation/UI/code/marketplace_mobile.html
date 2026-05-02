@@ -1,0 +1,309 @@
+<!--
+  Copyright (c) 2025 Ahmed Fahmy
+  Developed at UFUQ TECH
+  Proprietary software. See LICENSE file in the project root for full license information.
+-->
+
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#f6ded4",
+                    "on-tertiary": "#003354",
+                    "tertiary-fixed-dim": "#99cbff",
+                    "on-tertiary-fixed": "#001d33",
+                    "on-tertiary-container": "#002c4a",
+                    "primary-fixed-dim": "#ffb695",
+                    "error": "#ffb4ab",
+                    "surface-variant": "#40322b",
+                    "tertiary": "#99cbff",
+                    "secondary-fixed-dim": "#ffb781",
+                    "bg-navy-card": "#1a1f2e",
+                    "warning": "#f59e0b",
+                    "primary": "#ffb695",
+                    "on-surface": "#f6ded4",
+                    "inverse-on-surface": "#3c2d27",
+                    "text-dim": "rgba(255, 255, 255, 0.4)",
+                    "on-error": "#690005",
+                    "error-container": "#93000a",
+                    "surface-tint": "#ffb695",
+                    "surface-container-highest": "#40322b",
+                    "surface": "#1c110b",
+                    "primary-fixed": "#ffdbcc",
+                    "tertiary-container": "#1197eb",
+                    "secondary-container": "#b05c01",
+                    "on-secondary-fixed": "#2f1400",
+                    "on-primary-container": "#4c1a00",
+                    "on-background": "#f6ded4",
+                    "on-primary-fixed-variant": "#7b2f00",
+                    "danger": "#ef4444",
+                    "on-secondary-container": "#fff7f3",
+                    "bg-navy-darker": "#111827",
+                    "on-surface-variant": "#e0c0b2",
+                    "on-secondary": "#4e2500",
+                    "text-muted": "#94a3b8",
+                    "surface-container-low": "#251913",
+                    "inverse-primary": "#a23f00",
+                    "secondary-fixed": "#ffdcc4",
+                    "secondary": "#ffb781",
+                    "primary-container": "#ed691e",
+                    "on-secondary-fixed-variant": "#703800",
+                    "on-primary-fixed": "#351000",
+                    "success": "#22c55e",
+                    "on-primary": "#571f00",
+                    "text-light": "#e2e8f0",
+                    "background": "#1c110b",
+                    "surface-dim": "#1c110b",
+                    "outline": "#a78b7f",
+                    "on-tertiary-fixed-variant": "#004a78",
+                    "surface-bright": "#453630",
+                    "bg-navy-deep": "#0b0f1a",
+                    "surface-container-lowest": "#160c07",
+                    "surface-container": "#291d17",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-high": "#352721",
+                    "tertiary-fixed": "#cfe5ff",
+                    "outline-variant": "#584238",
+                    "info": "#3b82f6",
+                    "primary-dark": "#c4510e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "xl": "48px",
+                    "section": "80px",
+                    "md": "16px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "button": ["Be Vietnam Pro"],
+                    "body-lg": ["Manrope"],
+                    "h2": ["Be Vietnam Pro"],
+                    "body-md": ["Manrope"],
+                    "label-caps": ["Be Vietnam Pro"],
+                    "h3": ["Be Vietnam Pro"],
+                    "h1": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "button": ["14px", {"lineHeight": "1", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h2": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(26, 31, 46, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .radial-glow {
+            background: radial-gradient(circle at center, rgba(232, 101, 26, 0.15) 0%, transparent 70%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container/30">
+<!-- Top Navigation Shell -->
+<header class="bg-slate-950/80 backdrop-blur-lg border-b border-white/10 docked full-width top-0 sticky z-50 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
+<div class="flex justify-between items-center max-w-[1280px] mx-auto px-6 h-20 w-full">
+<span class="text-2xl font-black tracking-tighter text-[#e8651a]">Homeverse</span>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-white hover:bg-white/5 rounded-lg p-2 transition-all">notifications</button>
+<div class="h-10 w-10 rounded-full border-2 border-[#e8651a] overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional headshot of a premium real estate agent in a dark suit with a clean architectural background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF8FTLnHW_uo9cQIuCh0TqxJ8BFejv9s0ieLne54jLAu8409oWVAsruuHezapKjLtf-5QtmK9hyTqwZv629dT8F-M1DYvAEdIgPUBOtkHE5rdZg-i2VujmS48rJ8UbvyJolaJJV3cbGGoLpxO9XIAiGspOWywJbP6ilig9RoMS5L182FHe5bV0WzZk75UKbcgycHrZR6Id8OTidMD6DuxV9tul00wMfY0caLzEFmTB7r7ld41NxJ_E8PJAgzo5x_zCJzNVaewlpBY"/>
+</div>
+</div>
+</div>
+</header>
+<main class="min-h-screen pb-24 relative overflow-hidden">
+<!-- Background Atmospheric Glow -->
+<div class="fixed inset-0 radial-glow pointer-events-none"></div>
+<!-- Search & Filter Section -->
+<section class="px-6 py-8 relative z-10">
+<div class="flex flex-col gap-6">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#e8651a] transition-colors">search</span>
+<input class="w-full h-14 pl-12 pr-6 rounded-2xl glass-panel text-white focus:ring-2 focus:ring-[#e8651a] focus:outline-none placeholder:text-slate-500 font-manrope" placeholder="Search premium properties..." type="text"/>
+</div>
+<div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+<button class="flex items-center gap-2 px-5 py-3 rounded-full bg-primary-container text-on-primary-container font-button whitespace-nowrap active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">home</span>
+                        All Estates
+                    </button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-full glass-panel text-slate-300 font-button whitespace-nowrap active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">apartment</span>
+                        Apartments
+                    </button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-full glass-panel text-slate-300 font-button whitespace-nowrap active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">villa</span>
+                        Luxury Villas
+                    </button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-full glass-panel text-slate-300 font-button whitespace-nowrap active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filters
+                    </button>
+</div>
+</div>
+</section>
+<!-- Properties Feed -->
+<section class="px-6 space-y-8 relative z-10">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-h2 text-white">Marketplace</h2>
+<p class="text-slate-400 font-body-md">2,480 properties available</p>
+</div>
+<span class="text-[#e8651a] font-button flex items-center gap-1">Sort <span class="material-symbols-outlined text-sm">expand_more</span></span>
+</div>
+<!-- Property Card 1 -->
+<div class="bg-bg-navy-card rounded-[20px] overflow-hidden border border-white/10 group transition-all duration-300 hover:border-[#e8651a]/30">
+<div class="relative h-[240px]">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="modern brutalist concrete villa with large glass windows reflecting a sunset over a calm ocean" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNDBAEVnc-bNZt8oj2djqQYcK4MkVMsAjOUfxbJecYROIxwo6XLbpI4QwgdS-gjhl_8ICp_DM7IS-ZjwAgk3xAnWp0mTBHBrs0R_nO7HmrPvwXv2RNSJRZUhoxLvJXAHnxHtdaVN1zDQub0bBBwzeNLwSeAIFHuREvDx8yRyzJwoJDBRjbqZDGOkgzZ-_wSvSJkmv_st14iUFPi_C2j6DAWJRftfRLWcEDklCDtwxz75LxBwzxmy7ISTa21UNxTRb4Iql41tJn6t0"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="px-3 py-1 rounded-full bg-slate-900/60 backdrop-blur-md text-[#ffb781] text-[10px] font-bold uppercase tracking-wider border border-white/10">Exclusive</span>
+</div>
+<button class="absolute top-4 right-4 h-10 w-10 rounded-full bg-slate-900/60 backdrop-blur-md flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-weight="fill">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4">
+<div class="bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-xl border border-white/5">
+<span class="text-white font-h3">$4,250,000</span>
+</div>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<div>
+<h3 class="font-h3 text-white">The Zenith Residence</h3>
+<p class="text-slate-400 flex items-center gap-1 text-sm mt-1">
+<span class="material-symbols-outlined text-sm">location_on</span> Malibu, CA 90265
+                        </p>
+</div>
+<div class="flex justify-between py-4 border-y border-white/5">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[#e8651a]">bed</span>
+<span class="text-xs text-slate-300">5 Beds</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[#e8651a]">bathtub</span>
+<span class="text-xs text-slate-300">4 Baths</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[#e8651a]">square_foot</span>
+<span class="text-xs text-slate-300">5,400 sqft</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[#e8651a]">pool</span>
+<span class="text-xs text-slate-300">Infinity Pool</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Property Card 2 -->
+<div class="bg-bg-navy-card rounded-[20px] overflow-hidden border border-white/10 group transition-all duration-300 hover:border-[#e8651a]/30">
+<div class="relative h-[240px]">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="minimalist glass penthouse interior with panoramic view of a futuristic city skyline at night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYMkBHcmzGV-e-hdX0ZobisxZPmKefOvT71qdWyGZ-q84jC8WIlrBXiN7kYuqcaEYPb8ZnZQHzLqbrYsxeK6qs6C0xxijZs0deYLPoz0ZEqP-yquaTnn1lz321nO5-VBIgNjmImlw2Gp0Krh_aZMKLeb29u2rG_99nGSO-dZV2FonVl5FF8qdVjnz6882kv0cCsnOQBxkAgpmYCQYGvO2SLGgdpKAWQRoSzsG9kkEo0Af27vNSs8WmzghntjMjLqNvz01HpbHR2_k"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="px-3 py-1 rounded-full bg-slate-900/60 backdrop-blur-md text-[#ffb781] text-[10px] font-bold uppercase tracking-wider border border-white/10">New Listing</span>
+</div>
+<button class="absolute top-4 right-4 h-10 w-10 rounded-full bg-slate-900/60 backdrop-blur-md flex items-center justify-center text-white">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4">
+<div class="bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-xl border border-white/5">
+<span class="text-white font-h3">$1,890,000</span>
+</div>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<div>
+<h3 class="font-h3 text-white">Skyline Penthouse</h3>
+<p class="text-slate-400 flex items-center gap-1 text-sm mt-1">
+<span class="material-symbols-outlined text-sm">location_on</span> Lower Manhattan, NY
+                        </p>
+</div>
+<div class="flex justify-between py-4 border-y border-white/5">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[#e8651a]">bed</span>
+<span class="text-xs text-slate-300">3 Beds</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[#e8651a]">bathtub</span>
+<span class="text-xs text-slate-300">3 Baths</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[#e8651a]">apartment</span>
+<span class="text-xs text-slate-300">Penthouse</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[#e8651a]">sunny</span>
+<span class="text-xs text-slate-300">Terrace</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual Floating Action Button -->
+<button class="fixed bottom-24 right-6 h-16 w-16 bg-gradient-to-br from-[#e8651a] to-primary-dark rounded-full shadow-[0_8px_32px_rgba(232,101,26,0.5)] flex items-center justify-center text-on-primary-container z-40 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Mobile Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full bg-slate-950/90 backdrop-blur-2xl px-6 py-4 flex justify-between items-center z-50 border-t border-white/5">
+<a class="flex flex-col items-center gap-1 text-[#e8651a]" href="#">
+<span class="material-symbols-outlined" data-weight="fill">explore</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Marketplace</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Saved</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Messages</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Profile</span>
+</a>
+</nav>
+<!-- Footer for Mobile View -->
+<footer class="bg-slate-950 w-full py-12 px-6 border-t border-white/5 text-center mt-8 pb-32">
+<div class="max-w-[1280px] mx-auto flex flex-col items-center gap-6">
+<span class="text-lg font-bold text-white uppercase tracking-widest">Homeverse</span>
+<p class="font-be-vietnam-pro text-xs text-slate-500">© 2024 Homeverse Marketplace. All rights reserved.</p>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="text-slate-500 hover:text-white text-xs transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-white text-xs transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-white text-xs transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

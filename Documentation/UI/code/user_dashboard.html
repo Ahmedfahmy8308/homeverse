@@ -1,0 +1,389 @@
+<!--
+  Copyright (c) 2025 Ahmed Fahmy
+  Developed at UFUQ TECH
+  Proprietary software. See LICENSE file in the project root for full license information.
+-->
+
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .font-be-vietnam-pro { font-family: 'Be Vietnam Pro', sans-serif; }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#40322b",
+                      "info": "#3b82f6",
+                      "secondary": "#ffb781",
+                      "primary-container": "#ed691e",
+                      "on-error": "#690005",
+                      "outline-variant": "#584238",
+                      "text-dim": "rgba(255, 255, 255, 0.4)",
+                      "primary-fixed-dim": "#ffb695",
+                      "danger": "#ef4444",
+                      "on-tertiary-fixed": "#001d33",
+                      "inverse-primary": "#a23f00",
+                      "on-primary-container": "#4c1a00",
+                      "error": "#ffb4ab",
+                      "surface": "#1c110b",
+                      "on-primary": "#571f00",
+                      "on-surface-variant": "#e0c0b2",
+                      "primary": "#ffb695",
+                      "primary-dark": "#c4510e",
+                      "background": "#1c110b",
+                      "primary-fixed": "#ffdbcc",
+                      "surface-container-high": "#352721",
+                      "outline": "#a78b7f",
+                      "tertiary-fixed-dim": "#99cbff",
+                      "on-tertiary": "#003354",
+                      "on-secondary-fixed-variant": "#703800",
+                      "on-secondary-fixed": "#2f1400",
+                      "on-secondary-container": "#fff7f3",
+                      "error-container": "#93000a",
+                      "on-primary-fixed-variant": "#7b2f00",
+                      "inverse-on-surface": "#3c2d27",
+                      "surface-bright": "#453630",
+                      "secondary-fixed": "#ffdcc4",
+                      "secondary-fixed-dim": "#ffb781",
+                      "tertiary": "#99cbff",
+                      "on-surface": "#f6ded4",
+                      "text-muted": "#94a3b8",
+                      "on-tertiary-container": "#002c4a",
+                      "surface-dim": "#1c110b",
+                      "tertiary-fixed": "#cfe5ff",
+                      "secondary-container": "#b05c01",
+                      "bg-navy-deep": "#0b0f1a",
+                      "surface-container-lowest": "#160c07",
+                      "text-light": "#e2e8f0",
+                      "surface-container-low": "#251913",
+                      "tertiary-container": "#1197eb",
+                      "on-background": "#f6ded4",
+                      "on-secondary": "#4e2500",
+                      "surface-container": "#291d17",
+                      "warning": "#f59e0b",
+                      "on-error-container": "#ffdad6",
+                      "surface-tint": "#ffb695",
+                      "bg-navy-card": "#1a1f2e",
+                      "success": "#22c55e",
+                      "inverse-surface": "#f6ded4",
+                      "on-tertiary-fixed-variant": "#004a78",
+                      "surface-variant": "#40322b",
+                      "on-primary-fixed": "#351000",
+                      "bg-navy-darker": "#111827"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section": "80px",
+                      "xl": "48px",
+                      "sm": "8px",
+                      "container-max": "1280px",
+                      "lg": "24px",
+                      "xs": "4px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Manrope"],
+                      "h1": ["Be Vietnam Pro"],
+                      "label-caps": ["Be Vietnam Pro"],
+                      "body-md": ["Manrope"],
+                      "h2": ["Be Vietnam Pro"],
+                      "button": ["Be Vietnam Pro"],
+                      "h3": ["Be Vietnam Pro"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                      "h1": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                      "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                      "h2": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                      "button": ["14px", { "lineHeight": "1", "fontWeight": "600" }],
+                      "h3": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- Radial Decorative Gradients -->
+<div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary-dark/10 blur-[120px] rounded-full z-0"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-tertiary-container/5 blur-[120px] rounded-full z-0"></div>
+<div class="flex min-h-screen relative z-10">
+<!-- Sidebar Navigation (Responsive) -->
+<aside class="hidden md:flex flex-col w-72 bg-bg-navy-card/50 backdrop-blur-2xl border-r border-white/10 p-lg h-screen sticky top-0">
+<div class="mb-xl">
+<span class="text-2xl font-bold tracking-tight text-orange-500 font-h2">Homeverse</span>
+</div>
+<nav class="flex-grow space-y-md">
+<a class="flex items-center gap-md px-lg py-sm rounded-[14px] bg-primary-container text-on-primary-container font-semibold transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-button text-button">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm rounded-[14px] text-slate-300 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="apartment">apartment</span>
+<span class="font-button text-button">Properties</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm rounded-[14px] text-slate-300 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-button text-button">Favorites</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm rounded-[14px] text-slate-300 hover:text-white hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-button text-button">Profile</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-white/10">
+<a class="flex items-center gap-md px-lg py-sm text-slate-400 hover:text-danger transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-button text-button">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col min-w-0 bg-transparent">
+<!-- Top App Bar -->
+<header class="h-20 flex items-center justify-between px-xl md:px-section border-b border-white/10 bg-slate-950/20 backdrop-blur-md">
+<div class="flex items-center gap-md md:hidden">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<span class="text-xl font-bold text-orange-500 font-h3">Homeverse</span>
+</div>
+<div class="hidden md:block">
+<div class="relative">
+<input class="bg-white/5 border border-white/10 rounded-full px-xl py-sm w-80 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 backdrop-blur-md transition-all" placeholder="Search for properties..." type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-2 text-text-dim" data-icon="search">search</span>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="relative p-2 text-slate-300 hover:text-white">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-danger rounded-full"></span>
+</button>
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded-full border-2 border-primary/30 object-cover" data-alt="professional portrait of a user with a friendly expression in studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEp7DnAPuikX7CWeH54PNyigQ_znvo-gFrNUv8dijJKhlIpydm3xBYr5YJQHE65e9n4yahbhvIVhhRXccySJRg7milWYgHcckqmJBPnnAYZZQpZKvIl7LgLNrnmOYQyVzDLzRrHID0ix-tSjzZO4En4dccCjH2CU1XrtXZoo814Liql7ENoDUvGmo5mkkDFWPiB-REwzIPxDJKatuKyHpKmvchJLHfnEJSwFD2N4dFMdHtxMuSQvp66hDHjZk0j8iWfNs9xNGjF5c"/>
+<div class="hidden sm:block">
+<p class="font-semibold text-sm">Alex Henderson</p>
+<p class="text-xs text-text-dim">Premium Member</p>
+</div>
+</div>
+</div>
+</header>
+<div class="p-lg md:p-section max-w-container-max mx-auto w-full space-y-xl">
+<!-- Welcome Hero -->
+<section class="relative rounded-[20px] overflow-hidden bg-bg-navy-card glass-panel p-xl flex flex-col md:flex-row items-center justify-between">
+<div class="space-y-md relative z-10 max-w-xl">
+<span class="text-primary font-label-caps text-label-caps tracking-widest uppercase">Overview</span>
+<h1 class="font-h1 text-h1 text-white">Welcome back, Alex!</h1>
+<p class="text-text-muted font-body-lg">Manage your property portfolio, track your favorites, and see the latest market trends all in one place.</p>
+<div class="pt-md">
+<button class="bg-gradient-to-r from-primary to-primary-dark text-on-primary-fixed font-button text-button px-xl py-md rounded-[14px] hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">Post New Property</button>
+</div>
+</div>
+<div class="mt-lg md:mt-0 relative w-full md:w-1/3 h-48 md:h-64 overflow-hidden rounded-xl">
+<img class="w-full h-full object-cover opacity-60 mix-blend-lighten" data-alt="abstract architectural glass facade reflecting bright clear sky with high contrast light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwEVmu-6BCZ3JnQHJWOzJaa3S5Lc81e05J8y0P4zgR4SanfZQQ0TIvJEp5Qfzxk1VOvjx0MAoI1hFwkZpSeemUC4pUvIKHq_9fQNNQe8tA1jfHQoBpfl04NVDQkSdAXdxmci_Wb7LzqIJAlUKI7vS6Ir26WqxkqM5YC_hYPcbYJ20C4xvHaZR9_K_Tj8PYLvcaYSLTtGkTW0viJFa7rgNyOvELC5Z8hsDvqy_KF5XP8MvkU3POdyOSMenxoewEZAkJSZETAxdRj_k"/>
+</div>
+</section>
+<!-- Stats Cards Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Stat Card 1 -->
+<div class="bg-bg-navy-card glass-panel p-lg rounded-[20px] group hover:border-primary/40 transition-all">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="list_alt">list_alt</span>
+</div>
+<span class="text-success text-xs font-bold">+12%</span>
+</div>
+<p class="text-text-dim font-label-caps text-label-caps mb-xs">ACTIVE LISTINGS</p>
+<h3 class="font-h3 text-h3 text-white">24</h3>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-bg-navy-card glass-panel p-lg rounded-[20px] group hover:border-primary/40 transition-all">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-secondary/10 rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="favorite">favorite</span>
+</div>
+<span class="text-success text-xs font-bold">+5</span>
+</div>
+<p class="text-text-dim font-label-caps text-label-caps mb-xs">SAVED PROPERTIES</p>
+<h3 class="font-h3 text-h3 text-white">142</h3>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-bg-navy-card glass-panel p-lg rounded-[20px] group hover:border-primary/40 transition-all">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-info/10 rounded-lg">
+<span class="material-symbols-outlined text-info" data-icon="visibility">visibility</span>
+</div>
+<span class="text-info text-xs font-bold">Today</span>
+</div>
+<p class="text-text-dim font-label-caps text-label-caps mb-xs">TOTAL VIEWS</p>
+<h3 class="font-h3 text-h3 text-white">3.4k</h3>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-bg-navy-card glass-panel p-lg rounded-[20px] group hover:border-primary/40 transition-all">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-danger/10 rounded-lg">
+<span class="material-symbols-outlined text-danger" data-icon="mail">mail</span>
+</div>
+<span class="bg-danger text-white text-[10px] px-2 py-0.5 rounded-full">New</span>
+</div>
+<p class="text-text-dim font-label-caps text-label-caps mb-xs">UNREAD MESSAGES</p>
+<h3 class="font-h3 text-h3 text-white">8</h3>
+</div>
+</section>
+<!-- Activity and Market Section (Bento Style) -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Recent Activity Table -->
+<div class="lg:col-span-2 bg-bg-navy-card glass-panel rounded-[20px] p-lg overflow-hidden">
+<div class="flex justify-between items-center mb-xl">
+<h3 class="font-h3 text-h3 text-white">Recent Activity</h3>
+<button class="text-primary font-button text-sm hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="border-b border-white/10">
+<tr>
+<th class="pb-md font-label-caps text-text-dim">PROPERTY</th>
+<th class="pb-md font-label-caps text-text-dim">ACTION</th>
+<th class="pb-md font-label-caps text-text-dim">DATE</th>
+<th class="pb-md font-label-caps text-text-dim">STATUS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="hover:bg-white/5 transition-colors">
+<td class="py-md">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-slate-800 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="small thumbnail of a modern white villa with a blue pool" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE3hktWGcb5dL_Gpg5ixlKJ-qxCeUUZ-2ep8HUu2k_olkIVVgqgf-pYEw9A42r6j51KiMJ3fC-ozk-Pnmni79Q-3RHwhT_xsS8njeNFgSY0E86vUxDitm0phUgdB3CoLAYpH1i7q2zYAq7AtiFPea4AtPPsp_KSdVlTQfOlcW66sUrZVVWe__oo57MK1NNditqFiT6fPr2YAqInIzKgrJvg5YtPh-Z3wfAr4MuBtWikyQhVHXRz5FRiZSMgZW3ZV9aLHEYmUJsT0k"/>
+</div>
+<span class="text-sm font-medium">Oceanview Penthouse</span>
+</div>
+</td>
+<td class="py-md text-sm">Offer Received</td>
+<td class="py-md text-sm text-text-dim">Oct 12, 2024</td>
+<td class="py-md">
+<span class="px-3 py-1 bg-warning/20 text-warning text-xs font-bold rounded-full">PENDING</span>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="py-md">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-slate-800 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="small thumbnail of a cozy suburban house with a well-manicured lawn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA40tocXQAu1UQbn1nh_xjy2e0cJ7dTituTMhJb1vwMGYozyM2sIfQioKflfElVgObaf7BmaC3aFdQAeQgEF58zXXXgdiFSfEwgqs6uDZ7XHx66rMeGHAmRRXtZofqHdf_tCKm1a3cYH8tGd8lLbA9THcYYVVTWeyWKWWFyjprXQIh2vVHFFSLolXb351GIszuRIKxmAV088rQXqJG-utekglMmjcmGYZ_NtyV1zMXAkqlfqDtTpxoWXVLi5hbYjlndjMZpFC3JQKk"/>
+</div>
+<span class="text-sm font-medium">Urban Loft Center</span>
+</div>
+</td>
+<td class="py-md text-sm">Inquiry</td>
+<td class="py-md text-sm text-text-dim">Oct 11, 2024</td>
+<td class="py-md">
+<span class="px-3 py-1 bg-info/20 text-info text-xs font-bold rounded-full">REPLIED</span>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="py-md">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-slate-800 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="small thumbnail of a minimalist modern home in a desert environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZxDwWktA7tttOkR1nhNCZy4TxuvcGS9FOaTJBGCRbpB-Vsrq-xgMAnnzKjfhjncCzdjxYNWfT7M8anJIJQkkVvu7BwavWGaOdtJU8pSAe1kSCFLOIOLT4G20iD3D-p5jK3kDTMGtfFE-OGK_5-S91Rpx6jhs0xGcE8pO2yUmHPTPca4XHg2gLovTD5X6eU_6bqk5Pc-tZVLGLEULwnTxbNOpUMRD70WeH_9Ow8LAE448lKVzlJ-Xoqo5ruPalaFXcBxIvhUlRYu0"/>
+</div>
+<span class="text-sm font-medium">Skyline Studio</span>
+</div>
+</td>
+<td class="py-md text-sm">Listed</td>
+<td class="py-md text-sm text-text-dim">Oct 09, 2024</td>
+<td class="py-md">
+<span class="px-3 py-1 bg-success/20 text-success text-xs font-bold rounded-full">LIVE</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Marketplace Insights / Quick Link -->
+<div class="flex flex-col gap-lg">
+<div class="bg-gradient-to-br from-bg-navy-card to-bg-navy-darker glass-panel rounded-[20px] p-lg flex-grow border border-primary/20">
+<h3 class="font-h3 text-h3 text-white mb-md">Market Trends</h3>
+<div class="space-y-lg">
+<div class="p-md bg-white/5 rounded-xl">
+<p class="text-xs text-text-dim font-label-caps mb-1">LOCAL AVERAGE PRICE</p>
+<div class="flex items-end justify-between">
+<p class="text-xl font-bold">$1.2M</p>
+<span class="text-success text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span> 4.2%
+                                        </span>
+</div>
+</div>
+<div class="p-md bg-white/5 rounded-xl">
+<p class="text-xs text-text-dim font-label-caps mb-1">DEMAND INDEX</p>
+<div class="flex items-end justify-between">
+<p class="text-xl font-bold text-secondary">High</p>
+<div class="flex gap-1">
+<div class="w-1.5 h-6 bg-primary rounded-full"></div>
+<div class="w-1.5 h-8 bg-primary rounded-full"></div>
+<div class="w-1.5 h-5 bg-primary rounded-full"></div>
+<div class="w-1.5 h-7 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-xl py-sm border border-primary/40 rounded-lg text-primary text-button hover:bg-primary hover:text-on-primary transition-all">Download Report</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Section -->
+<footer class="mt-auto border-t border-white/10 bg-slate-950 px-8 py-12">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div>
+<span class="text-xl font-bold text-orange-500 font-be-vietnam-pro">Homeverse</span>
+<p class="text-slate-400 font-be-vietnam-pro text-sm mt-2">© 2024 Homeverse Marketplace. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-slate-400 hover:text-orange-400 transition-colors text-sm font-be-vietnam-pro" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-orange-400 transition-colors text-sm font-be-vietnam-pro" href="#">Terms of Service</a>
+<a class="text-slate-400 hover:text-orange-400 transition-colors text-sm font-be-vietnam-pro" href="#">Contact Us</a>
+<a class="text-slate-400 hover:text-orange-400 transition-colors text-sm font-be-vietnam-pro" href="#">Careers</a>
+</div>
+</div>
+</footer>
+</main>
+</div>
+<!-- Mobile Navigation Bottom Bar -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-slate-950/80 backdrop-blur-xl border-t border-white/10 flex items-center justify-around px-md z-50">
+<a class="flex flex-col items-center gap-1 text-orange-500" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="apartment">apartment</span>
+<span class="text-[10px]">Properties</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="text-[10px]">Saved</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px]">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,375 @@
+<!--
+  Copyright (c) 2025 Ahmed Fahmy
+  Developed at UFUQ TECH
+  Proprietary software. See LICENSE file in the project root for full license information.
+-->
+
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-effect {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    body {
+      background-color: #1c110b; /* From theme surface */
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "surface-container-highest": "#40322b",
+                  "info": "#3b82f6",
+                  "secondary": "#ffb781",
+                  "primary-container": "#ed691e",
+                  "on-error": "#690005",
+                  "outline-variant": "#584238",
+                  "text-dim": "rgba(255, 255, 255, 0.4)",
+                  "primary-fixed-dim": "#ffb695",
+                  "danger": "#ef4444",
+                  "on-tertiary-fixed": "#001d33",
+                  "inverse-primary": "#a23f00",
+                  "on-primary-container": "#4c1a00",
+                  "error": "#ffb4ab",
+                  "surface": "#1c110b",
+                  "on-primary": "#571f00",
+                  "on-surface-variant": "#e0c0b2",
+                  "primary": "#ffb695",
+                  "primary-dark": "#c4510e",
+                  "background": "#1c110b",
+                  "primary-fixed": "#ffdbcc",
+                  "surface-container-high": "#352721",
+                  "outline": "#a78b7f",
+                  "tertiary-fixed-dim": "#99cbff",
+                  "on-tertiary": "#003354",
+                  "on-secondary-fixed-variant": "#703800",
+                  "on-secondary-fixed": "#2f1400",
+                  "on-secondary-container": "#fff7f3",
+                  "error-container": "#93000a",
+                  "on-primary-fixed-variant": "#7b2f00",
+                  "inverse-on-surface": "#3c2d27",
+                  "surface-bright": "#453630",
+                  "secondary-fixed": "#ffdcc4",
+                  "secondary-fixed-dim": "#ffb781",
+                  "tertiary": "#99cbff",
+                  "on-surface": "#f6ded4",
+                  "text-muted": "#94a3b8",
+                  "on-tertiary-container": "#002c4a",
+                  "surface-dim": "#1c110b",
+                  "tertiary-fixed": "#cfe5ff",
+                  "secondary-container": "#b05c01",
+                  "bg-navy-deep": "#0b0f1a",
+                  "surface-container-lowest": "#160c07",
+                  "text-light": "#e2e8f0",
+                  "surface-container-low": "#251913",
+                  "tertiary-container": "#1197eb",
+                  "on-background": "#f6ded4",
+                  "on-secondary": "#4e2500",
+                  "surface-container": "#291d17",
+                  "warning": "#f59e0b",
+                  "on-error-container": "#ffdad6",
+                  "surface-tint": "#ffb695",
+                  "bg-navy-card": "#1a1f2e",
+                  "success": "#22c55e",
+                  "inverse-surface": "#f6ded4",
+                  "on-tertiary-fixed-variant": "#004a78",
+                  "surface-variant": "#40322b",
+                  "on-primary-fixed": "#351000",
+                  "bg-navy-darker": "#111827"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "section": "80px",
+                  "xl": "48px",
+                  "sm": "8px",
+                  "container-max": "1280px",
+                  "lg": "24px",
+                  "xs": "4px",
+                  "md": "16px"
+          },
+          "fontFamily": {
+                  "body-lg": ["manrope"],
+                  "h1": ["beVietnamPro"],
+                  "label-caps": ["beVietnamPro"],
+                  "body-md": ["manrope"],
+                  "h2": ["beVietnamPro"],
+                  "button": ["beVietnamPro"],
+                  "h3": ["beVietnamPro"]
+          },
+          "fontSize": {
+                  "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                  "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                  "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                  "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                  "h2": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                  "button": ["14px", {"lineHeight": "1", "fontWeight": "600"}],
+                  "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar Navigation Shell -->
+<header class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-md border-b border-white/10 shadow-xl font-be-vietnam-pro antialiased">
+<div class="max-w-[1280px] mx-auto flex justify-between items-center px-6 h-20">
+<!-- Logo -->
+<div class="text-2xl font-bold tracking-tight text-orange-500">
+        Homeverse
+      </div>
+<!-- Desktop Nav Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-300 hover:text-white transition-colors" href="#">Home</a>
+<a class="text-orange-500 font-semibold border-b-2 border-orange-500 pb-1" href="#">Properties</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">Dashboard</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">About</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button class="text-slate-300 hover:text-white transition-all duration-300 font-button text-button">Sign In</button>
+<button class="bg-gradient-to-r from-primary to-primary-dark text-on-primary-container px-6 py-2.5 rounded-[14px] font-button text-button active:scale-95 transition-transform duration-200">
+          Post Property
+        </button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-section">
+<!-- Hero / Search Section -->
+<section class="max-w-[1280px] mx-auto px-6 mb-12">
+<div class="relative overflow-hidden rounded-3xl bg-surface-container p-8 md:p-12 border border-white/10">
+<!-- Atmospheric Background -->
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full -mr-40 -mt-40"></div>
+<div class="relative z-10 max-w-2xl">
+<h1 class="font-h1 text-h1 text-on-surface mb-6">Discover your <span class="text-primary">perfect</span> property</h1>
+<!-- Search & Filter Bar -->
+<div class="flex flex-col gap-6">
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-2 rounded-full font-button text-button bg-primary text-on-primary-container">All</button>
+<button class="px-6 py-2 rounded-full font-button text-button bg-surface-container-highest text-on-surface hover:bg-surface-variant transition-colors border border-white/5">Rent</button>
+<button class="px-6 py-2 rounded-full font-button text-button bg-surface-container-highest text-on-surface hover:bg-surface-variant transition-colors border border-white/5">Sale</button>
+</div>
+<div class="flex items-center bg-surface-container-low/80 glass-effect border border-white/10 p-2 rounded-[20px] shadow-lg">
+<span class="material-symbols-outlined text-outline ml-4">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline w-full px-4 font-body-md text-body-md" placeholder="Search by city, neighborhood, or building..." type="text"/>
+<button class="bg-primary hover:bg-primary-dark transition-colors text-on-primary-container px-8 py-3 rounded-[16px] font-button text-button flex items-center gap-2">
+                Search
+              </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Property Listings Grid -->
+<section class="max-w-[1280px] mx-auto px-6">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-h2 text-h2 text-on-surface">Available Listings</h2>
+<p class="text-text-muted font-body-md">Found 284 properties matching your search</p>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="font-label-caps text-label-caps">SORT BY:</span>
+<select class="bg-surface-container border border-white/10 rounded-lg text-sm focus:ring-primary focus:border-primary">
+<option>Newest First</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+</select>
+</div>
+</div>
+<!-- 3-Column Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Property Card 1 -->
+<div class="bg-bg-navy-card rounded-[20px] border border-white/10 overflow-hidden hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="ultra-modern luxury villa with large glass windows, infinity pool at sunset with warm atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXuw91h_LTINYX-tO1MoEdkvsf0FBbeBHQRONXucieKXSvB8HLYUo104P7xysLjpTupFrQUFuNbtdao6B634pG4eNoZB7nsjPgvp7HCaBO0Y-q-34ufEn-N65llqQM7DLV5lYplotmutqOm22P4n0jtJCKIiTJMl35a-NjCrCmZoq_z6gSEQg6gGMS-te4z9zTfwc-RLjHam2Z23HpBLz36PYCSnKSYjPfWJQyEkd3EsfkHGkgAR_QApy6dktkdNVZAjTwxqJtNug"/>
+<div class="absolute top-4 left-4">
+<span class="bg-success/20 text-success border border-success/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md">For Rent</span>
+</div>
+<div class="absolute top-4 right-4 bg-slate-950/40 backdrop-blur-md p-2 rounded-full text-white cursor-pointer hover:bg-primary/80 transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-h3 text-h3 text-on-surface line-clamp-1">Azure Heights Villa</h3>
+<div class="flex items-center gap-1 bg-surface-container-highest px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-warning text-sm" data-weight="fill">star</span>
+<span class="text-xs font-bold">4.9</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-outline mb-4">
+<span class="material-symbols-outlined text-base">location_on</span>
+<span class="text-sm">Beverly Hills, CA</span>
+</div>
+<div class="flex items-center justify-between py-4 border-y border-white/5 mb-4">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-1">bed</span>
+<span class="text-xs text-outline">4 Beds</span>
+</div>
+<div class="flex flex-col items-center border-x border-white/5 px-6">
+<span class="material-symbols-outlined text-primary mb-1">bathtub</span>
+<span class="text-xs text-outline">3 Baths</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-1">straighten</span>
+<span class="text-xs text-outline">3,200 sqft</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<span class="text-text-muted text-xs block">Monthly Rent</span>
+<span class="text-primary font-bold text-xl">$8,500</span>
+</div>
+<button class="bg-surface-container-highest hover:bg-primary transition-all text-on-surface hover:text-on-primary-container p-3 rounded-xl">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Property Card 2 -->
+<div class="bg-bg-navy-card rounded-[20px] border border-white/10 overflow-hidden hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="contemporary beachfront mansion with white stone architecture and blue ocean background under bright daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWREHRyuFooq-CYwx8ONHNDH1_75GMtJ-iXN6wvWRdg7kl71eYVQiW58tc5M5tNXp3i2eG2FolF9VR51Zd5yQUoV7hZnlNFhSAt3IxQJ52-t_QcI-JEmRbnBNwzMHKsiE0f1g4K6U4YhaUQK8MNk-kIoWzZXNRzz_syN7vNou4er_vKaaS42Mn4uS3DriDcd5m5YSyq_lUGJmR_4cNterhThAaOnMn73OIEgHC1DiUMyVIbojjoTwmykMq3TDzN0H2oWdnriWviEI"/>
+<div class="absolute top-4 left-4">
+<span class="bg-warning/20 text-warning border border-warning/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md">For Sale</span>
+</div>
+<div class="absolute top-4 right-4 bg-slate-950/40 backdrop-blur-md p-2 rounded-full text-white cursor-pointer hover:bg-primary/80 transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-h3 text-h3 text-on-surface line-clamp-1">The Zenith Penthouse</h3>
+<div class="flex items-center gap-1 bg-surface-container-highest px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-warning text-sm" data-weight="fill">star</span>
+<span class="text-xs font-bold">5.0</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-outline mb-4">
+<span class="material-symbols-outlined text-base">location_on</span>
+<span class="text-sm">Manhattan, NY</span>
+</div>
+<div class="flex items-center justify-between py-4 border-y border-white/5 mb-4">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-1">bed</span>
+<span class="text-xs text-outline">3 Beds</span>
+</div>
+<div class="flex flex-col items-center border-x border-white/5 px-6">
+<span class="material-symbols-outlined text-primary mb-1">bathtub</span>
+<span class="text-xs text-outline">4 Baths</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-1">straighten</span>
+<span class="text-xs text-outline">4,500 sqft</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<span class="text-text-muted text-xs block">Listing Price</span>
+<span class="text-primary font-bold text-xl">$4,250,000</span>
+</div>
+<button class="bg-surface-container-highest hover:bg-primary transition-all text-on-surface hover:text-on-primary-container p-3 rounded-xl">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Property Card 3 -->
+<div class="bg-bg-navy-card rounded-[20px] border border-white/10 overflow-hidden hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="modern brutalist concrete house in forest setting with warm interior lights glowing at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOyX0jxxSz7of2xAuJ3uTbXvGL_blB1KJsC8x5tI1fgZvB4vln4gEzzclp0nzJqDBDEawJ2WNnkt93SjQGo5M9_M1GZGo0M26RjIQRR58vbWti0PoeOYizeekBgyRagRhYprKzTJ2TqwabvS31XXjp-uYog_3xtv0YxkYDO_6CiVL_QW0fRMEYjR9_SGAN3m6SdcAIhbQjhG1vkc3q9ZKh8Oq-C0Sv8udQ_yKy3fwR3HzeNEJX4isO9BtogntB3DivKIP07Oo_bsw"/>
+<div class="absolute top-4 left-4">
+<span class="bg-warning/20 text-warning border border-warning/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md">For Sale</span>
+</div>
+<div class="absolute top-4 right-4 bg-slate-950/40 backdrop-blur-md p-2 rounded-full text-white cursor-pointer hover:bg-primary/80 transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-h3 text-h3 text-on-surface line-clamp-1">Forest Retreat Manor</h3>
+<div class="flex items-center gap-1 bg-surface-container-highest px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-warning text-sm" data-weight="fill">star</span>
+<span class="text-xs font-bold">4.8</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-outline mb-4">
+<span class="material-symbols-outlined text-base">location_on</span>
+<span class="text-sm">Aspen, CO</span>
+</div>
+<div class="flex items-center justify-between py-4 border-y border-white/5 mb-4">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-1">bed</span>
+<span class="text-xs text-outline">5 Beds</span>
+</div>
+<div class="flex flex-col items-center border-x border-white/5 px-6">
+<span class="material-symbols-outlined text-primary mb-1">bathtub</span>
+<span class="text-xs text-outline">5 Baths</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-1">straighten</span>
+<span class="text-xs text-outline">6,100 sqft</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<span class="text-text-muted text-xs block">Listing Price</span>
+<span class="text-primary font-bold text-xl">$2,900,000</span>
+</div>
+<button class="bg-surface-container-highest hover:bg-primary transition-all text-on-surface hover:text-on-primary-container p-3 rounded-xl">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-16 flex justify-center gap-2">
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-container border border-white/10 text-on-surface hover:bg-surface-container-highest">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-on-primary-container font-bold">1</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-container border border-white/10 text-on-surface hover:bg-surface-container-highest">2</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-container border border-white/10 text-on-surface hover:bg-surface-container-highest">3</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-container border border-white/10 text-on-surface hover:bg-surface-container-highest">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full mt-auto bg-slate-950 border-t border-white/10 font-be-vietnam-pro text-sm">
+<div class="max-w-[1280px] mx-auto py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-2">
+<div class="text-xl font-bold text-orange-500">Homeverse</div>
+<p class="text-slate-400 max-w-xs text-center md:text-left">The most trusted marketplace for premium residential and commercial properties.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-400 hover:text-orange-400 transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-orange-400 transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="text-slate-400 hover:text-orange-400 transition-colors opacity-80 hover:opacity-100" href="#">Contact Us</a>
+<a class="text-slate-400 hover:text-orange-400 transition-colors opacity-80 hover:opacity-100" href="#">Careers</a>
+</div>
+<div class="text-slate-400 text-center md:text-right">
+        © 2024 Homeverse Marketplace. All rights reserved.
+      </div>
+</div>
+</footer>
+</body></html>

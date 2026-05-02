@@ -1,0 +1,329 @@
+<!--
+  Copyright (c) 2025 Ahmed Fahmy
+  Developed at UFUQ TECH
+  Proprietary software. See LICENSE file in the project root for full license information.
+-->
+
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;400;500;600;700;800;900&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#f6ded4",
+                        "on-tertiary": "#003354",
+                        "tertiary-fixed-dim": "#99cbff",
+                        "on-tertiary-fixed": "#001d33",
+                        "on-tertiary-container": "#002c4a",
+                        "primary-fixed-dim": "#ffb695",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#40322b",
+                        "tertiary": "#99cbff",
+                        "secondary-fixed-dim": "#ffb781",
+                        "bg-navy-card": "#1a1f2e",
+                        "warning": "#f59e0b",
+                        "primary": "#ffb695",
+                        "on-surface": "#f6ded4",
+                        "inverse-on-surface": "#3c2d27",
+                        "text-dim": "rgba(255, 255, 255, 0.4)",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "surface-tint": "#ffb695",
+                        "surface-container-highest": "#40322b",
+                        "surface": "#1c110b",
+                        "primary-fixed": "#ffdbcc",
+                        "tertiary-container": "#1197eb",
+                        "secondary-container": "#b05c01",
+                        "on-secondary-fixed": "#2f1400",
+                        "on-primary-container": "#4c1a00",
+                        "on-background": "#f6ded4",
+                        "on-primary-fixed-variant": "#7b2f00",
+                        "danger": "#ef4444",
+                        "on-secondary-container": "#fff7f3",
+                        "bg-navy-darker": "#111827",
+                        "on-surface-variant": "#e0c0b2",
+                        "on-secondary": "#4e2500",
+                        "text-muted": "#94a3b8",
+                        "surface-container-low": "#251913",
+                        "inverse-primary": "#a23f00",
+                        "secondary-fixed": "#ffdcc4",
+                        "secondary": "#ffb781",
+                        "primary-container": "#ed691e",
+                        "on-secondary-fixed-variant": "#703800",
+                        "on-primary-fixed": "#351000",
+                        "success": "#22c55e",
+                        "on-primary": "#571f00",
+                        "text-light": "#e2e8f0",
+                        "background": "#1c110b",
+                        "surface-dim": "#1c110b",
+                        "outline": "#a78b7f",
+                        "on-tertiary-fixed-variant": "#004a78",
+                        "surface-bright": "#453630",
+                        "bg-navy-deep": "#0b0f1a",
+                        "surface-container-lowest": "#160c07",
+                        "surface-container": "#291d17",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-high": "#352721",
+                        "tertiary-fixed": "#cfe5ff",
+                        "outline-variant": "#584238",
+                        "info": "#3b82f6",
+                        "primary-dark": "#c4510e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "xl": "48px",
+                        "section": "80px",
+                        "md": "16px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "be-vietnam-pro": ["Be Vietnam Pro", "sans-serif"],
+                        "manrope": ["Manrope", "sans-serif"],
+                        "button": ["Be Vietnam Pro"],
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "label-caps": ["Be Vietnam Pro"],
+                        "h1": ["Be Vietnam Pro"],
+                        "h2": ["Be Vietnam Pro"],
+                        "h3": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "button": ["14px", {"lineHeight": "1", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h2": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-manrope selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="bg-slate-950/80 backdrop-blur-lg docked full-width top-0 sticky z-50 border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] w-full">
+<div class="flex justify-between items-center max-w-[1280px] mx-auto px-6 h-20 w-full">
+<div class="text-2xl font-black tracking-tighter text-[#e8651a] font-be-vietnam-pro">Homeverse</div>
+<div class="hidden md:flex items-center gap-8 font-be-vietnam-pro text-sm font-medium tracking-tight">
+<a class="text-slate-400 hover:text-white transition-colors hover:bg-white/5 rounded-lg px-3 py-2 transition-all duration-300" href="#">Marketplace</a>
+<a class="text-slate-400 hover:text-white transition-colors hover:bg-white/5 rounded-lg px-3 py-2 transition-all duration-300" href="#">Services</a>
+<a class="text-slate-400 hover:text-white transition-colors hover:bg-white/5 rounded-lg px-3 py-2 transition-all duration-300" href="#">Blog</a>
+<a class="text-slate-400 hover:text-white transition-colors hover:bg-white/5 rounded-lg px-3 py-2 transition-all duration-300" href="#">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block text-slate-400 font-be-vietnam-pro text-sm hover:text-white transition-colors px-4 py-2">Sign In</button>
+<button class="bg-gradient-to-r from-primary-container to-primary-dark text-on-primary-container font-button text-button px-6 py-3 rounded-full active:scale-95 transition-transform shadow-lg shadow-primary-container/20">
+                    List Property
+                </button>
+</div>
+</div>
+</nav>
+<main class="min-h-screen relative overflow-hidden">
+<!-- Ambient Background Decoration -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] pointer-events-none">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(232,101,26,0.15),transparent_70%)]"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(153,203,255,0.05),transparent_40%)]"></div>
+</div>
+<!-- Hero Section -->
+<header class="relative pt-24 pb-12 px-6 max-w-[1280px] mx-auto text-center">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary-fixed mb-8">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-caps text-label-caps uppercase">Legal Documentation</span>
+</div>
+<h1 class="font-h1 text-h1 text-on-background mb-6">Terms and Conditions</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                Please read these terms and conditions carefully before using our platform. Your use of Homeverse implies acceptance of these rules.
+            </p>
+<div class="mt-8 text-text-dim font-body-md text-sm">
+                Last updated: October 24, 2024
+            </div>
+</header>
+<!-- Terms Content Grid -->
+<section class="relative max-w-[1280px] mx-auto px-6 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Table of Contents (Sticky Sidebar) -->
+<aside class="hidden lg:block lg:col-span-3">
+<div class="sticky top-32 space-y-4">
+<h4 class="font-h3 text-base text-on-background mb-6 px-4">Sections</h4>
+<nav class="flex flex-col border-l border-white/10">
+<a class="px-6 py-2 text-primary border-l-2 border-primary -ml-px transition-colors hover:text-primary-fixed" href="#introduction">1. Introduction</a>
+<a class="px-6 py-2 text-on-surface-variant transition-colors hover:text-white border-l-2 border-transparent -ml-px" href="#definitions">2. Definitions</a>
+<a class="px-6 py-2 text-on-surface-variant transition-colors hover:text-white border-l-2 border-transparent -ml-px" href="#eligibility">3. Eligibility</a>
+<a class="px-6 py-2 text-on-surface-variant transition-colors hover:text-white border-l-2 border-transparent -ml-px" href="#user-conduct">4. User Conduct</a>
+<a class="px-6 py-2 text-on-surface-variant transition-colors hover:text-white border-l-2 border-transparent -ml-px" href="#property-listings">5. Property Listings</a>
+<a class="px-6 py-2 text-on-surface-variant transition-colors hover:text-white border-l-2 border-transparent -ml-px" href="#financial-terms">6. Financial Terms</a>
+<a class="px-6 py-2 text-on-surface-variant transition-colors hover:text-white border-l-2 border-transparent -ml-px" href="#privacy">7. Privacy Policy</a>
+<a class="px-6 py-2 text-on-surface-variant transition-colors hover:text-white border-l-2 border-transparent -ml-px" href="#liability">8. Limitation of Liability</a>
+</nav>
+<div class="mt-12 p-6 rounded-3xl bg-bg-navy-card border border-white/10 backdrop-blur-md">
+<p class="font-body-md text-sm text-on-surface-variant mb-4">Need a PDF version for your records?</p>
+<button class="flex items-center gap-2 text-primary font-button text-sm hover:underline">
+<span class="material-symbols-outlined">download</span>
+                            Download PDF
+                        </button>
+</div>
+</div>
+</aside>
+<!-- Main Long-form Text -->
+<article class="lg:col-span-9 bg-bg-navy-card/50 backdrop-blur-xl border border-white/10 rounded-[40px] p-8 md:p-12 shadow-2xl">
+<section class="mb-16 scroll-mt-32" id="introduction">
+<h2 class="font-h2 text-h2 text-on-background mb-6">1. Introduction</h2>
+<div class="font-body-md text-body-md text-on-surface-variant space-y-4">
+<p>Welcome to Homeverse. These Terms and Conditions govern your access to and use of the Homeverse website, mobile applications, and other online services. By accessing or using our platform, you agree to be bound by these Terms and all terms incorporated by reference.</p>
+<p>If you do not agree to all of these Terms, do not use our services. We reserve the right to change or modify these Terms at any time and in our sole discretion.</p>
+</div>
+</section>
+<div class="h-px bg-white/5 mb-16"></div>
+<section class="mb-16 scroll-mt-32" id="definitions">
+<h2 class="font-h2 text-h2 text-on-background mb-6">2. Definitions</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="p-6 rounded-2xl bg-white/5 border border-white/5">
+<h4 class="font-h3 text-base text-primary mb-2">"The Platform"</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Refers to the Homeverse website, application, and all subdomains associated with the service.</p>
+</div>
+<div class="p-6 rounded-2xl bg-white/5 border border-white/5">
+<h4 class="font-h3 text-base text-primary mb-2">"Users"</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Any person or entity who browses, lists, or interacts with the content provided by Homeverse.</p>
+</div>
+<div class="p-6 rounded-2xl bg-white/5 border border-white/5">
+<h4 class="font-h3 text-base text-primary mb-2">"Listing"</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Any property advertisement, description, or data point uploaded to the platform for public view.</p>
+</div>
+<div class="p-6 rounded-2xl bg-white/5 border border-white/5">
+<h4 class="font-h3 text-base text-primary mb-2">"Services"</h4>
+<p class="font-body-md text-sm text-on-surface-variant">The property matching, financing tools, and marketplace functionalities provided by Homeverse.</p>
+</div>
+</div>
+</section>
+<div class="h-px bg-white/5 mb-16"></div>
+<section class="mb-16 scroll-mt-32" id="eligibility">
+<h2 class="font-h2 text-h2 text-on-background mb-6">3. Eligibility</h2>
+<div class="font-body-md text-body-md text-on-surface-variant space-y-4">
+<p>To be eligible to use the Homeverse Services, you must represent and warrant that you:</p>
+<ul class="list-none space-y-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-success mt-1">check_circle</span>
+                                Are at least 18 years of age and have the capacity to form a binding contract.
+                            </li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-success mt-1">check_circle</span>
+                                Have not been previously suspended or removed from using our Services.
+                            </li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-success mt-1">check_circle</span>
+                                Will comply with all local, state, and federal laws regarding real estate transactions.
+                            </li>
+</ul>
+</div>
+</section>
+<div class="h-px bg-white/5 mb-16"></div>
+<section class="mb-16 scroll-mt-32" id="user-conduct">
+<h2 class="font-h2 text-h2 text-on-background mb-6">4. User Conduct</h2>
+<div class="font-body-md text-body-md text-on-surface-variant space-y-4">
+<p>Users agree NOT to engage in any of the following prohibited activities:</p>
+<div class="bg-surface-container-low p-8 rounded-3xl space-y-6">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-xl bg-danger/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-danger">block</span>
+</div>
+<div>
+<h5 class="font-h3 text-sm text-on-background mb-1">Misrepresentation</h5>
+<p class="text-sm text-on-surface-variant">Posting false, inaccurate, misleading, defamatory, or libelous content about properties or entities.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-xl bg-danger/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-danger">shield_with_heart</span>
+</div>
+<div>
+<h5 class="font-h3 text-sm text-on-background mb-1">Harassment</h5>
+<p class="text-sm text-on-surface-variant">Harassing, threatening, or intentionally embarrassing other users or Homeverse staff.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-xl bg-danger/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-danger">data_exploration</span>
+</div>
+<div>
+<h5 class="font-h3 text-sm text-on-background mb-1">Automated Scraping</h5>
+<p class="text-sm text-on-surface-variant">Using bots, spiders, or scrapers to extract data from our platform without written consent.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="h-px bg-white/5 mb-16"></div>
+<section class="mb-16 scroll-mt-32" id="property-listings">
+<h2 class="font-h2 text-h2 text-on-background mb-6">5. Property Listings</h2>
+<div class="font-body-md text-body-md text-on-surface-variant space-y-4">
+<p>All listings must accurately represent the property. Homeverse reserves the right to remove any listing that fails to meet our quality standards or quality control protocols. Photographs must be high-resolution and not contain watermarks from competing platforms.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+<img class="rounded-2xl border border-white/10 w-full aspect-video object-cover" data-alt="ultra modern luxury mansion exterior with glass walls and swimming pool at dusk with cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK8kfLolrwyD9jTVEIcDErBrD69AQ6pgz-kUAn8fCqAKh4zpRgPUZNLCDsUi6MvTBXY7aBigYlDznhdG0QbUYUXtdHm3wWXib-zoW1lWaALpXO4DCJWRll3FOU2jZi6ho1G088DpJcSEsqN3DMUMb0XPMsrvvbPkRkNxUFoTX8ZvsY2XZEVuaZGDoAR7Wp-JEbjniaHxFycfEj0C2RnSolNn1rk0K_BYlMLgaL54dyJoCrH-SajBcJVIuqjMe0J2c6bF5w4usloQ8"/>
+<img class="rounded-2xl border border-white/10 w-full aspect-video object-cover" data-alt="contemporary interior design of a luxury living room with dark wood accents and large windows showing sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIJhgqNhfFFcPJigxNwiVSdb-POXhHxPMX6G1oVTA3fBndHSfOSJoxmugqKBMVs7HSf3y9kg0nwHpRWdRqvlYE7dENdeTqXPrkwi6Rag_Qh0V4NIVuCvdw746zRenlheOzsqze3DZPT5I86p96KZNt2_MtJj9XfYTaUFtDfJm36zTimOMWjK0tBM3yy855di3XCS1yjspyiD8d1m9mjxI6oJZJ0cQF34C_co_P66HzvQo2nIvlCm1mIwtLYr0PlTuMfGnJyY4fmWw"/>
+</div>
+</div>
+</section>
+<div class="h-px bg-white/5 mb-16"></div>
+<section class="mb-16 scroll-mt-32" id="liability">
+<h2 class="font-h2 text-h2 text-on-background mb-6">8. Limitation of Liability</h2>
+<div class="font-body-md text-body-md text-on-surface-variant">
+<p class="bg-primary/5 border-l-4 border-primary p-6 italic rounded-r-2xl">
+                            "In no event shall Homeverse, its directors, employees, or agents be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses."
+                        </p>
+</div>
+</section>
+<!-- Support CTA -->
+<div class="mt-24 p-10 rounded-[32px] bg-gradient-to-br from-[#e8651a]/20 to-transparent border border-primary/20 text-center">
+<h3 class="font-h3 text-h3 text-on-background mb-4">Still have questions?</h3>
+<p class="font-body-md text-on-surface-variant mb-8 max-w-lg mx-auto">Our legal team and support specialists are available to clarify any of our policies.</p>
+<div class="flex flex-wrap justify-center gap-4">
+<button class="bg-primary text-on-primary font-button text-button px-8 py-4 rounded-full hover:bg-primary-dark transition-colors">
+                            Contact Support
+                        </button>
+<button class="bg-white/5 text-white border border-white/10 font-button text-button px-8 py-4 rounded-full hover:bg-white/10 transition-colors">
+                            Legal FAQ
+                        </button>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 border-t border-white/5 w-full">
+<div class="w-full py-12 px-6 max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-4">
+<div class="text-lg font-bold text-white font-be-vietnam-pro">Homeverse</div>
+<p class="font-be-vietnam-pro text-xs text-slate-500 max-w-xs">
+                    The premium marketplace for high-stakes property transactions. Elevating your living standard through technology.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 font-be-vietnam-pro text-xs">
+<a class="text-slate-500 hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="text-[#e8651a] underline transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-white transition-colors" href="#">FAQ</a>
+<a class="text-slate-500 hover:text-white transition-colors" href="#">Contact Support</a>
+</div>
+<div class="font-be-vietnam-pro text-xs text-slate-500">
+                © 2024 Homeverse Marketplace. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

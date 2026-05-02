@@ -1,0 +1,55 @@
+@startuml
+title Homeverse Use Case Model
+
+left to right direction
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam usecase {
+  BorderColor #0F172A
+  BackgroundColor #F8FAFC
+}
+
+actor "Public Visitor" as guest
+actor "Registered User" as user
+actor "Administrator" as admin
+
+rectangle "Homeverse System" {
+  (Browse Properties) as browse
+  (Filter & Search) as search
+  (View Blog Posts) as blog
+  (Submit Contact Inquiry) as contact
+  (Register / Login) as auth
+
+  (Manage Wishlist) as wishlist
+  (Post Property Review) as review
+  (Manage Profile) as profile
+  (Save Favorite Properties) as save_fav
+
+  (Manage All Properties) as m_prop
+  (Manage Blog Content) as m_blog
+  (View Dashboard Stats) as stats
+  (Manage Site Settings) as settings
+  (Review Contact Messages) as messages
+}
+
+guest --> browse
+guest --> search
+guest --> blog
+guest --> contact
+guest --> auth
+
+user --|> guest
+user --> wishlist
+user --> review
+user --> profile
+user --> save_fav
+
+admin --|> user
+admin --> m_prop
+admin --> m_blog
+admin --> stats
+admin --> settings
+admin --> messages
+
+@enduml

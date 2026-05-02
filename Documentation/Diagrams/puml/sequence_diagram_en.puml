@@ -1,0 +1,35 @@
+@startuml
+title Wishlist Interaction Sequence
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam roundcorner 10
+skinparam maxMessageSize 160
+skinparam sequence {
+  ArrowColor #0F172A
+  LifeLineBorderColor #94A3B8
+  LifeLineBackgroundColor #FFFFFF
+  ParticipantBorderColor #0F172A
+  ParticipantBackgroundColor #E2E8F0
+  ActorBorderColor #0F172A
+  ActorBackgroundColor #E2E8F0
+}
+
+actor User
+participant "Next.js Frontend" as front
+participant "PHP API" as api
+database "MySQL DB" as db
+
+User -> front: Click "Add to Wishlist"
+front -> front: Check authentication state and token
+alt Not authenticated
+    front -->> User: Open login modal
+else Authenticated
+    front -> api: POST /api/wishlist { property_id }
+    api -> api: Verify JWT token
+    api -> db: INSERT INTO wishlists (user_id, property_id)
+    db -->> api: Insert success
+    api -->> front: 201 Created
+    front -->> User: Toggle heart icon to active state
+end
+@enduml

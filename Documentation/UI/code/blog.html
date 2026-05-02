@@ -1,0 +1,417 @@
+<!--
+  Copyright (c) 2025 Ahmed Fahmy
+  Developed at UFUQ TECH
+  Proprietary software. See LICENSE file in the project root for full license information.
+-->
+
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Homeverse | Insights &amp; Real Estate Blog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;300;400;500;600;700;800;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-surface": "#f6ded4",
+                      "on-tertiary": "#003354",
+                      "tertiary-fixed-dim": "#99cbff",
+                      "on-tertiary-fixed": "#001d33",
+                      "on-tertiary-container": "#002c4a",
+                      "primary-fixed-dim": "#ffb695",
+                      "error": "#ffb4ab",
+                      "surface-variant": "#40322b",
+                      "tertiary": "#99cbff",
+                      "secondary-fixed-dim": "#ffb781",
+                      "bg-navy-card": "#1a1f2e",
+                      "warning": "#f59e0b",
+                      "primary": "#ffb695",
+                      "on-surface": "#f6ded4",
+                      "inverse-on-surface": "#3c2d27",
+                      "text-dim": "rgba(255, 255, 255, 0.4)",
+                      "on-error": "#690005",
+                      "error-container": "#93000a",
+                      "surface-tint": "#ffb695",
+                      "surface-container-highest": "#40322b",
+                      "surface": "#1c110b",
+                      "primary-fixed": "#ffdbcc",
+                      "tertiary-container": "#1197eb",
+                      "secondary-container": "#b05c01",
+                      "on-secondary-fixed": "#2f1400",
+                      "on-primary-container": "#4c1a00",
+                      "on-background": "#f6ded4",
+                      "on-primary-fixed-variant": "#7b2f00",
+                      "danger": "#ef4444",
+                      "on-secondary-container": "#fff7f3",
+                      "bg-navy-darker": "#111827",
+                      "on-surface-variant": "#e0c0b2",
+                      "on-secondary": "#4e2500",
+                      "text-muted": "#94a3b8",
+                      "surface-container-low": "#251913",
+                      "inverse-primary": "#a23f00",
+                      "secondary-fixed": "#ffdcc4",
+                      "secondary": "#ffb781",
+                      "primary-container": "#ed691e",
+                      "on-secondary-fixed-variant": "#703800",
+                      "on-primary-fixed": "#351000",
+                      "success": "#22c55e",
+                      "on-primary": "#571f00",
+                      "text-light": "#e2e8f0",
+                      "background": "#1c110b",
+                      "surface-dim": "#1c110b",
+                      "outline": "#a78b7f",
+                      "on-tertiary-fixed-variant": "#004a78",
+                      "surface-bright": "#453630",
+                      "bg-navy-deep": "#0b0f1a",
+                      "surface-container-lowest": "#160c07",
+                      "surface-container": "#291d17",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-high": "#352721",
+                      "tertiary-fixed": "#cfe5ff",
+                      "outline-variant": "#584238",
+                      "info": "#3b82f6",
+                      "primary-dark": "#c4510e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "xs": "4px",
+                      "sm": "8px",
+                      "xl": "48px",
+                      "section": "80px",
+                      "md": "16px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "button": ["Be Vietnam Pro"],
+                      "body-lg": ["Manrope"],
+                      "h2": ["Be Vietnam Pro"],
+                      "body-md": ["Manrope"],
+                      "label-caps": ["Be Vietnam Pro"],
+                      "h3": ["Be Vietnam Pro"],
+                      "h1": ["Be Vietnam Pro"]
+              },
+              "fontSize": {
+                      "button": ["14px", {"lineHeight": "1", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h2": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .orange-gradient-bg {
+            background: linear-gradient(135deg, #ed691e 0%, #c4510e 100%);
+        }
+        .radial-glow {
+            background: radial-gradient(circle at 50% 0%, rgba(232, 101, 26, 0.15) 0%, transparent 70%);
+        }
+    </style>
+</head>
+<body class="bg-bg-navy-deep text-on-background font-body-md selection:bg-primary-container selection:text-white">
+<!-- TopNavBar -->
+<header class="bg-slate-950/80 backdrop-blur-lg border-b border-white/10 docked full-width top-0 sticky z-50 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
+<div class="flex justify-between items-center max-w-[1280px] mx-auto px-6 h-20 w-full">
+<div class="text-2xl font-black tracking-tighter text-[#e8651a]">Homeverse</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-be-vietnam-pro text-sm font-medium tracking-tight text-slate-400 hover:text-white transition-colors hover:bg-white/5 rounded-lg px-3 py-2 transition-all duration-300" href="#">Marketplace</a>
+<a class="font-be-vietnam-pro text-sm font-medium tracking-tight text-slate-400 hover:text-white transition-colors hover:bg-white/5 rounded-lg px-3 py-2 transition-all duration-300" href="#">Services</a>
+<a class="font-be-vietnam-pro text-sm font-medium tracking-tight text-[#e8651a] border-b-2 border-[#e8651a] pb-1 hover:bg-white/5 rounded-lg px-3 py-2 transition-all duration-300" href="#">Blog</a>
+<a class="font-be-vietnam-pro text-sm font-medium tracking-tight text-slate-400 hover:text-white transition-colors hover:bg-white/5 rounded-lg px-3 py-2 transition-all duration-300" href="#">About</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="font-be-vietnam-pro text-sm font-medium tracking-tight text-slate-400 hover:text-white transition-colors px-4 py-2">Sign In</button>
+<button class="orange-gradient-bg text-white px-6 py-2.5 rounded-[14px] font-button text-button shadow-lg shadow-primary-container/20 active:scale-95 transition-transform">List Property</button>
+</div>
+</div>
+</header>
+<main class="relative min-h-screen radial-glow">
+<!-- Hero Section -->
+<section class="max-w-[1280px] mx-auto px-6 pt-20 pb-16">
+<div class="max-w-3xl">
+<span class="font-label-caps text-label-caps text-primary mb-4 block">REAL ESTATE INSIGHTS</span>
+<h1 class="font-h1 text-h1 text-on-surface mb-6 leading-tight">Master the Art of Modern <span class="text-primary-container">Home Ownership</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    Discover professional strategies, market trends, and architectural inspirations curated for the discerning investor and homeowner.
+                </p>
+</div>
+</section>
+<!-- Featured Post - Bento Layout Highlight -->
+<section class="max-w-[1280px] mx-auto px-6 mb-16">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[500px]">
+<div class="lg:col-span-8 group relative overflow-hidden rounded-[20px] bg-bg-navy-card border border-white/10">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="luxury modern villa with floor to ceiling glass windows at dusk with warm interior lighting and architectural concrete lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRAjGWSol_yJ89SlBksF36A_nb2gA18ylnMbJ_6WSQVcl01dMW_3A1mIfaFuKVhAOxMhLlk6w0SMR2fnuNa_hVOvVjGFNFCWlNLtCUDtGbSFuiaaXwUnb81I0q7DF3A8oBOHiFn3tMxtlXqw_bYXXQs8BA_mco2uBfefytlPX10WAiIgFNxZrwaLK1Rn41_E5PcPj8-_DsHo9BAuFmC6sJy9u7rikkSQNVAWHOtJBoTvg_1-ais56krON9po16xFsvGyk4ySckG-M"/>
+<div class="absolute inset-0 bg-gradient-to-t from-bg-navy-deep via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<div class="flex gap-3 mb-4">
+<span class="bg-primary-container text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Market Watch</span>
+<span class="text-white/60 text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 8 min read
+                            </span>
+</div>
+<h2 class="font-h2 text-h2 text-white mb-4 max-w-2xl group-hover:text-primary transition-colors">The 2024 Global Luxury Real Estate Forecast</h2>
+<p class="text-white/70 font-body-md line-clamp-2 max-w-xl">From vertical forests in Milan to smart-cities in the desert, explore how luxury living is evolving with technology and sustainability at its core.</p>
+</div>
+</div>
+<div class="lg:col-span-4 glass-panel rounded-[20px] p-8 flex flex-col justify-center">
+<h3 class="font-h3 text-h3 text-on-surface mb-6">Trending Topics</h3>
+<div class="space-y-6">
+<div class="flex gap-4 items-start group cursor-pointer">
+<span class="text-3xl font-black text-white/10 group-hover:text-primary-container transition-colors">01</span>
+<div>
+<h4 class="font-button text-on-surface group-hover:text-primary-container transition-colors">Digital Twin Property Management</h4>
+<p class="text-sm text-on-surface-variant">How IoT is reshaping building maintenance.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start group cursor-pointer">
+<span class="text-3xl font-black text-white/10 group-hover:text-primary-container transition-colors">02</span>
+<div>
+<h4 class="font-button text-on-surface group-hover:text-primary-container transition-colors">Sustainable High-Rise Living</h4>
+<p class="text-sm text-on-surface-variant">The future of eco-friendly urban cores.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start group cursor-pointer">
+<span class="text-3xl font-black text-white/10 group-hover:text-primary-container transition-colors">03</span>
+<div>
+<h4 class="font-button text-on-surface group-hover:text-primary-container transition-colors">Tokenized Real Estate Investing</h4>
+<p class="text-sm text-on-surface-variant">Decentralizing the property market.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Category Filter -->
+<section class="max-w-[1280px] mx-auto px-6 mb-12">
+<div class="flex flex-wrap gap-4 items-center">
+<button class="bg-primary-container text-white px-6 py-2 rounded-full text-sm font-bold">All Insights</button>
+<button class="glass-panel text-on-surface-variant hover:text-white px-6 py-2 rounded-full text-sm font-medium transition-all">Investment</button>
+<button class="glass-panel text-on-surface-variant hover:text-white px-6 py-2 rounded-full text-sm font-medium transition-all">Design</button>
+<button class="glass-panel text-on-surface-variant hover:text-white px-6 py-2 rounded-full text-sm font-medium transition-all">Tech</button>
+<button class="glass-panel text-on-surface-variant hover:text-white px-6 py-2 rounded-full text-sm font-medium transition-all">Architecture</button>
+<div class="ml-auto hidden md:block">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-white/5 border border-white/10 rounded-full pl-10 pr-6 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-container w-64" placeholder="Search articles..." type="text"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Blog Grid -->
+<section class="max-w-[1280px] mx-auto px-6 pb-24">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<article class="group glass-panel rounded-[20px] overflow-hidden flex flex-col hover:border-primary-container/30 transition-all duration-300">
+<div class="relative h-56 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="modern brutalist architecture mansion with clean lines and swimming pool reflecting minimal exterior lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjAUkF-ArAD7zkKikkb4KvMsIsdP0LaAgen5rfXN2I9p5uR_qjexvnRW2s1CzUFtboRNl6QyZ6WaO7LmxDJRnNDPhiuK_TgvA02bs4RLQYYpmC1LKMsYYXHRcDk79ToRvxfru1CGkF8c78kgCda7YQN4Y_g-TOX81Jwf5FfUeXqUsxc0Qioyve9rXamD2TgKnSApEzpSIterr7gWxYGUziZwwIj6mdW1mmaSllx1-WNp9oNGj5ajNdvMoiizDMxWToL3JEXy4WqmE"/>
+<div class="absolute top-4 left-4">
+<span class="bg-bg-navy-deep/80 backdrop-blur-md text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase">Architecture</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center gap-3 mb-4 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> June 14, 2024</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">person</span> Marcus Thorne</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface mb-3 group-hover:text-primary transition-colors leading-snug">Minimalism vs. Maximalism in Modern Estates</h3>
+<p class="text-on-surface-variant font-body-md line-clamp-3 mb-6">How the shift in aesthetic preferences is impacting property valuations across premium urban markets.</p>
+<div class="mt-auto">
+<a class="text-primary font-button flex items-center gap-2 group-hover:translate-x-2 transition-transform" href="#">
+                                Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="group glass-panel rounded-[20px] overflow-hidden flex flex-col hover:border-primary-container/30 transition-all duration-300">
+<div class="relative h-56 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="high-tech smart home control panel integrated into a sleek kitchen countertop with glowing blue interfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM5sOHVAPxuFqMEAx8zAFeEbvKXEYvaBWFUtX0EIp-4mlMxQPo-8VWIMpMmtSemgn3mjM2gT89xId7kB7N3xihnQy1vbClypBK2m2J24F3wPjgIykGqLCCznkOTccFXh2ZhNIxpYMSHzUVY42nnxoaym_18ZbGj9ltm4iHlrqcLf8oup2cJP0AVVz4QDi82rIwfHSZt8pwxBiCBqhqCfotxP-Z1Bm7XtjprVDW82BuwltCtJJgYJF1JA1Zq5KMMJV4ephT7YpqJyQ"/>
+<div class="absolute top-4 left-4">
+<span class="bg-bg-navy-deep/80 backdrop-blur-md text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase">Technology</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center gap-3 mb-4 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> June 12, 2024</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">person</span> Elena Voss</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface mb-3 group-hover:text-primary transition-colors leading-snug">The AI Integration in Next-Gen Living</h3>
+<p class="text-on-surface-variant font-body-md line-clamp-3 mb-6">Smart homes are evolving from simple automation to predictive living environments that learn your habits.</p>
+<div class="mt-auto">
+<a class="text-primary font-button flex items-center gap-2 group-hover:translate-x-2 transition-transform" href="#">
+                                Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="group glass-panel rounded-[20px] overflow-hidden flex flex-col hover:border-primary-container/30 transition-all duration-300">
+<div class="relative h-56 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="dramatic city skyline at night with streaks of light from traffic and glowing skyscrapers in shades of blue and orange" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAesZEdJ2VDW1O_hYkz68ELg4bjFANJcu7ToBaTXac1CtLCdOrMyN7jCwtpQj5fuHP1nP2uizTmWPHwDtq3VRnsJrA4egVUv7Ow2X120NM77--6qoKjLoLAopcFsvWcd8TxvGkgg57fiqqNVhnAmDwBdbpM0gHDeU0gkQcoNUbDNzIhh7euF0ZRwQxm5FwMyY5zCNMqDc6iDu2A3vMbBWUeI59wkz5WlaWi-sMJbhBltloNnFHpZmDQ3Qo-fEpQIDpzF3v3g1bnNDw"/>
+<div class="absolute top-4 left-4">
+<span class="bg-bg-navy-deep/80 backdrop-blur-md text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase">Investment</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center gap-3 mb-4 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> June 10, 2024</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">person</span> David Chen</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface mb-3 group-hover:text-primary transition-colors leading-snug">Urban Expansion: Where to Invest Now</h3>
+<p class="text-on-surface-variant font-body-md line-clamp-3 mb-6">Analyzing the top 5 emerging metropolitan areas poised for exponential growth in the next decade.</p>
+<div class="mt-auto">
+<a class="text-primary font-button flex items-center gap-2 group-hover:translate-x-2 transition-transform" href="#">
+                                Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="group glass-panel rounded-[20px] overflow-hidden flex flex-col hover:border-primary-container/30 transition-all duration-300">
+<div class="relative h-56 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="ultra modern minimal living room interior with cream fabrics, light oak wood and soft morning sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMwfU1-ip301wIGdzIK8q8YSCxXUj9Nyjpor1Ph1S1iAXFo4JUmDt2sMpi6tclwNohasOP_upJAuXG-UZapxL8NgUz8QNVo1uCl0LL5c6Og8eX-agkbt62EbtRdMH28KDgZT9d19gwmF0pMlRNRie6ThVBt7zCx_QcZWn3Lz14-CuNRwvRXQRx6OdsZ0ZtE9PUqHnJ1u542H9PdgAO6JJZAlzjjW9ISlsIDMufZY5xcFK8TyObg3x58CrcrsEgN3c63E7Qb3MjNqw"/>
+<div class="absolute top-4 left-4">
+<span class="bg-bg-navy-deep/80 backdrop-blur-md text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase">Interior</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center gap-3 mb-4 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> June 08, 2024</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">person</span> Sarah Miller</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface mb-3 group-hover:text-primary transition-colors leading-snug">The Psychology of Space and Light</h3>
+<p class="text-on-surface-variant font-body-md line-clamp-3 mb-6">Understanding how architectural volume and lighting design affects well-being and productivity at home.</p>
+<div class="mt-auto">
+<a class="text-primary font-button flex items-center gap-2 group-hover:translate-x-2 transition-transform" href="#">
+                                Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="group glass-panel rounded-[20px] overflow-hidden flex flex-col hover:border-primary-container/30 transition-all duration-300">
+<div class="relative h-56 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="serene high end hotel lobby with marble floors and soft golden accent lighting creating a luxurious mood" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_2oSMt4r0n3p59NPjS--CrPVs7Tftr9PkIy-k1DHwR7h9uFWGi7qP8lpg16Swfgcz2AKLvQmizfcJ_1hunA7ihiDmQa3_smPpvjmfp8Ke2ELTU48Ve_NE9k_LyYSsAIumgiS7YJ-SRZzrCIfenWQPAdyvT-RrnsKP6HLDSwJ1eHlF5C1PbADbZTAP32uiw81Op9s0Pr-EK276FlqQGdM4NTzt__N1enBDQV1J8CvWLVZv9jUSXd35UMRbPmuSmzFuuk97F-3NRwk"/>
+<div class="absolute top-4 left-4">
+<span class="bg-bg-navy-deep/80 backdrop-blur-md text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase">Services</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center gap-3 mb-4 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> June 05, 2024</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">person</span> Julian Graves</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface mb-3 group-hover:text-primary transition-colors leading-snug">Concierge Living: The New Standard</h3>
+<p class="text-on-surface-variant font-body-md line-clamp-3 mb-6">Why hotel-style amenities are becoming mandatory in top-tier residential developments.</p>
+<div class="mt-auto">
+<a class="text-primary font-button flex items-center gap-2 group-hover:translate-x-2 transition-transform" href="#">
+                                Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="group glass-panel rounded-[20px] overflow-hidden flex flex-col hover:border-primary-container/30 transition-all duration-300">
+<div class="relative h-56 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="aerial view of a luxury mediterranean style villa with terracotta roof tiles and a bright turquoise pool" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgglMa2ZONbUe0ADepair8DK2rdj8pXcVYTTMILyizoDz44DpePMhm0-P-3SKVpuWQeyA9EbS_4BR4gW4yFyrEeJbdC5fdxER5xbtAP2wBYxe0_AEpAup02z5THv9Y1BsFPqVD_msZyzTh9PswOKzthpckT9ROj77S6ftaGUk_Bz358O_SbcBzGCe9-dzozjhA0JNcuUTEaZYRzWtEDCIvrlBOkFDWHG1BJKlpZXf06chSvipviaH04V-qJdREqFp0hAHBxaIu5v4"/>
+<div class="absolute top-4 left-4">
+<span class="bg-bg-navy-deep/80 backdrop-blur-md text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase">Global</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex items-center gap-3 mb-4 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> June 01, 2024</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">person</span> Sophia Ricci</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-surface mb-3 group-hover:text-primary transition-colors leading-snug">Coastal Retreats: Investment Tides</h3>
+<p class="text-on-surface-variant font-body-md line-clamp-3 mb-6">Evaluating long-term appreciation in coastal regions amidst changing environmental landscapes.</p>
+<div class="mt-auto">
+<a class="text-primary font-button flex items-center gap-2 group-hover:translate-x-2 transition-transform" href="#">
+                                Read Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="mt-16 flex justify-center items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full glass-panel text-on-surface-variant hover:text-white hover:border-primary-container/50 transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full orange-gradient-bg text-white font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full glass-panel text-on-surface-variant hover:text-white transition-all">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full glass-panel text-on-surface-variant hover:text-white transition-all">3</button>
+<span class="text-on-surface-variant px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full glass-panel text-on-surface-variant hover:text-white transition-all">12</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full glass-panel text-on-surface-variant hover:text-white hover:border-primary-container/50 transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Newsletter Section -->
+<section class="max-w-[1280px] mx-auto px-6 pb-24">
+<div class="glass-panel rounded-[24px] p-12 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+<div class="w-full h-full bg-gradient-to-l from-primary-container to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-2xl">
+<h2 class="font-h2 text-h2 text-on-surface mb-4">Stay Ahead of the Market</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Join 50,000+ investors receiving our weekly briefing on luxury real estate and architectural innovation.</p>
+<form class="flex flex-col sm:flex-row gap-4">
+<input class="flex-grow bg-white/5 border border-white/10 rounded-[14px] px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary-container text-white" placeholder="Enter your email address" type="email"/>
+<button class="orange-gradient-bg text-white px-8 py-4 rounded-[14px] font-button text-button shadow-lg shadow-primary-container/20 whitespace-nowrap active:scale-95 transition-transform">Subscribe Now</button>
+</form>
+<p class="text-[12px] text-on-surface-variant mt-4 opacity-60">By subscribing, you agree to our Privacy Policy and Terms of Service.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 border-t border-white/5 full-width bottom">
+<div class="w-full py-12 px-6 max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-start gap-12 md:items-center">
+<div class="flex flex-col gap-4">
+<div class="text-lg font-bold text-white">Homeverse</div>
+<p class="font-be-vietnam-pro text-xs text-slate-500 max-w-xs">Redefining the residential marketplace through technology and transparent insights.</p>
+</div>
+<nav class="flex flex-wrap gap-8">
+<a class="font-be-vietnam-pro text-xs text-slate-500 hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="font-be-vietnam-pro text-xs text-slate-500 hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="font-be-vietnam-pro text-xs text-slate-500 hover:text-white transition-colors" href="#">FAQ</a>
+<a class="font-be-vietnam-pro text-xs text-slate-500 hover:text-white transition-colors" href="#">Contact Support</a>
+</nav>
+<div class="flex gap-4">
+<a class="w-10 h-10 glass-panel rounded-full flex items-center justify-center text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">public</span>
+</a>
+<a class="w-10 h-10 glass-panel rounded-full flex items-center justify-center text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">share</span>
+</a>
+</div>
+</div>
+<div class="max-w-[1280px] mx-auto px-6 py-8 border-t border-white/5 text-center">
+<p class="font-be-vietnam-pro text-xs text-slate-500">© 2024 Homeverse Marketplace. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

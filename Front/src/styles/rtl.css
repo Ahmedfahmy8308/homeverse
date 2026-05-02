@@ -1,0 +1,20 @@
+/* 
+  Copyright (c) 2025 Ahmed Fahmy
+  Developed at UFUQ TECH
+  Proprietary software. See LICENSE file in the project root for full license information.
+*/
+
+/* ==========================================================================
+   RTL — Right-to-left overrides for Arabic
+   ========================================================================== */
+
+[dir="rtl"] {
+  font-family: "Cairo", var(--font-primary), sans-serif;
+}
+[dir="rtl"] .section-subtitle {
+  direction: rtl;
+}
+[dir="rtl"] .btn-primary,
+[dir="rtl"] .btn-secondary {
+  flex-direction: row-reverse;
+}

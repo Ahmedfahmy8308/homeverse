@@ -1,0 +1,325 @@
+<!--
+  Copyright (c) 2025 Ahmed Fahmy
+  Developed at UFUQ TECH
+  Proprietary software. See LICENSE file in the project root for full license information.
+-->
+
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Homeverse - User Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-surface {
+            background: rgba(26, 31, 46, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-input {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #ed691e 0%, #c4510e 100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#f6ded4",
+                        "on-tertiary": "#003354",
+                        "tertiary-fixed-dim": "#99cbff",
+                        "on-tertiary-fixed": "#001d33",
+                        "on-tertiary-container": "#002c4a",
+                        "primary-fixed-dim": "#ffb695",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#40322b",
+                        "tertiary": "#99cbff",
+                        "secondary-fixed-dim": "#ffb781",
+                        "bg-navy-card": "#1a1f2e",
+                        "warning": "#f59e0b",
+                        "primary": "#ffb695",
+                        "on-surface": "#f6ded4",
+                        "inverse-on-surface": "#3c2d27",
+                        "text-dim": "rgba(255, 255, 255, 0.4)",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "surface-tint": "#ffb695",
+                        "surface-container-highest": "#40322b",
+                        "surface": "#1c110b",
+                        "primary-fixed": "#ffdbcc",
+                        "tertiary-container": "#1197eb",
+                        "secondary-container": "#b05c01",
+                        "on-secondary-fixed": "#2f1400",
+                        "on-primary-container": "#4c1a00",
+                        "on-background": "#f6ded4",
+                        "on-primary-fixed-variant": "#7b2f00",
+                        "danger": "#ef4444",
+                        "on-secondary-container": "#fff7f3",
+                        "bg-navy-darker": "#111827",
+                        "on-surface-variant": "#e0c0b2",
+                        "on-secondary": "#4e2500",
+                        "text-muted": "#94a3b8",
+                        "surface-container-low": "#251913",
+                        "inverse-primary": "#a23f00",
+                        "secondary-fixed": "#ffdcc4",
+                        "secondary": "#ffb781",
+                        "primary-container": "#ed691e",
+                        "on-secondary-fixed-variant": "#703800",
+                        "on-primary-fixed": "#351000",
+                        "success": "#22c55e",
+                        "on-primary": "#571f00",
+                        "text-light": "#e2e8f0",
+                        "background": "#1c110b",
+                        "surface-dim": "#1c110b",
+                        "outline": "#a78b7f",
+                        "on-tertiary-fixed-variant": "#004a78",
+                        "surface-bright": "#453630",
+                        "bg-navy-deep": "#0b0f1a",
+                        "surface-container-lowest": "#160c07",
+                        "surface-container": "#291d17",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-high": "#352721",
+                        "tertiary-fixed": "#cfe5ff",
+                        "outline-variant": "#584238",
+                        "info": "#3b82f6",
+                        "primary-dark": "#c4510e"
+                    },
+                    "fontFamily": {
+                        "be-vietnam-pro": ["Be Vietnam Pro"],
+                        "manrope": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-manrope selection:bg-primary-container selection:text-white min-h-screen overflow-x-hidden">
+<!-- Radial Background Effects -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
+<div class="absolute top-[-10%] right-[-10%] w-[80%] h-[80%] bg-primary-container/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] bg-tertiary-container/5 rounded-full blur-[100px]"></div>
+</div>
+<!-- Mobile Top Navigation (Simulated Hamburger) -->
+<header class="bg-slate-950/80 backdrop-blur-lg border-b border-white/10 docked full-width top-0 sticky z-50 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] w-full h-20 px-6 flex justify-between items-center">
+<div class="flex items-center gap-4">
+<button class="text-on-background p-2 rounded-lg hover:bg-white/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="text-2xl font-black tracking-tighter text-[#e8651a]">Homeverse</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-lg hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional male in a modern corporate setting with warm ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBUaN0czF0UCulLts2RXE2-HQaW-XFhvglRRdLX00852iSh3nxNJQTiQM9mTj_yGTnzqEQVc55kpRhT8eS0_SmIy6-QotIUL2eCFuZKE-QOq2r_SqMJG_kYPW9o_gS7sleZxWgk4mptVUzjMSLgFI7jG82pkHEkOMJWvI8-pgEbI0L8WdAUVKuB3lsSE63OWU7TonQ3Dgptvt0ijzIQL54l5EaL20MViQJ-d_DiE61HNKrXkwOg-SZCgSL50Bh3S-FePP9jYtIv8k"/>
+</div>
+</div>
+</header>
+<main class="relative z-10 px-6 py-8 flex flex-col gap-8 max-w-[1280px] mx-auto">
+<!-- Welcome Header -->
+<section>
+<h1 class="font-be-vietnam-pro text-[32px] font-bold leading-tight mb-2">Welcome back, Alex</h1>
+<p class="text-text-muted text-sm">Your real estate portfolio grew by 4.2% this month.</p>
+</section>
+<!-- Stats Grid (Mobile 2x2) -->
+<section class="grid grid-cols-2 gap-4">
+<div class="glass-surface p-5 rounded-[20px] flex flex-col gap-2">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-[#e8651a]">
+<span class="material-symbols-outlined" data-weight="fill">domain</span>
+</div>
+<div class="mt-2">
+<p class="text-text-muted text-xs font-semibold uppercase tracking-wider">Properties</p>
+<p class="text-2xl font-bold font-be-vietnam-pro">12</p>
+</div>
+<div class="text-success text-[10px] font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">arrow_upward</span> +2 New
+                </div>
+</div>
+<div class="glass-surface p-5 rounded-[20px] flex flex-col gap-2">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-weight="fill">payments</span>
+</div>
+<div class="mt-2">
+<p class="text-text-muted text-xs font-semibold uppercase tracking-wider">Monthly Rent</p>
+<p class="text-2xl font-bold font-be-vietnam-pro">$24k</p>
+</div>
+<div class="text-success text-[10px] font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">arrow_upward</span> 12.5%
+                </div>
+</div>
+<div class="glass-surface p-5 rounded-[20px] flex flex-col gap-2">
+<div class="w-10 h-10 rounded-full bg-warning/20 flex items-center justify-center text-warning">
+<span class="material-symbols-outlined" data-weight="fill">chat_bubble</span>
+</div>
+<div class="mt-2">
+<p class="text-text-muted text-xs font-semibold uppercase tracking-wider">Inquiries</p>
+<p class="text-2xl font-bold font-be-vietnam-pro">48</p>
+</div>
+<div class="text-danger text-[10px] font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">priority_high</span> 5 Unread
+                </div>
+</div>
+<div class="glass-surface p-5 rounded-[20px] flex flex-col gap-2">
+<div class="w-10 h-10 rounded-full bg-inverse-primary/20 flex items-center justify-center text-inverse-primary">
+<span class="material-symbols-outlined" data-weight="fill">trending_up</span>
+</div>
+<div class="mt-2">
+<p class="text-text-muted text-xs font-semibold uppercase tracking-wider">Portfolio Val</p>
+<p class="text-2xl font-bold font-be-vietnam-pro">$4.8M</p>
+</div>
+<div class="text-success text-[10px] font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">arrow_upward</span> $120k
+                </div>
+</div>
+</section>
+<!-- Featured Listing Preview (Card with Glassmorphism) -->
+<section class="flex flex-col gap-4">
+<div class="flex justify-between items-end">
+<h2 class="font-be-vietnam-pro text-xl font-bold">New Interest</h2>
+<button class="text-primary text-sm font-semibold hover:underline transition-all">View all</button>
+</div>
+<div class="glass-surface rounded-[20px] overflow-hidden group">
+<div class="relative h-48 w-full">
+<img alt="Modern Villa" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A luxury modern minimalist villa with large glass windows at sunset, glowing interior lights, and a sleek infinity pool" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPHv3DcWtXmjj7oqhxjrbv7xMMad3n7f02FINt3gAIRGulD05xlE18FxSuVs32JQfbMssy_8q0KV2NnsH1r9-QCIB91hYA9Dd90w8Y1BOZsfTIkE-1qNOwX3jhtJoItqHQNH8Inu6BxRsSFRZKyFrvepYXk7tfTWYQ-Vf3fqXrcutu0ZQ3CSLBMBrP2nNfmvmNPXFKE5LGqixzNmLw8G2IJ2Tuthzc3AnBCW7SjgGDNFIrMPR96TIBFj-tMGY0oXglrHQyQv9Q9tI"/>
+<div class="absolute top-4 right-4 px-3 py-1 bg-slate-950/60 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/20">
+                        Top Listing
+                    </div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-be-vietnam-pro text-lg font-bold">Horizon Glass Villa</h3>
+<span class="text-primary-container font-bold text-lg">$2,450,000</span>
+</div>
+<div class="flex items-center gap-2 text-text-muted text-sm mb-4">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                        Beverly Hills, CA
+                    </div>
+<div class="flex justify-between items-center pt-4 border-t border-white/5">
+<div class="flex gap-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary-container text-lg">bed</span>
+<span class="text-sm font-semibold">4</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary-container text-lg">bathtub</span>
+<span class="text-sm font-semibold">3</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary-container text-lg">square_foot</span>
+<span class="text-sm font-semibold">3.2k</span>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full primary-gradient flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Activity Feed -->
+<section class="flex flex-col gap-4">
+<h2 class="font-be-vietnam-pro text-xl font-bold">Recent Activity</h2>
+<div class="flex flex-col gap-3">
+<!-- Activity Item 1 -->
+<div class="glass-surface p-4 rounded-[20px] flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-success/10 flex items-center justify-center text-success shrink-0">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Rental payment received</p>
+<p class="text-xs text-text-muted">Unit 4B - Oak Ridge Estates</p>
+</div>
+<div class="text-right shrink-0">
+<p class="text-xs font-bold text-success">+$2,800</p>
+<p class="text-[10px] text-text-muted">2h ago</p>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="glass-surface p-4 rounded-[20px] flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-info/10 flex items-center justify-center text-info shrink-0">
+<span class="material-symbols-outlined">chat_bubble</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">New inquiry: Azure Penthouse</p>
+<p class="text-xs text-text-muted">From: Michael Chen</p>
+</div>
+<div class="text-right shrink-0">
+<span class="w-2 h-2 bg-primary-container rounded-full inline-block"></span>
+<p class="text-[10px] text-text-muted">5h ago</p>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="glass-surface p-4 rounded-[20px] flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-warning/10 flex items-center justify-center text-warning shrink-0">
+<span class="material-symbols-outlined">handyman</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Maintenance scheduled</p>
+<p class="text-xs text-text-muted">HVAC repair - 782 Broadway</p>
+</div>
+<div class="text-right shrink-0">
+<p class="text-[10px] text-text-muted">Yesterday</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Actions Floating Button -->
+<div class="fixed bottom-24 right-6 z-40">
+<button class="w-14 h-14 rounded-full primary-gradient flex items-center justify-center text-white shadow-[0_12px_24px_rgba(232,101,26,0.4)] active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile Native Shell) -->
+<nav class="fixed bottom-0 left-0 w-full bg-slate-950/90 backdrop-blur-2xl border-t border-white/5 z-50 md:hidden h-20 px-4 flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 text-[#e8651a]" href="#">
+<span class="material-symbols-outlined" data-weight="fill">dashboard</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">domain</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Listings</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Analytics</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors relative" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary-container rounded-full"></span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Messages</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Settings</span>
+</a>
+</nav>
+<!-- Footer Space -->
+<footer class="w-full py-12 px-6 max-w-[1280px] mx-auto flex flex-col items-center gap-4 text-center pb-32">
+<span class="text-lg font-bold text-white">Homeverse</span>
+<p class="font-be-vietnam-pro text-xs text-slate-500">© 2024 Homeverse Marketplace. All rights reserved.</p>
+<div class="flex flex-wrap justify-center gap-4 mt-2">
+<a class="text-slate-500 hover:text-white text-[10px] uppercase font-bold tracking-widest" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-white text-[10px] uppercase font-bold tracking-widest" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-white text-[10px] uppercase font-bold tracking-widest" href="#">Contact Support</a>
+</div>
+</footer>
+</body></html>

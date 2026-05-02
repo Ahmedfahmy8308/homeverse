@@ -1,0 +1,46 @@
+@startuml
+title Homeverse Property Creation Flow
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam roundcorner 16
+skinparam activity {
+  BackgroundColor #F8FAFC
+  BorderColor #0F172A
+  ArrowColor #0F172A
+  FontColor #0F172A
+  DiamondBackgroundColor #E2E8F0
+  DiamondBorderColor #0F172A
+}
+
+start
+:Admin opens "Add Property";
+:Frontend presents a polished property form;
+repeat
+    :Admin enters title, price, city, type, and address;
+    :Admin selects category, agent, and listing status;
+    :Admin chooses amenities and uploads images;
+    :Frontend validates required fields and TS types;
+repeat while (Form valid?) is (No)
+-> Yes;
+:Frontend sends POST /api/properties
+with Bearer token;
+:API gateway checks token and role;
+if (Authenticated admin?) then (Yes)
+    :Normalize and sanitize input;
+    :Create property record;
+    :Save property images;
+    :Attach amenities through pivot table;
+    if (Database success?) then (Yes)
+        :Return 201 Created JSON response;
+        :Show success toast and refresh list;
+    else (No)
+        :Return 500 with validation or DB message;
+        :Show error toast;
+    endif
+else (No)
+    :Return 401 Unauthorized;
+    :Redirect to login screen;
+endif
+stop
+@enduml

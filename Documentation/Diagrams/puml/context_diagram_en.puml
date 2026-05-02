@@ -1,0 +1,23 @@
+@startuml
+title Homeverse System Context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(user, "User", "Buyer, renter, agent, or admin using the platform")
+Person(guest, "Guest Visitor", "Anonymous visitor browsing listings and content")
+
+System(homeverse, "Homeverse Real Estate Platform", "Web application for listings, user management, and content publishing")
+
+System_Ext(email_service, "Email Service", "Sends newsletters, confirmations, and notifications")
+System_Ext(payment_gateway, "Payment Gateway", "Processes payments and reservations")
+System_Ext(maps_api, "Maps API", "Provides geocoding and map location data")
+System_Ext(social_media, "Social Media Platforms", "Supports property sharing and marketing")
+
+Rel(user, homeverse, "Searches, saves, reviews, and manages content")
+Rel(guest, homeverse, "Views properties, blog posts, and contact forms")
+
+Rel(homeverse, email_service, "Sends emails")
+Rel(homeverse, payment_gateway, "Processes payments")
+Rel(homeverse, maps_api, "Retrieves map and location data")
+Rel(homeverse, social_media, "Shares property listings")
+
+@enduml

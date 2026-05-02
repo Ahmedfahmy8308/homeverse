@@ -1,0 +1,67 @@
+@startuml
+title Homeverse Layered Architecture
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam roundcorner 12
+skinparam packageStyle rectangle
+skinparam node {
+  BackgroundColor White
+  BorderColor #F97316
+  FontColor #111827
+}
+skinparam database {
+  BackgroundColor #FFF7ED
+  BorderColor #F97316
+  FontColor #111827
+}
+
+node "Client Tier\nModern Frontend" as client_tier {
+  [Next.js 15 App Router\nReact + TypeScript + Tailwind] as next_app
+  [Localization Layer\ni18next EN / AR] as i18n
+  [Typed API Client\nFetch wrapper with fallbacks] as api_client
+}
+
+node "API Gateway / Web Server" as web_tier {
+  [PHP 8.2 Runtime\nBuilt-in Server or Nginx] as web_server
+  [router.php\nRequest dispatcher] as router
+}
+
+node "Security & Middleware" as security_tier {
+  [JWT / Token Auth] as auth_mid
+  [CORS Policy] as cors_mid
+  [Request Validation] as validation_mid
+}
+
+node "Application Logic Tier\nPHP Services" as app_tier {
+  package "Repositories" {
+    [repo_properties.php] as prop_repo
+    [repo_auth.php] as auth_repo
+    [repo_blog.php] as blog_repo
+    [repo_general.php] as gen_repo
+  }
+}
+
+node "Data Access & Storage" as data_tier {
+  [PDO / MySQL Connector] as pdo
+  database "MySQL 8.0\nhomeverse_db" as mysql
+}
+
+next_app --> i18n : render localized UI
+next_app --> api_client : request data
+api_client .down.> web_server : REST API (JSON)
+
+web_server --> router
+router --> validation_mid
+validation_mid --> cors_mid
+cors_mid --> auth_mid
+auth_mid --> app_tier
+
+prop_repo --> pdo
+auth_repo --> pdo
+blog_repo --> pdo
+gen_repo --> pdo
+
+pdo --> mysql : SQL queries
+
+@enduml

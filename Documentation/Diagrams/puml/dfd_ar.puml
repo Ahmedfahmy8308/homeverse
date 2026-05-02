@@ -1,0 +1,61 @@
+@startuml
+title مخطط تدفق البيانات لنظام Homeverse (المستوى 0)
+
+top to bottom direction
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam roundcorner 10
+skinparam defaultTextAlignment center
+skinparam nodesep 130
+skinparam ranksep 135
+skinparam linetype ortho
+skinparam ArrowColor #111827
+skinparam ArrowThickness 1
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #111827
+  FontColor #111827
+  MinimumWidth 240
+  MinimumHeight 175
+}
+skinparam database {
+  BackgroundColor #FFF7ED
+  BorderColor #F97316
+  FontColor #111827
+}
+
+rectangle "مستخدم" as user
+rectangle "مدير" as admin
+rectangle "المتصفح / التطبيق" as client
+
+rectangle "1.0\n----\nاستقبال\nالطلب" as p1
+rectangle "2.0\n----\nالمصادقة\nوتحميل البيانات" as p2
+rectangle "3.0\n----\nمعالجة\nبيانات العقارات" as p3
+rectangle "4.0\n----\nمعالجة المحتوى\nوالرسائل" as p4
+rectangle "5.0\n----\nعرض النتائج\nولوحة التحكم" as p5
+
+p1 -[hidden]down-> p2
+p2 -[hidden]down-> p3
+p3 -[hidden]down-> p4
+p4 -[hidden]down-> p5
+
+user -[hidden]right-> p1
+client -[hidden]right-> p1
+database "D1\nقاعدة البيانات" as d1
+
+user -down-> p1 : إرسال الطلب
+admin -down-> p1 : طلب إدارة النظام
+
+p1 -down-> p2 : تسجيل دخول / تسجيل / تصفح
+p2 -down-> d1 : قراءة / حفظ المستخدمين
+p2 -down-> p3 : طلب بيانات موثقة
+p3 -down-> d1 : قراءة / حفظ العقارات
+p3 -down-> p4 : طلب بيانات المحتوى
+p4 -down-> d1 : قراءة / حفظ المقالات والتقييمات والرسائل
+p4 -down-> p5 : رد جاهز
+
+p5 -down-> client : عرض النتائج / اللوحة
+client -up-> p1 : تحديث وعرض
+
+@enduml

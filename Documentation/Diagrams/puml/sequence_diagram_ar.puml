@@ -1,0 +1,35 @@
+@startuml
+title تسلسل إضافة عقار إلى المفضلة
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam roundcorner 10
+skinparam maxMessageSize 160
+skinparam sequence {
+  ArrowColor #0F172A
+  LifeLineBorderColor #94A3B8
+  LifeLineBackgroundColor #FFFFFF
+  ParticipantBorderColor #0F172A
+  ParticipantBackgroundColor #E2E8F0
+  ActorBorderColor #0F172A
+  ActorBackgroundColor #E2E8F0
+}
+
+actor "المستخدم" as User
+participant "الواجهة الأمامية Next.js" as front
+participant "واجهة PHP API" as api
+database "قاعدة بيانات MySQL" as db
+
+User -> front: النقر على "إضافة إلى المفضلة"
+front -> front: التحقق من حالة الدخول والرمز
+alt غير مسجل الدخول
+    front -->> User: فتح نافذة تسجيل الدخول
+else مسجل الدخول
+    front -> api: POST /api/wishlist { property_id }
+    api -> api: التحقق من JWT
+    api -> db: INSERT INTO wishlists (user_id, property_id)
+    db -->> api: نجاح الإضافة
+    api -->> front: 201 Created
+    front -->> User: تفعيل أيقونة القلب باللون الأحمر
+end
+@enduml

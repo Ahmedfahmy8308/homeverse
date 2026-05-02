@@ -1,0 +1,55 @@
+@startuml
+title نموذج حالات الاستخدام في Homeverse
+
+left to right direction
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam usecase {
+  BorderColor #0F172A
+  BackgroundColor #F8FAFC
+}
+
+actor "زائر عام" as guest
+actor "مستخدم مسجل" as user
+actor "مدير النظام" as admin
+
+rectangle "نظام Homeverse" {
+  (تصفح العقارات) as browse
+  (فلترة وبحث) as search
+  (عرض المقالات) as blog
+  (إرسال استفسار) as contact
+  (تسجيل / دخول) as auth
+
+  (إدارة المفضلة) as wishlist
+  (إضافة مراجعة للعقار) as review
+  (إدارة الملف الشخصي) as profile
+  (حفظ العقارات المفضلة) as save_fav
+
+  (إدارة جميع العقارات) as m_prop
+  (إدارة محتوى المدونة) as m_blog
+  (عرض إحصائيات اللوحة) as stats
+  (إدارة إعدادات الموقع) as settings
+  (مراجعة رسائل التواصل) as messages
+}
+
+guest --> browse
+guest --> search
+guest --> blog
+guest --> contact
+guest --> auth
+
+user --|> guest
+user --> wishlist
+user --> review
+user --> profile
+user --> save_fav
+
+admin --|> user
+admin --> m_prop
+admin --> m_blog
+admin --> stats
+admin --> settings
+admin --> messages
+
+@enduml

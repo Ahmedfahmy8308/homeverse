@@ -1,0 +1,17 @@
+{
+  "property_details": "تفاصيل العقار",
+  "property_overview": "نظرة عامة",
+  "property_features": "المميزات",
+  "property_location": "الموقع",
+  "property_contact_agent": "تواصل مع الوكيل",
+  "property_similar": "عقارات مشابهة",
+  "property_filter_all": "الكل",
+  "property_filter_rent": "للإيجار",
+  "property_filter_sale": "للبيع",
+  "property_filter_city": "المدينة",
+  "property_filter_price": "نطاق السعر",
+  "property_filter_bedrooms": "غرف النوم",
+  "property_filter_type": "نوع العقار",
+  "property_no_results": "لم يتم العثور على عقارات مطابقة لمعاييرك.",
+  "property_search_placeholder": "ابحث بالموقع، اسم العقار..."
+}

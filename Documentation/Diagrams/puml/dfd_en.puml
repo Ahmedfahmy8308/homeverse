@@ -1,0 +1,61 @@
+@startuml
+title Homeverse System Data Flow Diagram (Level 0)
+
+top to bottom direction
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam roundcorner 10
+skinparam defaultTextAlignment center
+skinparam nodesep 180
+skinparam ranksep 180
+skinparam linetype ortho
+skinparam ArrowColor #111827
+skinparam ArrowThickness 1
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #111827
+  FontColor #111827
+  MinimumWidth 240
+  MinimumHeight 175
+}
+skinparam database {
+  BackgroundColor #FFF7ED
+  BorderColor #F97316
+  FontColor #111827
+}
+
+rectangle "User" as user
+rectangle "Admin" as admin
+rectangle "Browser / App" as client
+
+rectangle "1.0\n----\nCapture\nRequest" as p1
+rectangle "2.0\n----\nAuthenticate\n& Load Data" as p2
+rectangle "3.0\n----\nProcess\nProperty Data" as p3
+rectangle "4.0\n----\nProcess Content\n& Messages" as p4
+rectangle "5.0\n----\nDisplay Results\n& Dashboard" as p5
+
+p1 -[hidden]down-> p2
+p2 -[hidden]down-> p3
+p3 -[hidden]down-> p4
+p4 -[hidden]down-> p5
+
+user -[hidden]right-> p1
+client -[hidden]right-> p1
+database "D1\nDatabase" as d1
+
+user -down-> p1 : submit request
+admin -down-> p1 : manage system request
+
+p1 -down-> p2 : login / register / browse
+p2 -down-> d1 : read / write users
+p2 -down-> p3 : authenticated data request
+p3 -down-> d1 : read / write properties
+p3 -down-> p4 : listing / content request
+p4 -down-> d1 : read / write posts, reviews, messages
+p4 -down-> p5 : prepared response
+
+p5 -down-> client : results / dashboard view
+client -up-> p1 : display and refresh
+
+@enduml

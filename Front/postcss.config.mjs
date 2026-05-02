@@ -1,0 +1,11 @@
+// Copyright (c) 2025 Ahmed Fahmy
+// Developed at UFUQ TECH
+// Proprietary software. See LICENSE file in the project root for full license information.
+
+const config = {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+
+export default config;

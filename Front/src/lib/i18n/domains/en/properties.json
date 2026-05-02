@@ -1,0 +1,17 @@
+{
+  "property_details": "Property Details",
+  "property_overview": "Overview",
+  "property_features": "Features",
+  "property_location": "Location",
+  "property_contact_agent": "Contact Agent",
+  "property_similar": "Similar Properties",
+  "property_filter_all": "All",
+  "property_filter_rent": "For Rent",
+  "property_filter_sale": "For Sale",
+  "property_filter_city": "City",
+  "property_filter_price": "Price Range",
+  "property_filter_bedrooms": "Bedrooms",
+  "property_filter_type": "Property Type",
+  "property_no_results": "No properties found matching your criteria.",
+  "property_search_placeholder": "Search by location, property name..."
+}
